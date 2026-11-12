@@ -1,0 +1,1 @@
+(()=>{const c=window.NILORA_CONFIG;if(!window.supabase||!c?.supabaseUrl||!c?.supabaseAnonKey)throw Error("Supabase client configuration missing");window.db=window.supabase.createClient(c.supabaseUrl,c.supabaseAnonKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}})})();
