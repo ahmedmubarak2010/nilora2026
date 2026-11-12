@@ -1,6 +1,1 @@
-// Public browser configuration. Never put a Supabase service_role key here.
-window.NILORA_CONFIG = {
-  supabaseUrl: "https://ktcpshwjfmcworrrtusg.supabase.co",
-  // Add the project's publishable/anon key from Supabase Dashboard > Project Settings > API.
-  supabaseAnonKey: ""
-};
+window.NILORA_CONFIG=Object.freeze({supabaseUrl:"https://ktcpshwjfmcworrrtusg.supabase.co",supabaseAnonKey:"sb_publishable_J8TPYSuHDH6Tw7Da-L6Zag_Gbunn_48"});
