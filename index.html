@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_standard" name="shell-type"/>
+<title>NILORA | Precision Satellite Intelligence for Modern Agriculture</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Montserrat:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#FEF9EA",
+            "surface-subtle": "#F9F6ED",
+            "surface-card": "#FFFFFF",
+            "surface-dark": "#1A2316",
+            "primary": "#1A2714",
+            "primary-container": "#2F3D28",
+            "dark-olive": "#2F3D28",
+            "olive": "#556D4A",
+            "soft-green": "#C8D5B5",
+            "light-sage": "#A4AC86",
+            "sand": "#D8C9A9",
+            "beige": "#EDE8D9",
+            "brown-accent": "#A67C52",
+            "on-surface": "#1D1C13",
+            "on-surface-variant": "#595C55",
+            "outline-variant": "#E3DECE",
+            "secondary-container": "#E7EFE0",
+            "on-secondary-container": "#2F4A23"
+          },
+          fontFamily: {
+            headline: ["Montserrat", "sans-serif"],
+            body: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+        background-color: #FEF9EA;
+        color: #1D1C13;
+        scroll-behavior: smooth;
+      }
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Header / Navigation -->
+<header class="sticky top-0 w-full z-50 bg-surface/90 backdrop-blur-md border-b border-outline-variant/60 transition-all">
+<div class="max-w-7xl mx-auto px-6 sm:px-8 h-20 flex items-center justify-between">
+<!-- Logo -->
+<a class="flex items-center gap-3 group" href="#">
+<img alt="NILORA Logo" class="h-9 w-auto object-contain transition-transform group-hover:scale-105" src="D:\nasa\Egyptian Landscape Emblem Logo.png"/>
+<div class="flex flex-col">
+<span class="font-headline font-bold text-lg tracking-tight text-primary">NILORA</span>
+<span class="text-[11px] font-medium text-on-surface-variant tracking-wider uppercase">Nile Ag-Intelligence</span>
+</div>
+</a>
+<!-- Minimal Navigation Links -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#solutions">Solutions</a>
+<a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#platform">Platform</a>
+<a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#impact">Impact</a>
+<a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#regions">Case Studies</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<a class="hidden sm:inline-block text-sm font-semibold text-on-surface-variant hover:text-primary px-3 py-2 transition-colors" href="#access">
+          Sign In
+        </a>
+<a class="inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-primary-container text-white text-sm font-medium hover:bg-olive transition-colors shadow-sm" href="#access">
+          Request Demo
+        </a>
+</div>
+</div>
+</header>
+<main class="w-full">
+<!-- Hero Section -->
+<section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
+<!-- Soft ambient contour glow -->
+<div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-sand/30 via-soft-green/20 to-transparent blur-3xl pointer-events-none -z-10 rounded-full"></div>
+<div class="max-w-7xl mx-auto px-6 sm:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+<!-- Hero Text (7 cols) -->
+<div class="lg:col-span-7 space-y-6 text-left">
+<!-- Pill status badge -->
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-xs font-semibold">
+<span class="w-2 h-2 rounded-full bg-olive animate-pulse"></span>
+              Live Orbit: Sentinel-2 coverage over Nile Delta &amp; New Valley
+            </div>
+<h1 class="font-headline font-extrabold text-4xl sm:text-5xl lg:text-[54px] tracking-tight leading-[1.15] text-primary">
+              Precision Satellite Intelligence for Modern Agriculture
+            </h1>
+<p class="text-lg text-on-surface-variant max-w-xl font-normal leading-relaxed">
+              Empowering commercial farms across Egypt and the Nile Basin. We combine multispectral orbital imagery with AI crop models to optimize irrigation, detect disease early, and maximize yield per acre.
+            </p>
+<div class="flex flex-wrap items-center gap-4 pt-2">
+<a class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-primary-container text-white font-semibold text-sm hover:bg-olive transition-all shadow-md" href="#access">
+<span>Start Free 14-Day Field Trial</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<a class="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-lg bg-surface-card border border-outline-variant text-on-surface font-semibold text-sm hover:bg-surface-subtle transition-all" href="#platform">
+<span class="material-symbols-outlined text-olive text-[20px]">play_circle</span>
+<span>See How It Works</span>
+</a>
+</div>
+<!-- Trust indicators -->
+<div class="flex flex-wrap items-center gap-6 pt-4 text-xs font-medium text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-olive text-[16px]">verified</span>
+                Verified nationwide field coverage
+              </div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-olive text-[16px]">speed</span>
+                Coordinates calibrated in &lt; 3 mins
+              </div>
+</div>
+</div>
+<!-- Hero Graphic Card (5 cols) -->
+<div class="lg:col-span-5">
+<div class="relative bg-surface-card rounded-2xl border border-outline-variant/80 p-5 shadow-xl shadow-stone-200/50">
+<!-- Header tag -->
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant/60">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-olive"></span>
+<span class="font-headline font-semibold text-sm text-primary">Pivot Sector 04 • Wadi El Natrun</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-xs font-semibold">
+                  NDVI 0.84 Active
+                </span>
+</div>
+<!-- Satellite preview photo -->
+<div class="relative h-56 rounded-xl overflow-hidden my-4 bg-surface-subtle">
+<img alt="Pivot irrigation circle in Egypt" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGvuGAOAEKczGU0OAvs6Ld7DxY-ay_Xgt9_GQ4vQ797xfVrH6BCillsQBLCXg7rNi5DkCym92XWFxPBBq8xb-kQYdNDPraLh2WliYzLTh0_T0QaHhF5IBLR-g-qcIHiaHzNr_oiRHQS8MlPY0XN_548DK1IKtu67ggnc3-WBNfVkbqhBXxjfjoj6VCB2dtSxwyo80b71zceYS14ya24JaCn_SOmpUHuuSzrDbd3rg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dark/70 via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs font-medium">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-soft-green">satellite_alt</span>
+<span>Sentinel-2B • 10m Spatial Res</span>
+</div>
+<span class="bg-black/40 backdrop-blur-md px-2 py-0.5 rounded text-[11px]">
+                    Today 09:40 UTC
+                  </span>
+</div>
+</div>
+<!-- Telemetry mini grid -->
+<div class="grid grid-cols-3 gap-2.5 text-center">
+<div class="bg-surface-subtle p-3 rounded-lg border border-outline-variant/40">
+<span class="text-[11px] text-on-surface-variant block">Soil Moisture</span>
+<span class="font-headline font-bold text-lg text-primary">84%</span>
+<span class="text-olive text-[11px] font-medium flex items-center justify-center gap-0.5 mt-0.5">
+<span class="material-symbols-outlined text-[13px]">check</span> Optimal
+                  </span>
+</div>
+<div class="bg-surface-subtle p-3 rounded-lg border border-outline-variant/40">
+<span class="text-[11px] text-on-surface-variant block">Vegetation Health</span>
+<span class="font-headline font-bold text-lg text-primary">94.2%</span>
+<span class="text-olive text-[11px] font-medium flex items-center justify-center gap-0.5 mt-0.5">
+<span class="material-symbols-outlined text-[13px]">arrow_upward</span> Vigor
+                  </span>
+</div>
+<div class="bg-surface-subtle p-3 rounded-lg border border-outline-variant/40">
+<span class="text-[11px] text-on-surface-variant block">Water Saved</span>
+<span class="font-headline font-bold text-lg text-brown-accent">32%</span>
+<span class="text-on-surface-variant text-[11px] block mt-0.5">This cycle</span>
+</div>
+</div>
+<!-- AI Advisory Micro-bar -->
+<div class="mt-3 p-2.5 rounded-lg bg-secondary-container/60 flex items-center gap-2 text-xs text-on-secondary-container font-medium">
+<span class="material-symbols-outlined text-olive text-[18px]">psychology</span>
+<span class="truncate">Recommendation: Reduce southern pivot flow by 12 m³/acre.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Metrics Bar -->
+<section class="border-y border-outline-variant/60 bg-surface-subtle/80 py-10" id="impact">
+<div class="max-w-7xl mx-auto px-6 sm:px-8">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-outline-variant/60">
+<div class="space-y-1">
+<div class="font-headline font-extrabold text-3xl sm:text-4xl text-primary">150K+</div>
+<div class="text-sm font-semibold text-on-surface">Acres Monitored</div>
+<div class="text-xs text-on-surface-variant">Across Delta &amp; Desert Projects</div>
+</div>
+<div class="space-y-1 pt-6 md:pt-0">
+<div class="font-headline font-extrabold text-3xl sm:text-4xl text-primary">30%</div>
+<div class="text-sm font-semibold text-on-surface">Water Optimization</div>
+<div class="text-xs text-on-surface-variant">Average resource conservation</div>
+</div>
+<div class="space-y-1 pt-6 md:pt-0">
+<div class="font-headline font-extrabold text-3xl sm:text-4xl text-primary">98.4%</div>
+<div class="text-sm font-semibold text-on-surface">Diagnostic Accuracy</div>
+<div class="text-xs text-on-surface-variant">Spectral pest &amp; rust detection</div>
+</div>
+<div class="space-y-1 pt-6 md:pt-0">
+<div class="font-headline font-extrabold text-3xl sm:text-4xl text-primary">24/7</div>
+<div class="text-sm font-semibold text-on-surface">Field Telemetry</div>
+<div class="text-xs text-on-surface-variant">Autonomous weather integration</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Core Capabilities (Minimalist 4-card grid) -->
+<section class="py-20 md:py-28" id="solutions">
+<div class="max-w-7xl mx-auto px-6 sm:px-8 space-y-14">
+<!-- Section Header -->
+<div class="max-w-2xl space-y-3">
+<span class="text-xs font-bold uppercase tracking-wider text-brown-accent flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">grid_view</span>
+            Core Capabilities
+          </span>
+<h2 class="font-headline font-bold text-3xl sm:text-4xl text-primary tracking-tight">
+            Intelligent sensing engineered for arid and irrigated terrain
+          </h2>
+<p class="text-base text-on-surface-variant font-normal leading-relaxed">
+            Essential tools designed for farm managers, agronomists, and agricultural investors needing clear, unbloated field data.
+          </p>
+</div>
+<!-- 4 Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="bg-surface-card rounded-xl p-6 border border-outline-variant/80 hover:border-olive/60 transition-all shadow-sm hover:shadow-md flex flex-col justify-between space-y-5">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">satellite_alt</span>
+</div>
+<h3 class="font-headline font-bold text-lg text-primary">Multispectral Imagery</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                48-hour orbital updates providing calibrated NDVI &amp; NDWI indices to uncover moisture stress before symptoms are visible.
+              </p>
+</div>
+<div class="pt-4 border-t border-outline-variant/40 flex items-center justify-between text-xs font-semibold text-olive">
+<span>10m resolution</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-card rounded-xl p-6 border border-outline-variant/80 hover:border-olive/60 transition-all shadow-sm hover:shadow-md flex flex-col justify-between space-y-5">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-lg bg-surface-subtle text-brown-accent flex items-center justify-center border border-outline-variant/40">
+<span class="material-symbols-outlined text-[26px]">psychology</span>
+</div>
+<h3 class="font-headline font-bold text-lg text-primary">AI Agronomy Advisor</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                Trained on regional soil characteristics and Nile pests to evaluate mobile camera photos and prescribe accurate dosages.
+              </p>
+</div>
+<div class="pt-4 border-t border-outline-variant/40 flex items-center justify-between text-xs font-semibold text-olive">
+<span>Automated diagnosis</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-card rounded-xl p-6 border border-outline-variant/80 hover:border-olive/60 transition-all shadow-sm hover:shadow-md flex flex-col justify-between space-y-5">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-lg bg-secondary-container text-olive flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">water_drop</span>
+</div>
+<h3 class="font-headline font-bold text-lg text-primary">Smart Irrigation</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                Calculates real-time evapotranspiration to schedule drip lines and center pivots around local heat and wind patterns.
+              </p>
+</div>
+<div class="pt-4 border-t border-outline-variant/40 flex items-center justify-between text-xs font-semibold text-olive">
+<span>Up to 35% savings</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-card rounded-xl p-6 border border-outline-variant/80 hover:border-olive/60 transition-all shadow-sm hover:shadow-md flex flex-col justify-between space-y-5">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-lg bg-surface-subtle text-primary flex items-center justify-center border border-outline-variant/40">
+<span class="material-symbols-outlined text-[26px]">query_stats</span>
+</div>
+<h3 class="font-headline font-bold text-lg text-primary">Yield Forecasting</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                Growth curve simulation for wheat, corn, sugar beet, and citrus, offering harvest date models and investor-grade returns.
+              </p>
+</div>
+<div class="pt-4 border-t border-outline-variant/40 flex items-center justify-between text-xs font-semibold text-olive">
+<span>Season-long projection</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Platform Preview Showcase -->
+<section class="py-20 bg-surface-subtle border-t border-outline-variant/60" id="platform">
+<div class="max-w-7xl mx-auto px-6 sm:px-8 space-y-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="space-y-2">
+<span class="text-xs font-bold uppercase tracking-wider text-brown-accent">Unified Platform</span>
+<h2 class="font-headline font-bold text-3xl sm:text-4xl text-primary tracking-tight">
+              A clear, panoramic view of every square meter
+            </h2>
+</div>
+<!-- Clean layer toggles -->
+<div class="inline-flex p-1 bg-beige/60 rounded-lg border border-outline-variant/50 text-xs font-semibold">
+<button class="px-4 py-2 rounded-md bg-white text-primary shadow-sm">NDVI Vegetation</button>
+<button class="px-4 py-2 rounded-md text-on-surface-variant hover:text-primary transition-colors">NDWI Moisture</button>
+<button class="px-4 py-2 rounded-md text-on-surface-variant hover:text-primary transition-colors">Surface Thermal</button>
+</div>
+</div>
+<!-- Dashboard Window -->
+<div class="bg-surface-card rounded-2xl border border-outline-variant/80 shadow-xl overflow-hidden">
+<!-- Mockup Toolbar -->
+<div class="bg-surface-dark px-6 py-4 text-white flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-soft-green text-[20px]">agriculture</span>
+<span class="font-headline font-semibold text-sm">Green Nile Estate • Sector B (Beheira)</span>
+<span class="text-xs px-2 py-0.5 rounded bg-white/10 text-stone-200">480 Acres</span>
+</div>
+<div class="flex items-center gap-4 text-xs font-medium text-stone-300">
+<span class="inline-flex items-center gap-1.5 text-soft-green">
+<span class="w-2 h-2 rounded-full bg-soft-green"></span>
+                Sentinel-2A Live Link
+              </span>
+<span>Crop: Sakha-95 Wheat</span>
+</div>
+</div>
+<!-- Body: Map & Sidebar -->
+<div class="grid grid-cols-1 lg:grid-cols-12 min-h-[460px]">
+<!-- Map View (8 cols) -->
+<div class="lg:col-span-8 relative min-h-[380px] bg-stone-100 overflow-hidden">
+<img alt="Agricultural parcel heatmap" class="w-full h-full object-cover min-h-[380px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSe5yqML3TxNtrQoouZpL73VFcHDO9d4tCGmLa_synxqHfs6VHBOCwufldzUwNYL7B37tLxggTSQxx2J6uxHzOHPharuE6XOOgjr36uB_zxuXzKeLfpZiLkPP04szYLApgPGKmymao0RQKGrwb2MA3GWSjIRX92X-tfKKpEegsnaaiHOeH8kHaAYjESlMxW7WNiH54FVM3smUKESQJNVAaqCmD_mC7E3ppun-enTc"/>
+<div class="absolute inset-0 bg-dark-olive/5 pointer-events-none"></div>
+<!-- Map Controls -->
+<div class="absolute top-4 right-4 bg-white/95 backdrop-blur-md rounded-lg shadow border border-outline-variant/60 flex flex-col p-1">
+<button class="p-1.5 hover:bg-surface-subtle text-primary rounded" title="Zoom in">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+<button class="p-1.5 hover:bg-surface-subtle text-primary rounded" title="Zoom out">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<button class="p-1.5 hover:bg-surface-subtle text-primary rounded" title="Layers">
+<span class="material-symbols-outlined text-[18px]">layers</span>
+</button>
+</div>
+<!-- Legend -->
+<div class="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-lg shadow border border-outline-variant/60 text-xs">
+<span class="font-semibold text-primary block mb-1">Vegetation Vigor (NDVI)</span>
+<div class="flex items-center gap-2">
+<span class="text-[10px] text-on-surface-variant">0.1 (Stress)</span>
+<div class="w-28 h-2 rounded-full bg-gradient-to-r from-red-500 via-amber-400 via-yellow-200 to-emerald-600"></div>
+<span class="text-[10px] text-on-surface-variant">0.9 (Prime)</span>
+</div>
+</div>
+<!-- Alert Pin -->
+<div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<div class="flex items-center gap-1.5 bg-white/95 px-3 py-1.5 rounded-full shadow-lg border border-red-200 text-xs font-semibold text-stone-800">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
+<span>Zone B-East: Moisture dip (-3.4%)</span>
+</div>
+</div>
+</div>
+<!-- Inspector Panel (4 cols) -->
+<div class="lg:col-span-4 p-6 bg-surface-card border-l border-outline-variant/60 flex flex-col justify-between space-y-6">
+<div class="space-y-5">
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant/50">
+<h4 class="font-headline font-bold text-sm text-primary">Sector B Analytics</h4>
+<span class="text-xs px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-semibold">Normal State</span>
+</div>
+<!-- Growth Metric -->
+<div class="space-y-1.5">
+<div class="flex justify-between text-xs text-on-surface-variant">
+<span>30-Day Growth Progression</span>
+<span class="font-bold text-olive">+18.4% above avg</span>
+</div>
+<div class="h-12 w-full bg-surface-subtle rounded-md p-2 flex items-end">
+<svg class="w-full h-full text-olive" fill="none" preserveaspectratio="none" viewbox="0 0 200 40">
+<path d="M0 35 Q40 30 80 22 T160 12 T200 6" fill="none" stroke="currentColor" stroke-width="2"></path>
+<path d="M0 35 Q40 30 80 22 T160 12 T200 6 L200 40 L0 40 Z" fill="currentColor" fill-opacity="0.1"></path>
+</svg>
+</div>
+</div>
+<!-- Key Telemetry items -->
+<div class="space-y-2 text-xs">
+<div class="p-2.5 rounded-lg bg-surface-subtle flex items-center justify-between">
+<span class="text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-olive">thermostat</span>
+                      Soil Temperature
+                    </span>
+<span class="font-semibold text-primary">23.6 °C</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-subtle flex items-center justify-between">
+<span class="text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-olive">opacity</span>
+                      Available Nitrogen
+                    </span>
+<span class="font-semibold text-primary">38 kg/acre</span>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-subtle flex items-center justify-between">
+<span class="text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-brown-accent">speed</span>
+                      Evapotranspiration
+                    </span>
+<span class="font-semibold text-primary">4.2 mm/day</span>
+</div>
+</div>
+<!-- Advisory Box -->
+<div class="p-3 rounded-lg bg-beige/60 border border-outline-variant/50 text-xs space-y-1">
+<div class="flex items-center gap-1.5 font-bold text-primary">
+<span class="material-symbols-outlined text-[16px] text-olive">smart_toy</span>
+                    Recommended Irrigation Run
+                  </div>
+<p class="text-on-surface-variant leading-relaxed">
+                    Operate Sector 3 center pivot at 03:00 AM for 4.5 hours to avoid afternoon winds and reduce evaporation loss.
+                  </p>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full py-2.5 rounded-lg bg-primary-container text-white text-xs font-semibold hover:bg-olive transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">download</span>
+                Download Field Report (PDF)
+              </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Regional Scale / Case Studies (3 cards) -->
+<section class="py-20 md:py-28" id="regions">
+<div class="max-w-7xl mx-auto px-6 sm:px-8 space-y-14">
+<div class="text-center max-w-2xl mx-auto space-y-3">
+<span class="text-xs font-bold uppercase tracking-wider text-brown-accent">Field Applications</span>
+<h2 class="font-headline font-bold text-3xl sm:text-4xl text-primary tracking-tight">
+            Tailored across diverse agricultural zones
+          </h2>
+<p class="text-base text-on-surface-variant font-normal leading-relaxed">
+            Proven algorithms tuned for Nile silt, desert sand, and modern pivot operations.
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Case 1 -->
+<div class="bg-surface-card rounded-2xl overflow-hidden border border-outline-variant/80 shadow-sm hover:shadow-md transition-all flex flex-col">
+<div class="h-48 relative overflow-hidden bg-stone-100">
+<img alt="Nile Delta farmland" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFExGqDAmkGzY4RL-oD1QRJ_0yJWtVxUX_jdUevZaggSbOh2fezRQJC7BGfucqzx0MW-pXUMoxi87XkHjurBZ_mHDwgtgiys7cMvQtLdOqCkn_Oq9OCflIVZq9nBEYrN8Os9zjKmDdbvYhHhvFkCXrzljBHEXYHqwUl6MUMWhJHcm8szAXA85ZVFsRRfQXwBt-1JiIZ3v1Mi4zK5686O1dDs5ABPBNZoSvYs9JvaI"/>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-dark/80 text-white text-xs font-medium backdrop-blur-sm">
+                Delta &amp; Valley
+              </span>
+</div>
+<div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+<div class="space-y-2">
+<h3 class="font-headline font-bold text-lg text-primary">Traditional &amp; Segmented Holdings</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                  Resolving fragmented ownership challenges, drainage salinity, and flood-to-drip conversions in Sharqia and Kafr El Sheikh.
+                </p>
+</div>
+<div class="pt-2 flex items-center gap-1.5 text-xs font-semibold text-olive">
+<span class="material-symbols-outlined text-[16px]">water</span>
+                Water &amp; Drainage Balancing
+              </div>
+</div>
+</div>
+<!-- Case 2 -->
+<div class="bg-surface-card rounded-2xl overflow-hidden border border-outline-variant/80 shadow-sm hover:shadow-md transition-all flex flex-col">
+<div class="h-48 relative overflow-hidden bg-stone-100">
+<img alt="Toshka pivot reclamation" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDD45ISSOAkGGb6xW7q12chxADLLxe54egf1Bck-GDtYH-TPMqQE1O-cfWTPlIslQLL42rQ4szfOhktZcQkjITwZjYlmIv-9EXRnGqU1YtJbeYQE0ghhA3ua5nhy3Gzbc7IixNyp0274PzHrHB9ioelAsUp8OuBS_aS3TvmXM_5tylHeLFyBG0dFAjIVBNaNXpuTA2hmXEJSoJuJy9rtrk6t1JOH-yIH36oBgHIXzE"/>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-dark/80 text-white text-xs font-medium backdrop-blur-sm">
+                Toshka &amp; Oweinat
+              </span>
+</div>
+<div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+<div class="space-y-2">
+<h3 class="font-headline font-bold text-lg text-primary">Large Desert Reclamation</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                  Managing thousands of center pivots growing wheat and date palms with automated alerts against sudden extreme heatwaves.
+                </p>
+</div>
+<div class="pt-2 flex items-center gap-1.5 text-xs font-semibold text-olive">
+<span class="material-symbols-outlined text-[16px]">solar_power</span>
+                Thermal Heatwave Resilience
+              </div>
+</div>
+</div>
+<!-- Case 3 -->
+<div class="bg-surface-card rounded-2xl overflow-hidden border border-outline-variant/80 shadow-sm hover:shadow-md transition-all flex flex-col">
+<div class="h-48 relative overflow-hidden bg-stone-100">
+<img alt="Citrus and olive orchards in Nubariya" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrfWHYbRrneU7PD5M-pfC4HQNKQ7oHfPt7Bpt7v6WyqnzHNtujYjg161yoWuF3uwW_mKkSGkYdRxL7Uq7OXXq7GuwP4CyWavuwnMEGtmJotoRoETSj_T8G723T8salRG0-xngITBLGMTc3vmIY2LehHVxAXxX1eHpaP69ags6ZIfr7Fb0k2gHEc1QXzA6Z_UmN3iksi9xKXszforzXMQFzO9iH2Ij59-5Xkl2Nngs"/>
+<span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-dark/80 text-white text-xs font-medium backdrop-blur-sm">
+                Nubariya &amp; New Delta
+              </span>
+</div>
+<div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+<div class="space-y-2">
+<h3 class="font-headline font-bold text-lg text-primary">High-Value Export Orchards</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                  Precision fruit maturity tracking and chemical residue compliance for citrus, table grapes, and strawberry commercial farms.
+                </p>
+</div>
+<div class="pt-2 flex items-center gap-1.5 text-xs font-semibold text-olive">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+                GlobalGAP Audit Compliance
+              </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Minimal CTA & Early Access Section -->
+<section class="py-16 md:py-24 bg-surface" id="access">
+<div class="max-w-4xl mx-auto px-6 sm:px-8">
+<div class="bg-primary-container rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
+<div class="relative z-10 space-y-6 text-center max-w-xl mx-auto">
+<span class="inline-block px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold">
+              14-Day Full Access Trial
+            </span>
+<h2 class="font-headline font-bold text-3xl sm:text-4xl text-white tracking-tight">
+              Begin satellite monitoring on your farmland
+            </h2>
+<p class="text-stone-300 text-sm sm:text-base font-normal leading-relaxed">
+              Enter your email and acreage to receive your first NDVI vegetation vigor scan within minutes. No credit card required.
+            </p>
+<!-- Minimal Low-Cognitive-Load Form -->
+<form class="space-y-3 pt-2" onsubmit="event.preventDefault(); alert('Thank you. A remote sensing specialist will contact you with your coordinates scan.');">
+<div class="flex flex-col sm:flex-row gap-3">
+<input class="flex-1 px-4 py-3 rounded-xl bg-white text-primary text-sm focus:outline-none focus:ring-2 focus:ring-olive border-0 shadow-sm" placeholder="Enter your work email" required="" type="email"/>
+<input class="w-full sm:w-36 px-4 py-3 rounded-xl bg-white text-primary text-sm focus:outline-none focus:ring-2 focus:ring-olive border-0 shadow-sm" placeholder="Acres (e.g. 150)" type="number"/>
+<button class="px-6 py-3 rounded-xl bg-olive text-white font-semibold text-sm hover:bg-olive/90 transition-colors shadow-md whitespace-nowrap" type="submit">
+                  Get Scan
+                </button>
+</div>
+<div class="flex items-center justify-center gap-6 text-[12px] text-stone-300 pt-2 font-medium">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-soft-green">check</span> Instant setup
+                </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-soft-green">check</span> Dedicated agronomist support
+                </span>
+</div>
+</form>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Clean, Minimal Footer -->
+<footer class="border-t border-outline-variant/60 bg-surface-subtle py-12 text-sm text-on-surface-variant">
+<div class="max-w-7xl mx-auto px-6 sm:px-8 space-y-8">
+<div class="flex flex-col md:flex-row items-center justify-between gap-6">
+<!-- Logo & Tagline -->
+<div class="flex items-center gap-3">
+<img alt="NILORA Logo" class="h-7 w-auto object-contain opacity-90" src="D:\nasa\Egyptian Landscape Emblem Logo.png"/>
+<span class="font-headline font-bold text-base text-primary">NILORA</span>
+<span class="text-xs text-on-surface-variant/80">| Satellite Intelligence for Nile Basin Agriculture</span>
+</div>
+<!-- Links -->
+<div class="flex flex-wrap items-center gap-6 text-xs font-medium">
+<a class="hover:text-primary transition-colors" href="#solutions">Solutions</a>
+<a class="hover:text-primary transition-colors" href="#platform">Platform</a>
+<a class="hover:text-primary transition-colors" href="#impact">Impact</a>
+<a class="hover:text-primary transition-colors" href="#regions">Case Studies</a>
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-outline-variant/40 text-xs">
+<p>© 2026 NILORA AgriTech Inc. All rights reserved.</p>
+<p class="font-mono text-[11px] text-on-surface-variant/70">nilorasupport@gmail.com • Smart Village, Minofia, Egypt</p>
+</div>
+</div>
+</footer>
+</body></html>
