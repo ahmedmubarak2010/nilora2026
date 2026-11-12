@@ -291,9 +291,9 @@
 </div>
 <!-- Clean layer toggles -->
 <div class="inline-flex p-1 bg-beige/60 rounded-lg border border-outline-variant/50 text-xs font-semibold">
-<button class="px-4 py-2 rounded-md bg-white text-primary shadow-sm">NDVI Vegetation</button>
-<button class="px-4 py-2 rounded-md text-on-surface-variant hover:text-primary transition-colors">NDWI Moisture</button>
-<button class="px-4 py-2 rounded-md text-on-surface-variant hover:text-primary transition-colors">Surface Thermal</button>
+<span class="px-4 py-2 rounded-md bg-white text-primary shadow-sm">NDVI Vegetation</span>
+<span class="px-4 py-2 rounded-md text-on-surface-variant">NDWI Moisture</span>
+<span class="px-4 py-2 rounded-md text-on-surface-variant">Surface Thermal</span>
 </div>
 </div>
 <!-- Dashboard Window -->
@@ -321,15 +321,15 @@
 <div class="absolute inset-0 bg-dark-olive/5 pointer-events-none"></div>
 <!-- Map Controls -->
 <div class="absolute top-4 right-4 bg-white/95 backdrop-blur-md rounded-lg shadow border border-outline-variant/60 flex flex-col p-1">
-<button class="p-1.5 hover:bg-surface-subtle text-primary rounded" title="Zoom in">
+<span class="p-1.5 text-primary rounded" aria-hidden="true">
 <span class="material-symbols-outlined text-[18px]">add</span>
-</button>
-<button class="p-1.5 hover:bg-surface-subtle text-primary rounded" title="Zoom out">
+</span>
+<span class="p-1.5 text-primary rounded" aria-hidden="true">
 <span class="material-symbols-outlined text-[18px]">remove</span>
-</button>
-<button class="p-1.5 hover:bg-surface-subtle text-primary rounded" title="Layers">
+</span>
+<span class="p-1.5 text-primary rounded" aria-hidden="true">
 <span class="material-symbols-outlined text-[18px]">layers</span>
-</button>
+</span>
 </div>
 <!-- Legend -->
 <div class="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-lg shadow border border-outline-variant/60 text-xs">
@@ -404,10 +404,10 @@
 </div>
 </div>
 <!-- CTA -->
-<button class="w-full py-2.5 rounded-lg bg-primary-container text-white text-xs font-semibold hover:bg-olive transition-colors flex items-center justify-center gap-2">
+<span class="w-full py-2.5 rounded-lg bg-primary-container/10 text-primary text-xs font-semibold flex items-center justify-center gap-2">
 <span class="material-symbols-outlined text-[16px]">download</span>
-                Report preview (not available yet)
-              </button>
+                Report preview — not available yet
+              </span>
 </div>
 </div>
 </div>
