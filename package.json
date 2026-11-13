@@ -1,0 +1,21 @@
+{
+  "name": "nilora-nilora-dashboard",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "vite build && node scripts/copy-site.mjs"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "5.0.4",
+    "typescript": "5.9.2",
+    "vite": "7.1.12"
+  },
+  "dependencies": {
+    "leaflet": "1.9.4",
+    "lucide-react": "0.468.0",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "recharts": "3.2.1"
+  }
+}
