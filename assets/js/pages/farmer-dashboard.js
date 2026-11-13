@@ -23,9 +23,17 @@
     '<div class="source-meta"><b>المصدر: NASA POWER</b><span>تحديث الجلب: '+esc(new Date(data.fetched_at).toLocaleString("ar-EG"))+'</span><span>الفترة: '+esc(data.start_date)+' إلى '+esc(data.end_date)+'</span><span>الدقة المكانية: '+esc(data.spatial_resolution)+'</span><p>هذه تقديرات مناخية شبكية عند إحداثيات المزرعة، وليست قياسات من حساس داخل الحقل. قد تتأخر أحدث البيانات عن اليوم الحالي.</p><a href="'+esc(data.source_url)+'" target="_blank" rel="noopener">فتح بيانات NASA POWER الأصلية ↗</a></div>';
  }
  async function loadClimate(fieldId){
-   const box=root.querySelector("#climateResult");box.innerHTML='<div class="data-loading">جارٍ جلب البيانات المناخية من NASA POWER…</div>';
-   try{const data=await NILORA_DATA.nasaPower(fieldId);renderClimate(data)}
-   catch(error){box.innerHTML='<div class="data-error">تعذر جلب البيانات: '+esc(error.message)+'<br><small>تأكد من تسجيل إحداثيات المزرعة واتصال الحساب، ثم حاول مرة أخرى.</small></div>'}
+   const box=root.querySelector("#climateResult"),sat=root.querySelector("#sentinelResult");
+   box.innerHTML='<div class="data-loading">جارٍ جلب بيانات NASA POWER وGPM…</div>';
+   sat.innerHTML='<div class="data-loading">جارٍ البحث عن مشاهد Sentinel-2…</div>';
+   const [climate,scenes]=await Promise.allSettled([
+     NILORA_DATA.nasaPower(fieldId),
+     NILORA_DATA.sentinelScenes(fieldId)
+   ]);
+   if(climate.status==="fulfilled") renderClimate(climate.value);
+   else box.innerHTML='<div class="data-error">تعذر جلب بيانات المناخ: '+esc(climate.reason?.message||"خطأ غير معروف")+'</div>';
+   if(scenes.status==="fulfilled") renderSentinel(scenes.value);
+   else sat.innerHTML='<div class="data-error">تعذر جلب فهرس Sentinel-2: '+esc(scenes.reason?.message||"خطأ غير معروف")+'</div>';
  }
  try{
   const [farms,fields]=await Promise.all([NILORA_DATA.farms(),NILORA_DATA.fields()]);
