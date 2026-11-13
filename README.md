@@ -2,53 +2,89 @@
 
 Agricultural information and decision-support platform for farmers and agronomists in Egypt.
 
+## Product journey
+
+1. Users sign in with Google through Supabase Auth (email/password remains an optional fallback).
+2. New users complete their profile and select **Farmer** or **Agronomist**.
+3. Farmers register a farm and draw a field boundary on a NASA GIBS satellite map.
+4. NILORA calculates the polygon area, perimeter, approximate longest dimension and approximate width, then stores the boundary and measurements.
+5. The user is routed to the role-specific English dashboard.
+
+Agronomist accounts require platform approval before professional data and tools are enabled.
+
 ## Current structure
 
-```text
+\`\`\`text
 /
-├── index.html                    # Public landing page
-├── signup.html                   # Sign in and account creation
-├── auth-callback.html            # Google OAuth callback
-├── reset-password.html           # Password recovery
-├── onboarding.html               # Shared account profile setup
-├── farmer-dashboard.html         # Farmer overview
-├── farmer-farms.html             # Create and list farms
-├── farmer-fields.html             # Create and list fields
-├── agronomist-dashboard.html     # Agronomist overview
-├── agronomist-farms.html         # Assigned farms
-├── agronomist-reviews.html       # Existing crop assessments
-├── config.js                     # Supabase URL + publishable browser key
+├── index.html                         # Public landing page (kept separate)
+├── signup.html                        # Google-first sign in
+├── auth-callback.html                 # Google OAuth callback
+├── reset-password.html                # Password recovery
+├── onboarding.html                    # Profile, role and farmer farm setup
+├── farmer-dashboard.html              # Farmer overview
+├── farmer-farms.html                  # Create and list farms
+├── farmer-fields.html                 # Create and list fields
+├── agronomist-dashboard.html          # Agronomist overview
+├── agronomist-farms.html              # Assigned farms
+├── agronomist-reviews.html            # Crop assessments
+├── config.js                          # Supabase URL + publishable browser key
+├── supabase/
+│   └── migrations/                    # Database migrations tracked with the app
 └── assets/
-    ├── css/app.css               # Shared application styles
+    ├── css/
+    │   ├── app.css
+    │   ├── dashboard.css
+    │   └── onboarding.css
     └── js/
-        ├── supabase.js           # Supabase client
-        ├── auth.js               # Sign in, sign up, Google OAuth, recovery
-        ├── guard.js              # Session and role checks
-        ├── ui.js                 # Shared sidebar and application shell
-        ├── data.js               # Shared database access methods
-        └── pages/                # One JavaScript module per page
-```
+        ├── supabase.js
+        ├── auth.js
+        ├── guard.js
+        ├── ui.js
+        ├── data.js
+        └── pages/
+            ├── onboarding.js
+            ├── farmer-dashboard.js
+            └── agronomist-dashboard.js
+\`\`\`
 
-## Add a new page
+## Farm mapping and measurements
 
-1. Create a new HTML file in the repository root, for example `farmer-crop-plans.html`.
-2. Copy the shared script includes from an existing dashboard HTML file.
-3. Add a page module at `assets/js/pages/farmer-crop-plans.js`.
-4. Start the module with `const profile = await NILORA.requireRole(["farmer"]); if (!profile) return;`.
-5. Call `NILORA.mount({ title: "Crop plans", active: "farmer-crop-plans.html", role: "farmer" })`.
-6. Put page-specific queries and UI in that page module. Put reusable database methods in `assets/js/data.js`.
-7. Add the page link to the relevant navigation list in `assets/js/ui.js`.
+- The onboarding map uses NASA Global Imagery Browse Services (GIBS) MODIS Terra Corrected Reflectance True Color tiles.
+- OpenStreetMap is available as an alternate street-map layer for navigation and local context.
+- A farmer draws a polygon or rectangle around the field. The GeoJSON boundary is saved to \`public.fields.boundary_geojson\`.
+- Area is calculated geodesically from the polygon and converted to feddans (1 feddan = 4,200.833 m²).
+- Perimeter is calculated from the polygon boundary.
+- Longest dimension and width are approximate dimensions from a principal-axis-aligned bounding box around the drawn polygon. They are not a cadastral survey.
+- The NASA GIBS MODIS layer is a broad satellite context layer (250 m source imagery), not parcel-level imagery. The farmer must draw the actual boundary; NASA does not automatically detect the farm boundary.
+- Browser geolocation is optional. If permission is unavailable, the farmer can navigate the map manually.
+- The farm's stored latitude/longitude is the polygon centroid. Field dimensions and boundary are saved separately on the field record.
 
-For an agronomist-only page, use `NILORA.requireRole(["agronomist"])` and check `profile.agronomist_status === "approved"` before showing professional workspace data.
+## Backend and security
 
-## Backend
+The project uses Supabase Auth and Postgres tables including \`profiles\`, \`farms\`, \`fields\`, \`farm_assignments\`, \`climate_observations\`, \`crop_assessments\`, \`crop_plans\`, \`model_runs\`, \`notifications\`, and support/admin tables.
 
-The project uses Supabase Auth and the existing Postgres tables: `profiles`, `farms`, `fields`, `farm_assignments`, `climate_observations`, `crop_assessments`, `crop_plans`, `model_runs`, `notifications`, and support/admin tables.
+- New auth users receive a profile through a database trigger.
+- Account type is selected during first profile onboarding and cannot be changed after onboarding is completed.
+- Agronomist accounts are set to \`pending\` and require platform approval.
+- Farm and field ownership is enforced by Row Level Security.
+- The browser uses only a Supabase publishable key. Never add a service-role or secret key to this repository.
 
-New auth users receive a profile through a database trigger. The requested account type is limited to `farmer` or `agronomist`; agronomist accounts start with `pending` approval. Privileged profile fields cannot be changed directly from the browser. Keep Row Level Security enabled.
+## NASA and satellite integrations
 
-The browser uses only a Supabase publishable key. Never add a service-role or secret key to this repository.
+- \`nasa-power\` (Supabase Edge Function, JWT required) fetches daily NASA POWER agroclimatology parameters and GPM IMERG precipitation.
+- Retrieved observations are stored in \`public.climate_observations\` with source, date, units, spatial/temporal resolution and provenance metadata.
+- \`sentinel-scenes\` (Supabase Edge Function, JWT required) searches the Copernicus Data Space STAC catalogue for Sentinel-2 L2A scenes near the registered farm coordinate.
+- The Sentinel-2 integration currently discovers scenes only. It does **not** yet download imagery, calculate NDVI, classify crop stress or diagnose disease.
+- NASA POWER and GPM are gridded estimates, not measurements from sensors installed in the farmer's field.
+- Cloud cover shown for Sentinel-2 is scene-level metadata and is not a field-level cloud percentage.
 
-## Current implementation scope
+## AI integration
 
-Farmers can complete their profile, create farms with coordinates, and add fields. The Arabic farmer dashboard reads real farm/field records from Supabase.\n\n### Satellite and climate data\n\n- `nasa-power` (Supabase Edge Function, JWT required) validates that the signed-in farmer owns the selected field, fetches daily NASA POWER agroclimatology parameters, and includes `IMERG_PRECTOT` (GPM IMERG daily precipitation at approximately 0.1° / 10 km).\n- Retrieved daily observations are saved to `public.climate_observations` with source, date, units, spatial/temporal resolution, and provenance metadata. Existing parameter/date rows are checked before inserting to reduce duplicate records.\n- `sentinel-scenes` (Supabase Edge Function, JWT required) searches the Copernicus Data Space STAC catalogue for Sentinel-2 L2A scenes intersecting the registered farm coordinate. It returns acquisition dates and scene-level cloud-cover metadata.\n- The Sentinel-2 integration currently discovers scenes only. It does **not** yet download imagery, calculate NDVI, classify crop stress, or diagnose disease. A farm point is used until a verified field boundary is available.\n- NASA POWER and GPM are gridded estimates, not measurements from sensors installed in the farmer’s field. The dashboard displays source and resolution caveats.\n\nAgronomists see an approval-pending state until approved; approved agronomists can view farms assigned to them and existing assessment records. Crop-plan generation, NDVI processing, review mutations, and live website hosting/deployment are not represented as complete.
+CoreX AI is planned as the assistant provider for the hackathon. The UI includes an integration placeholder only. Connect it after the team supplies the official API documentation, endpoint, authentication scheme, request/response format and free-tier limits. Store the provider key in a server-side secret and call it through a Supabase Edge Function; never expose it in browser JavaScript.
+
+## Development notes
+
+- Keep the public landing page independent from dashboard changes.
+- Use the existing Supabase schema and RLS policies rather than duplicating data.
+- Do not display generated crop recommendations, yield predictions or disease diagnoses unless a validated model or transparent rule set actually produces them.
+- Keep source labels, dates, spatial resolution and uncertainty visible in data-driven features.
