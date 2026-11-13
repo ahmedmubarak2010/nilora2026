@@ -39,6 +39,21 @@
 @media(max-width:1050px){.team-grid{gap:15px}.team-grid .member-card{min-height:345px}}
 @media(max-width:800px){.team-grid{gap:14px}.team-grid .member-card{min-height:330px;padding:20px 14px}.team-grid .member-photo{width:120px;height:120px}}
 @media(max-width:520px){.team-grid{gap:14px}.team-grid .member-card{min-height:0;padding:22px 18px}.team-grid .member-photo{width:132px;height:132px}.team-grid .member-role{min-height:0}.team-grid .member-card p{flex:none;max-width:330px}.team-grid .member-links{padding-top:10px}}
+
+/* Final team-card spacing and icon-only social controls */
+.team-grid{gap:22px;align-items:stretch}
+.team-grid .member-card{min-height:380px;padding:24px 19px 20px;display:flex;flex-direction:column;align-items:center}
+.team-grid .member-photo{width:150px;height:150px;border-radius:12px;object-fit:cover;margin:0 auto 4px}
+.team-grid .member-card h3{margin:15px 0 7px}
+.team-grid .member-role{min-height:36px;line-height:1.55}
+.team-grid .member-card p{margin:12px 0 16px;line-height:1.7;max-width:290px}
+.team-grid .member-links{display:flex;justify-content:center;align-items:center;gap:12px;width:100%;margin-top:auto;padding-top:14px}
+.team-grid .member-links .member-social{width:42px;height:42px;min-width:42px;padding:0;margin:0;display:inline-flex;align-items:center;justify-content:center;border-radius:11px;font-size:0;line-height:1;white-space:nowrap;transition:transform .2s ease,background .2s ease,color .2s ease}
+.team-grid .member-links .member-social iconify-icon{font-size:21px;line-height:1}
+.team-grid .member-links a.member-social:hover{transform:translateY(-3px)}
+.team-grid .member-links .member-social.pending{opacity:.52;cursor:default}
+@media(max-width:850px){.team-grid{gap:17px}.team-grid .member-card{min-height:365px;padding:22px 16px 18px}.team-grid .member-photo{width:142px;height:142px}}
+@media(max-width:520px){.team-grid{gap:15px}.team-grid .member-card{min-height:0;padding:23px 18px}.team-grid .member-photo{width:150px;height:150px}.team-grid .member-role{min-height:0}.team-grid .member-card p{margin:11px 0 15px}.team-grid .member-links{padding-top:12px}}
 </style>
 </head>
 <body>
@@ -70,22 +85,22 @@
 <h3>Ahmed Badr</h3><div class="member-role">Team Leader &amp; Developer</div>
 <p>Leading the team and developing the technical direction and core project experience.</p>
 <div class="member-links">
-<a class="member-social" href="https://www.linkedin.com/in/ahmed-mohamed-bb02a7429" target="_blank" rel="noopener"><iconify-icon icon="mdi:linkedin"></iconify-icon> LinkedIn</a>
-<a class="member-social" href="https://www.instagram.com/a7med__badr7" target="_blank" rel="noopener"><iconify-icon icon="mdi:instagram"></iconify-icon> Instagram</a>
+<a class="member-social" aria-label="Ahmed Badr on LinkedIn" title="LinkedIn" href="https://www.linkedin.com/in/ahmed-mohamed-bb02a7429" target="_blank" rel="noopener"><iconify-icon icon="mdi:linkedin"></iconify-icon></a>
+<a class="member-social" aria-label="Ahmed Badr on Instagram" title="Instagram" href="https://www.instagram.com/a7med__badr7" target="_blank" rel="noopener"><iconify-icon icon="mdi:instagram"></iconify-icon></a>
 </div></article>
 <article class="member-card">
 <img class="member-photo" src="Assets/Ahmed Mubarak.jpg" alt="Ahmed Mubarak" loading="lazy">
 <h3>Ahmed Mubarak</h3><div class="member-role">Developer &amp; Data Analyst</div>
 <p>Building the platform and working with data to turn agricultural information into useful insights.</p>
-<div class="member-links"><a class="member-social" href="https://www.linkedin.com/in/a7med-mubarak/" target="_blank" rel="noopener"><iconify-icon icon="mdi:linkedin"></iconify-icon> LinkedIn</a><a class="member-social" href="https://ahmedmubarak.vercel.app/" target="_blank" rel="noopener"><iconify-icon icon="solar:global-linear"></iconify-icon> Portfolio</a></div>
+<div class="member-links"><a class="member-social" aria-label="Ahmed Mubarak on LinkedIn" title="LinkedIn" href="https://www.linkedin.com/in/a7med-mubarak/" target="_blank" rel="noopener"><iconify-icon icon="mdi:linkedin"></iconify-icon></a><a class="member-social" aria-label="Ahmed Mubarak portfolio" title="Portfolio" href="https://ahmedmubarak.vercel.app/" target="_blank" rel="noopener"><iconify-icon icon="solar:global-linear"></iconify-icon></a></div>
 </article>
 <article class="member-card">
 <img class="member-photo" src="Assets/Yossef.jpeg" alt="Youssef Amr" loading="lazy">
 <h3>Youssef Amr</h3><div class="member-role">Researcher</div>
 <p>Researching agricultural challenges, reliable sources and project insights.</p>
 <div class="member-links">
-<a class="member-social" href="https://www.instagram.com/youssef_3bed" target="_blank" rel="noopener"><iconify-icon icon="mdi:instagram"></iconify-icon> Instagram</a>
-<span class="member-social pending"><iconify-icon icon="mdi:linkedin"></iconify-icon> LinkedIn soon</span>
+<a class="member-social" aria-label="Youssef Amr on Instagram" title="Instagram" href="https://www.instagram.com/youssef_3bed" target="_blank" rel="noopener"><iconify-icon icon="mdi:instagram"></iconify-icon></a>
+<span class="member-social pending" aria-label="LinkedIn profile will be added" title="LinkedIn coming soon"><iconify-icon icon="mdi:linkedin"></iconify-icon></span>
 </div>
 </article>
 <article class="member-card">
@@ -93,8 +108,8 @@
 <h3>Jana Elramly</h3><div class="member-role">AI Model Developer</div>
 <p>Working on the AI model concepts and intelligent analysis behind NILORA.</p>
 <div class="member-links">
-<span class="member-social pending"><iconify-icon icon="mdi:linkedin"></iconify-icon> LinkedIn soon</span>
-<span class="member-social pending"><iconify-icon icon="solar:cpu-bolt-linear"></iconify-icon> AI &amp; ML</span>
+<span class="member-social pending"><iconify-icon icon="mdi:linkedin"></iconify-icon></span>
+<span class="member-social pending" aria-label="AI and machine learning" title="AI &amp; ML"><iconify-icon icon="solar:cpu-bolt-linear"></iconify-icon></span>
 </div>
 </article>
 <article class="member-card">
@@ -102,8 +117,8 @@
 <h3>Salma Sakr</h3><div class="member-role">Design &amp; Presentation</div>
 <p>Shaping the visual identity, user experience and project presentation.</p>
 <div class="member-links">
-<span class="member-social pending"><iconify-icon icon="mdi:linkedin"></iconify-icon> LinkedIn soon</span>
-<span class="member-social pending"><iconify-icon icon="solar:pen-new-square-linear"></iconify-icon> Design</span>
+<span class="member-social pending"><iconify-icon icon="mdi:linkedin"></iconify-icon></span>
+<span class="member-social pending" aria-label="Design and presentation" title="Design"><iconify-icon icon="solar:pen-new-square-linear"></iconify-icon></span>
 </div>
 </article>
 </div>
