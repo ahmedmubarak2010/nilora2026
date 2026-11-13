@@ -2,10 +2,8 @@
  const $=id=>document.getElementById(id),f=$("authForm");if(!f)return;
  const msg=$("authMessage"),btn=$("submitBtn"),show=(t,k="info")=>{msg.textContent=t;msg.className="message show "+k};
  async function go(user){
-  const {data:p,error}=await db.from("profiles").select("role,onboarding_completed,account_status").eq("id",user.id).single();
-  if(error||!p){show("Your profile is being prepared. Please refresh in a moment.","error");return}
-  if(p.account_status!=="active"){await db.auth.signOut();show("This account is suspended.","error");return}
-  location.href=!p.onboarding_completed?"onboarding.html":p.role==="agronomist"?"agronomist-dashboard.html":"farmer-dashboard.html";
+  if(!user){show("Sign-in could not be completed. Please try again.","error");return}
+  location.href="soon.html";
  }
  $("googleBtn").onclick=async()=>{
   $("googleBtn").disabled=true;show("Redirecting to Google…");
