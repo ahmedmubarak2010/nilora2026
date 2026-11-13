@@ -324,6 +324,15 @@ function FarmerDashboard({ profile, user }: { profile: Profile; user: any }) {
       </div>
       {mappedFields.length > 0 && <section className="panel-card"><div className="field-picker"><div><h2>Earth observation for your field</h2><p>Choose a mapped field to load its climate and satellite data.</p></div><select value={selectedField} onChange={e => setSelectedField(e.target.value)}>{mappedFields.map(f => <option value={f.id} key={f.id}>{f.name} · {farmOf(f)?.name || "Farm"}</option>)}</select></div><ClimatePanel fieldId={selectedField}/></section>}
       {fields.length === 0 && <section className="panel-card"><EmptyState icon={Globe2} title="Connect your first field to NASA data" description="Once your farm boundary and location are saved, NILORA can retrieve NASA POWER and GPM observations for that location." action={<a className="button button-primary" href="farmer-farms.html"><Plus size={14}/> Set up your farm</a>}/></section>}
+      <section className="panel-card roadmap-panel"><SectionTitle title="More tools for your farm" subtitle="The next NILORA modules, clearly marked until their data services are connected."/><div className="feature-grid">
+        <div className="feature-card"><span><BookOpen size={17}/></span><b>Crop planning</b><small>Season plans and field activity tracking</small><em>IN DEVELOPMENT</em></div>
+        <div className="feature-card"><span><Bell size={17}/></span><b>Field alerts</b><small>Evidence-based weather and climate notifications</small><em>IN DEVELOPMENT</em></div>
+        <div className="feature-card"><span><Activity size={17}/></span><b>Market prices</b><small>Local crop price information and trends</small><em>DATA SOURCE NEEDED</em></div>
+        <div className="feature-card"><span><Wind size={17}/></span><b>Voice assistant</b><small>Hands-free help in simple farmer language</small><em>IN DEVELOPMENT</em></div>
+        <div className="feature-card"><span><Users size={17}/></span><b>Farmer community</b><small>Knowledge sharing between local growers</small><em>PLANNED</em></div>
+        <div className="feature-card"><span><Building2 size={17}/></span><b>Farm inputs marketplace</b><small>Supplies, tools and trusted local providers</small><em>PLANNED</em></div>
+        <div className="feature-card"><span><Globe2 size={17}/></span><b>CoreX AI assistant</b><small>Explain data and prepare agronomy questions</small><em>API DETAILS PENDING</em></div>
+      </div></section>
       <section className="notice-strip"><ShieldCheck size={18}/><div><b>Evidence first, always.</b><span>Climate and satellite products provide regional estimates and scene metadata. They are not field sensors, crop diagnoses or a replacement for an agronomist's assessment.</span></div></section>
     </>}
   </div>;
@@ -370,6 +379,12 @@ function AgronomistDashboard({ profile, user }: { profile: Profile; user: any })
           {assessments.length ? <div className="assessment-list">{assessments.slice(0, 6).map(a => <div className="assessment-row" key={a.id}><span className="field-symbol"><FileCheck2 size={17}/></span><div><b>{a.crop_code || "Crop assessment"}</b><small>{Array.isArray(a.fields) ? a.fields[0]?.name : a.fields?.name || "Field not specified"} · {a.season || "Season n/a"}</small></div><span className={"status-chip " + (pending.includes(a) ? "status-pending" : "")}>{a.status || "Unknown"}</span></div>)}</div> : <EmptyState icon={FileCheck2} title="No assessments available" description="Crop assessments accessible to your account will appear here."/>}
         </section>
       </div>
+      <section className="panel-card map-panel"><SectionTitle title="Assigned farms map" subtitle="Geolocated farms assigned to your professional account." action={<span className="source-tag"><Satellite size={13}/> NASA GIBS context</span>}/><FarmMap fields={[]} farms={farms.map(x => Array.isArray(x.farms) ? x.farms[0] : x.farms).filter(Boolean)}/></section>
+      <section className="panel-card roadmap-panel"><SectionTitle title="Professional tools" subtitle="Tools that will be enabled as their data and review workflows are validated."/><div className="feature-grid">
+        <div className="feature-card"><span><FileBarChart size={17}/></span><b>Field analytics</b><small>Compare climate and crop assessment evidence</small><em>IN DEVELOPMENT</em></div>
+        <div className="feature-card"><span><Bell size={17}/></span><b>Review alerts</b><small>Track new assignments and pending reviews</small><em>PLANNED</em></div>
+        <div className="feature-card"><span><Activity size={17}/></span><b>CoreX AI review helper</b><small>Evidence summaries for professional review</small><em>API DETAILS PENDING</em></div>
+      </div></section>
       <section className="notice-strip"><ShieldCheck size={18}/><div><b>Professional review stays human-led.</b><span>Satellite indicators and model outputs must be interpreted with their source, resolution and uncertainty. Final crop assessments and advice remain the agronomist's responsibility.</span></div></section>
     </>}
   </div>;
