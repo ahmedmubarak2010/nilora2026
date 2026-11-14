@@ -40,6 +40,25 @@ main{max-width:1480px;margin:auto;padding:30px 38px 52px;display:grid;gap:25px}.
 @media(max-width:1200px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:900px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.products{grid-template-columns:1fr}.product-visual{height:190px}.season{grid-template-columns:1fr}}
+
+/* NILORA store redesign */
+body{background:#f4f4ee}
+main{max-width:1500px;padding:26px 38px 60px;gap:24px}
+.store-hero{min-height:330px;border-radius:22px;overflow:hidden;position:relative;background:radial-gradient(circle at 78% 20%,#718663 0,transparent 32%),linear-gradient(115deg,#263522,#3e5635 65%,#536b46);color:#fff;padding:38px 42px;display:grid;grid-template-columns:1.35fr .65fr;align-items:center}
+.hero-copy{position:relative;z-index:2;max-width:690px}.store-hero .eyebrow{display:flex;align-items:center;gap:8px;color:#d9c9a5}.store-hero h1{font:800 clamp(28px,3vw,42px)/1.15 Montserrat;margin:18px 0 13px;letter-spacing:-.04em}.store-hero h1 em{font-style:normal;color:#d8c9a9}.store-hero p{max-width:580px;color:#e3e9dc;font-size:13px;line-height:1.8;margin:0}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.btn-hero-outline{background:#ffffff12;border:1px solid #ffffff50;color:#fff}.hero-trust{display:flex;gap:20px;flex-wrap:wrap;margin-top:23px;color:#dce5d3;font-size:10px}.hero-trust span{display:flex;align-items:center;gap:6px}.hero-trust iconify-icon{font-size:15px;color:#d8c9a9}
+.hero-side{height:245px;position:relative;display:grid;place-items:center}.hero-orbit{position:absolute;border:1px solid #ffffff30;border-radius:50%;width:230px;height:230px}.orbit-two{width:175px;height:175px;border-style:dashed}.hero-illustration{width:130px;height:130px;border-radius:38px;background:linear-gradient(145deg,#d8c9a9,#a4ac86);display:grid;place-items:center;transform:rotate(-8deg);box-shadow:0 20px 50px #14231355}.hero-illustration iconify-icon{font-size:78px;color:#2f3d28;transform:rotate(8deg)}.hero-stat{position:absolute;left:0;bottom:8px;padding:11px 15px;background:#ffffffed;color:#2f3d28;border-radius:12px;display:grid;box-shadow:0 10px 25px #17231820}.hero-stat strong{font:800 22px Montserrat}.hero-stat span{font-size:9px;color:#687064}.hero-stat.second{left:auto;right:0;top:8px;bottom:auto}
+.store-benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.store-benefits>div{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #e5e5dc;border-radius:13px;padding:16px}.benefit-icon{width:39px;height:39px;border-radius:11px;background:#edf2e8;color:#45603b;display:grid;place-items:center;font-size:20px;flex:none}.store-benefits b,.store-benefits small{display:block}.store-benefits b{font-size:11px;color:#2f3d28}.store-benefits small{font-size:9px;color:#777f72;margin-top:4px}
+.store-catalog{display:grid;gap:18px}.catalog-heading{display:flex;justify-content:space-between;align-items:end;gap:15px}.dark-eyebrow{color:#718263}.catalog-heading h2{font:800 24px Montserrat;color:#2f3d28;margin:7px 0}.catalog-heading p{font-size:11px;color:#737b6e;margin:0}.catalog-count{display:flex;align-items:baseline;gap:7px;color:#737b6e;font-size:10px;white-space:nowrap}.catalog-count strong{font:800 25px Montserrat;color:#2f3d28}
+.catalog-tools{display:grid;grid-template-columns:minmax(200px,1fr) 190px 205px;gap:10px;background:#fff;padding:12px;border:1px solid #e4e3d9;border-radius:14px}.catalog-tools .searchbox{background:#f5f6f1;border:1px solid #eff0e9}.catalog-tools .searchbox input{font-size:11px}.catalog-tools .searchbox kbd{font-size:10px;color:#8c9386;border:1px solid #dfe2d8;border-radius:5px;padding:2px 6px}.catalog-tools select{background:#f5f6f1;border:1px solid #eff0e9;border-radius:9px;padding:0 11px;font-size:10px;color:#3d4938;min-width:0}
+.category-tabs{display:flex;gap:8px;flex-wrap:wrap}.category-tab{border:1px solid #e2e4da;background:#fff;border-radius:30px;padding:9px 13px;display:flex;align-items:center;gap:7px;color:#64705d;font-size:10px;font-weight:700}.category-tab iconify-icon{font-size:16px}.category-tab span{background:#f0f2eb;border-radius:20px;padding:2px 6px;font-size:9px}.category-tab.active{background:#2f3d28;border-color:#2f3d28;color:#fff}.category-tab.active span{background:#ffffff20;color:#fff}
+.products{grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}.product{border:1px solid #e7e7df;border-radius:15px;overflow:hidden;box-shadow:0 2px 8px #24331c05}.product:hover{transform:translateY(-4px);box-shadow:0 14px 28px #24331c12;border-color:#cbd5c1}.product-visual{height:178px;background:linear-gradient(145deg,#f8f8f3,#eff1e9);border-bottom:1px solid #eeefe8;padding:12px;position:relative}.product-visual img{mix-blend-mode:multiply;transition:transform .25s}.product:hover .product-visual img{transform:scale(1.045)}.product-visual .product-type{position:absolute;left:11px;top:11px;background:#ffffffed;border:1px solid #e7e9df;color:#526548;padding:5px 8px;border-radius:20px;font-size:8px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}.product-body{padding:13px 14px 15px;gap:9px}.product-meta{font-size:9px;color:#899082}.product h3{font:700 12px Montserrat;min-height:34px;color:#263522}.product-desc{font-size:9px;color:#798174;line-height:1.55;min-height:28px}.product-price-row{display:flex;justify-content:space-between;align-items:end;gap:8px;padding-top:9px;border-top:1px solid #eff0e9}.product-price{font:800 17px Montserrat;color:#2f3d28}.product-unit{font:500 9px Inter;color:#788071}.product-actions{display:grid;grid-template-columns:1fr 40px;gap:7px;margin-top:3px}.product-actions .add{justify-content:center;padding:10px 8px}.details-btn{border:1px solid #dfe4d9;background:#f8faf5;color:#43583a;border-radius:8px;display:grid;place-items:center;font-size:17px}.details-btn:hover{background:#edf3e8}
+.price-disclaimer{display:flex;gap:9px;align-items:flex-start;background:#fff9eb;border:1px solid #efe2c4;color:#78602e;border-radius:11px;padding:12px 14px;font-size:9px;line-height:1.7}.price-disclaimer iconify-icon{font-size:17px;flex:none}.price-disclaimer b{display:block;font-size:10px;margin-bottom:2px}
+.product-modal-backdrop{position:fixed;inset:0;background:#1520149c;z-index:70;display:none;align-items:center;justify-content:center;padding:20px}.product-modal-backdrop.open{display:flex}.product-modal{width:min(760px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:18px;display:grid;grid-template-columns:1fr 1fr;position:relative;box-shadow:0 25px 90px #0004}.modal-photo{min-height:360px;background:linear-gradient(145deg,#f7f8f2,#e9eee3);display:grid;place-items:center;padding:28px}.modal-photo img{width:100%;height:300px;object-fit:contain;mix-blend-mode:multiply}.modal-info{padding:35px 28px;display:flex;flex-direction:column;justify-content:center;gap:13px}.modal-close{position:absolute;right:13px;top:13px;width:34px;height:34px;border:0;border-radius:50%;background:#f0f2eb;color:#45543e;font-size:20px;z-index:1}.modal-kicker{font-size:9px;font-weight:800;letter-spacing:.12em;color:#829073;text-transform:uppercase}.modal-info h2{font:800 23px Montserrat;color:#2f3d28;margin:0}.modal-info p{font-size:11px;line-height:1.8;color:#737b6e;margin:0}.modal-price{font:800 24px Montserrat;color:#2f3d28}.modal-price small{font:500 10px Inter;color:#7d8577}.modal-info .add{justify-content:center;padding:13px}.modal-disclaimer{font-size:9px;color:#8a907f;line-height:1.6}
+@media(max-width:1200px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:950px){.store-hero{grid-template-columns:1fr .55fr;padding:30px}.products{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){main{padding:17px 13px 35px;gap:17px}.store-hero{grid-template-columns:1fr;padding:25px 22px;min-height:0}.hero-side{display:none}.store-hero h1{font-size:29px}.store-benefits{grid-template-columns:1fr;gap:8px}.store-benefits>div{padding:12px}.catalog-heading{align-items:start}.catalog-heading h2{font-size:20px}.catalog-tools{grid-template-columns:1fr 1fr}.catalog-tools .searchbox{grid-column:1/-1}.catalog-tools select{height:40px}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product-visual{height:135px;padding:8px}.product-body{padding:10px;gap:7px}.product h3{font-size:10px;min-height:31px}.product-desc{font-size:8px;min-height:38px}.product-price{font-size:14px}.product-actions{grid-template-columns:1fr 34px}.product-actions .add{font-size:9px;padding:9px 4px}.product-meta{font-size:8px}.product-modal{grid-template-columns:1fr;max-width:430px}.modal-photo{min-height:210px;padding:15px}.modal-photo img{height:190px}.modal-info{padding:20px}.category-tabs{gap:6px}.category-tab{padding:8px 10px;font-size:9px}}
+@media(max-width:380px){.products{grid-template-columns:1fr}.product-visual{height:190px}.product-desc{min-height:0}}
+
 </style>
 </head>
 <body>
@@ -67,11 +86,34 @@ main{max-width:1480px;margin:auto;padding:30px 38px 52px;display:grid;gap:25px}.
 <div class="workspace">
 <header class="topbar"><div><div class="greeting" id="greeting">Agri Marketplace</div><div class="date" id="farm-location">Explore supplies for your farm</div></div><div class="top-actions"><button class="icon-btn" id="open-cart" aria-label="Open shopping cart"><iconify-icon icon="solar:cart-large-2-linear"></iconify-icon><span class="cart-count" id="cart-count">0</span></button></div></header>
 <main>
-<section class="season"><div><div class="eyebrow">NILORA · AGRICULTURAL MARKETPLACE</div><h1>Everything your farm needs, in one place.</h1><p>Browse 15 products with photos and clear prices in Egyptian pounds (EGP).</p><div class="season-actions"><button class="btn btn-gold" id="browse-products">Browse products <iconify-icon icon="solar:arrow-down-linear"></iconify-icon></button><button class="btn btn-light" id="hero-cart">View shopping cart <iconify-icon icon="solar:cart-large-2-linear"></iconify-icon></button></div></div></section>
-<section class="toolbar" aria-label="Product search and filters"><label class="searchbox"><iconify-icon icon="solar:magnifer-linear"></iconify-icon><input id="search-input" type="search" placeholder="Search fruits and farm tools..."></label><select id="category-select" aria-label="Filter by category"><option value="all">All categories</option><option value="fruits">Fresh fruits</option><option value="tools">Farm tools</option></select><select id="sort-select" aria-label="Sort products"><option value="recommended">Recommended</option><option value="name">Name A–Z</option></select></section>
-<section id="product-section"><div class="section-head"><div><h2>Featured farm supplies</h2><p>Fresh produce and farm tools · prices in EGP.</p></div><small id="result-count">15 products</small></div><div class="products" id="products-grid"></div></section>
-<div class="footer-note">Fruit prices are reference retail prices collected from Egyptian supermarkets. Tool prices are indicative estimates where an exact matching listing was unavailable. Prices may change; confirm with the seller before purchase.</div>
+<section class="store-hero">
+  <div class="hero-copy">
+    <div class="eyebrow"><iconify-icon icon="solar:shop-2-linear"></iconify-icon> NILORA AGRICULTURAL STORE</div>
+    <h1>Farm essentials.<br><em>Made easier to find.</em></h1>
+    <p>Explore fresh produce and practical farm tools in one simple marketplace. Compare listed prices, choose quantities and build your product list.</p>
+    <div class="hero-actions"><button class="btn btn-gold" id="browse-products">Explore products <iconify-icon icon="solar:arrow-down-linear"></iconify-icon></button><button class="btn btn-hero-outline" id="hero-cart"><iconify-icon icon="solar:cart-large-2-linear"></iconify-icon> Open cart</button></div>
+    <div class="hero-trust"><span><iconify-icon icon="solar:check-circle-linear"></iconify-icon> Clear listed prices</span><span><iconify-icon icon="solar:leaf-linear"></iconify-icon> Farm-focused selection</span></div>
+  </div>
+  <div class="hero-side"><div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div><div class="hero-illustration"><iconify-icon icon="solar:leaf-bold-duotone"></iconify-icon></div><div class="hero-stat"><strong>15</strong><span>Listed products</span></div><div class="hero-stat second"><strong>2</strong><span>Store categories</span></div></div>
+</section>
+<section class="store-benefits">
+  <div><span class="benefit-icon"><iconify-icon icon="solar:tag-price-linear"></iconify-icon></span><span><b>Transparent pricing</b><small>See the listed price and unit.</small></span></div>
+  <div><span class="benefit-icon"><iconify-icon icon="solar:cart-check-linear"></iconify-icon></span><span><b>Build your list</b><small>Adjust quantities in your cart.</small></span></div>
+  <div><span class="benefit-icon"><iconify-icon icon="solar:smartphone-linear"></iconify-icon></span><span><b>Simple experience</b><small>Browse easily on any device.</small></span></div>
+</section>
+<section class="store-catalog" id="product-section">
+  <div class="catalog-heading"><div><div class="eyebrow dark-eyebrow">THE NILORA SELECTION</div><h2>Find what your farm needs</h2><p>Browse the catalogue, compare prices and add products to your list.</p></div><div class="catalog-count"><strong id="result-count">15</strong><span>products listed</span></div></div>
+  <div class="catalog-tools">
+    <label class="searchbox"><iconify-icon icon="solar:magnifer-linear"></iconify-icon><input id="search-input" type="search" placeholder="Search products by name..."><kbd>⌕</kbd></label>
+    <select id="category-select" aria-label="Filter by category"><option value="all">All categories</option><option value="fruits">Fresh fruits</option><option value="tools">Farm tools</option></select>
+    <select id="sort-select" aria-label="Sort products"><option value="recommended">Sort: Recommended</option><option value="name">Name: A–Z</option><option value="price-low">Price: Low to high</option><option value="price-high">Price: High to low</option></select>
+  </div>
+  <div class="category-tabs" aria-label="Quick category filters"><button class="category-tab active" data-category="all"><iconify-icon icon="solar:widget-4-linear"></iconify-icon> All products <span>15</span></button><button class="category-tab" data-category="fruits"><iconify-icon icon="solar:apple-linear"></iconify-icon> Fresh fruits <span>11</span></button><button class="category-tab" data-category="tools"><iconify-icon icon="solar:tools-linear"></iconify-icon> Farm tools <span>4</span></button></div>
+  <div class="products" id="products-grid"></div>
+  <div class="price-disclaimer"><iconify-icon icon="solar:info-circle-linear"></iconify-icon><span><b>About listed prices</b> Fruit prices are retail references collected from Egyptian supermarkets. Some tool prices are indicative estimates where an exact matching listing was unavailable. Prices may change; confirm the final price and availability with the seller before purchase.</span></div>
+</section>
 </main></div>
+<div class="product-modal-backdrop" id="product-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-product-name"><div class="product-modal"><button class="modal-close" id="modal-close" aria-label="Close product details">×</button><div class="modal-photo"><img id="modal-product-image" src="" alt=""></div><div class="modal-info"><div class="modal-kicker" id="modal-product-category">PRODUCT DETAILS</div><h2 id="modal-product-name"></h2><p id="modal-product-description"></p><div class="modal-price" id="modal-product-price"></div><div class="modal-disclaimer">Listed price reference only. Confirm current price and availability with the seller.</div><button class="btn btn-primary" id="modal-add"><iconify-icon icon="solar:cart-plus-linear"></iconify-icon> Add to cart</button></div></div></div>
 <div class="drawer-backdrop" id="drawer-backdrop"></div>
 <aside class="drawer" id="cart-drawer" aria-label="Shopping cart" aria-hidden="true"><div class="drawer-head"><div><h2>Your shopping cart</h2><div class="date" id="cart-subtitle">0 items</div></div><button class="remove-all" id="clear-cart" title="Empty cart" aria-label="Empty cart"><iconify-icon icon="solar:trash-bin-trash-linear"></iconify-icon></button><button class="close" id="close-cart" aria-label="Close cart">×</button></div><div class="cart-items" id="cart-items"></div><div class="cart-foot"><div class="total-row"><span>Product prices</span><strong id="cart-total">On request</strong></div><p>This is a request list only. Prices, availability and supplier contact are not confirmed or submitted from this prototype.</p><button class="btn btn-primary" id="checkout-btn">Review product list</button></div></aside>
 <div class="toast" id="toast" role="status"></div>
@@ -79,21 +121,21 @@ main{max-width:1480px;margin:auto;padding:30px 38px 52px;display:grid;gap:25px}.
 <script>
 window.addEventListener("error",event=>{console.error("NILORA Marketplace error:",event.error||event.message);const grid=document.getElementById("products-grid");if(grid&&!grid.children.length){grid.innerHTML='<div class="empty">Something went wrong while loading products. Refresh the page or open the console for details.</div>';}});
 const products=[
-{id:1,name:"Local Bananas",category:"fruits",price:44.95,unit:"kg",image:"Assets/banana.jpeg"},
-{id:2,name:"Dragon Fruit",category:"fruits",price:386,unit:"kg",image:"Assets/dragone froute.jpeg"},
-{id:3,name:"Red Grapes",category:"fruits",price:110,unit:"kg",image:"Assets/grap.jpeg"},
-{id:4,name:"Imported Kiwi",category:"fruits",price:161,unit:"kg",image:"Assets/kewe.jpeg"},
-{id:5,name:"Lemons",category:"fruits",price:32.95,unit:"kg",image:"Assets/lemone.jpeg"},
-{id:6,name:"Keitt Mango",category:"fruits",price:97.98,unit:"kg",image:"Assets/mango.jpeg"},
-{id:7,name:"Oranges",category:"fruits",price:28.95,unit:"kg",image:"Assets/orange.jpeg"},
-{id:8,name:"Red Plums",category:"fruits",price:179,unit:"kg",image:"Assets/plubary.jpeg"},
-{id:9,name:"Pomegranates",category:"fruits",price:34.95,unit:"kg",image:"Assets/pomegranate.jpeg"},
-{id:10,name:"Strawberries",category:"fruits",price:395.96,unit:"kg",image:"Assets/strubary.jpeg"},
-{id:11,name:"Watermelon",category:"fruits",price:21.95,unit:"kg",image:"Assets/watermelon.jpeg"},
-{id:12,name:"Agricultural Tool Set",category:"tools",price:499,unit:"set",image:"Assets/mo3dat zraia.jpeg"},
-{id:13,name:"Manual Pressure Sprayer",category:"tools",price:239,unit:"piece",image:"Assets/spray pressure.jpeg"},
-{id:14,name:"Handheld Water Sprayer",category:"tools",price:199,unit:"piece",image:"Assets/water spray.jpeg"},
-{id:15,name:"Hand Trowel",category:"tools",price:120,unit:"piece",image:"Assets/trowel.jpeg"}
+{id:1,name:"Local Bananas",category:"fruits",price:44.95,unit:"kg",image:"Assets/banana.jpeg",description:"Fresh bananas for everyday use. Sold by the kilogram."},
+{id:2,name:"Dragon Fruit",category:"fruits",price:386,unit:"kg",image:"Assets/dragone froute.jpeg",description:"A tropical fruit with a distinctive appearance. Sold by the kilogram."},
+{id:3,name:"Red Grapes",category:"fruits",price:110,unit:"kg",image:"Assets/grap.jpeg",description:"Fresh red grapes. Sold by the kilogram."},
+{id:4,name:"Imported Kiwi",category:"fruits",price:161,unit:"kg",image:"Assets/kewe.jpeg",description:"Imported kiwi fruit. Sold by the kilogram."},
+{id:5,name:"Lemons",category:"fruits",price:32.95,unit:"kg",image:"Assets/lemone.jpeg",description:"Fresh lemons for household and kitchen use. Sold by the kilogram."},
+{id:6,name:"Keitt Mango",category:"fruits",price:97.98,unit:"kg",image:"Assets/mango.jpeg",description:"Keitt mangoes. Sold by the kilogram."},
+{id:7,name:"Oranges",category:"fruits",price:28.95,unit:"kg",image:"Assets/orange.jpeg",description:"Fresh oranges. Sold by the kilogram."},
+{id:8,name:"Red Plums",category:"fruits",price:179,unit:"kg",image:"Assets/plubary.jpeg",description:"Fresh red plums. Sold by the kilogram."},
+{id:9,name:"Pomegranates",category:"fruits",price:34.95,unit:"kg",image:"Assets/pomegranate.jpeg",description:"Fresh pomegranates. Sold by the kilogram."},
+{id:10,name:"Strawberries",category:"fruits",price:395.96,unit:"kg",image:"Assets/strubary.jpeg",description:"Fresh strawberries. Sold by the kilogram."},
+{id:11,name:"Watermelon",category:"fruits",price:21.95,unit:"kg",image:"Assets/watermelon.jpeg",description:"Fresh watermelon. Sold by the kilogram."},
+{id:12,name:"Agricultural Tool Set",category:"tools",price:499,unit:"set",image:"Assets/mo3dat zraia.jpeg",description:"A practical set of basic agricultural hand tools. Sold as one set."},
+{id:13,name:"Manual Pressure Sprayer",category:"tools",price:239,unit:"piece",image:"Assets/spray pressure.jpeg",description:"A handheld pressure sprayer for small-scale spraying tasks. Sold per piece."},
+{id:14,name:"Handheld Water Sprayer",category:"tools",price:199,unit:"piece",image:"Assets/water spray.jpeg",description:"A handheld water sprayer for watering and light plant care. Sold per piece."},
+{id:15,name:"Hand Trowel",category:"tools",price:120,unit:"piece",image:"Assets/trowel.jpeg",description:"A hand trowel for planting and small gardening tasks. Sold per piece."}
 ];
 let activeCategory="all";let cart={};let toastTimer;
 const $=id=>document.getElementById(id);
@@ -102,19 +144,46 @@ function showToast(message){$("toast").textContent=message;$("toast").classList.
 function renderProducts(){
  const q=$("search-input").value.trim().toLowerCase();
  let list=products.filter(p=>(activeCategory==="all"||p.category===activeCategory)&&p.name.toLowerCase().includes(q));
- const sort=$("sort-select").value;if(sort==="name")list.sort((a,b)=>a.name.localeCompare(b.name));
- $("result-count").textContent=list.length+" products";$("products-grid").innerHTML="";
+ const sort=$("sort-select").value;
+ if(sort==="name")list.sort((a,b)=>a.name.localeCompare(b.name));
+ if(sort==="price-low")list.sort((a,b)=>a.price-b.price);
+ if(sort==="price-high")list.sort((a,b)=>b.price-a.price);
+ $("result-count").textContent=list.length;
+ $("products-grid").innerHTML="";
  if(!list.length){$("products-grid").innerHTML='<div class="empty">No matching products. Try another search.</div>';return}
  list.forEach(p=>{
   const card=document.createElement("article");card.className="product";
-  card.innerHTML='<div class="product-visual"></div><div class="product-body"><h3></h3><div class="price"></div><button class="add"><iconify-icon icon="solar:cart-plus-linear"></iconify-icon> Add to cart</button></div>';
-  if(p.image){const img=document.createElement("img");img.src=p.image;img.alt=p.name;img.loading="lazy";card.querySelector(".product-visual").append(img);}
-  card.querySelector("h3").textContent=p.name;
-  card.querySelector(".price").textContent=money(p.price)+" / "+p.unit;
-  card.querySelector(".add").addEventListener("click",()=>addToCart(p.id));
-  $("products-grid").append(card);
+  const visual=document.createElement("div");visual.className="product-visual";
+  const img=document.createElement("img");img.src=p.image;img.alt=p.name;img.loading="lazy";img.onerror=()=>{img.style.display="none";visual.classList.add("image-fallback");};
+  visual.append(img);
+  const type=document.createElement("span");type.className="product-type";type.textContent=p.category==="fruits"?"Fresh fruit":"Farm tool";visual.append(type);
+  const body=document.createElement("div");body.className="product-body";
+  const meta=document.createElement("div");meta.className="product-meta";meta.innerHTML='<span>NILORA LISTING</span><span>Price reference</span>';
+  const title=document.createElement("h3");title.textContent=p.name;
+  const desc=document.createElement("div");desc.className="product-desc";desc.textContent=p.description;
+  const priceRow=document.createElement("div");priceRow.className="product-price-row";
+  const price=document.createElement("div");price.className="product-price";price.textContent=money(p.price);
+  const unit=document.createElement("span");unit.className="product-unit";unit.textContent="/ "+p.unit;
+  priceRow.append(price,unit);
+  const actions=document.createElement("div");actions.className="product-actions";
+  const add=document.createElement("button");add.className="add";add.innerHTML='<iconify-icon icon="solar:cart-plus-linear"></iconify-icon> Add to cart';add.addEventListener("click",()=>addToCart(p.id));
+  const details=document.createElement("button");details.className="details-btn";details.type="button";details.title="View product details";details.setAttribute("aria-label","View details for "+p.name);details.innerHTML='<iconify-icon icon="solar:eye-linear"></iconify-icon>';details.addEventListener("click",()=>openProductDetails(p.id));
+  actions.append(add,details);body.append(meta,title,desc,priceRow,actions);card.append(visual,body);$("products-grid").append(card);
  });
 }
+function openProductDetails(id){
+ const p=products.find(item=>item.id===id);if(!p)return;
+ $("modal-product-image").src=p.image;$("modal-product-image").alt=p.name;
+ $("modal-product-category").textContent=p.category==="fruits"?"FRESH FRUIT":"FARM TOOL";
+ $("modal-product-name").textContent=p.name;$("modal-product-description").textContent=p.description;
+ $("modal-product-price").innerHTML="";
+ const amount=document.createElement("span");amount.textContent=money(p.price);
+ const unit=document.createElement("small");unit.textContent=" / "+p.unit;
+ $("modal-product-price").append(amount,unit);
+ $("modal-add").onclick=()=>{addToCart(p.id);closeProductDetails();};
+ $("product-modal-backdrop").classList.add("open");
+}
+function closeProductDetails(){$("product-modal-backdrop").classList.remove("open");}
 function addToCart(id){cart[id]=(cart[id]||0)+1;renderCart();showToast("Added to your demo cart.");}
 function changeQty(id,delta){cart[id]=(cart[id]||0)+delta;if(cart[id]<=0)delete cart[id];renderCart();}
 function renderCart(){
@@ -141,8 +210,11 @@ function renderCart(){
 function openCart(){ $("cart-drawer").classList.add("open");$("drawer-backdrop").classList.add("open");$("cart-drawer").setAttribute("aria-hidden","false");}
 function closeCart(){ $("cart-drawer").classList.remove("open");$("drawer-backdrop").classList.remove("open");$("cart-drawer").setAttribute("aria-hidden","true");}
 $("search-input").addEventListener("input",renderProducts);$("category-select").addEventListener("change",e=>{activeCategory=e.target.value;syncCategories();renderProducts()});$("sort-select").addEventListener("change",renderProducts);
-function syncCategories(){$("category-select").value=activeCategory;document.querySelectorAll(".category").forEach(b=>b.classList.toggle("active",b.dataset.category===activeCategory));}
-document.querySelectorAll(".category").forEach(b=>b.addEventListener("click",()=>{activeCategory=b.dataset.category;syncCategories();renderProducts()}));
+function syncCategories(){$("category-select").value=activeCategory;document.querySelectorAll(".category-tab").forEach(b=>b.classList.toggle("active",b.dataset.category===activeCategory));}
+document.querySelectorAll(".category-tab").forEach(b=>b.addEventListener("click",()=>{activeCategory=b.dataset.category;syncCategories();renderProducts()}));
+$("modal-close").addEventListener("click",closeProductDetails);
+$("product-modal-backdrop").addEventListener("click",e=>{if(e.target===$("product-modal-backdrop"))closeProductDetails();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeProductDetails();closeCart();}});
 $("clear-cart").addEventListener("click",()=>{cart={};renderCart();showToast("Cart emptied.");});$("open-cart").addEventListener("click",openCart);$("hero-cart").addEventListener("click",openCart);$("close-cart").addEventListener("click",closeCart);$("drawer-backdrop").addEventListener("click",closeCart);
 $("browse-products").addEventListener("click",()=>$("product-section").scrollIntoView({behavior:"smooth"}));
 $("checkout-btn").addEventListener("click",()=>showToast(Object.keys(cart).length?"Product list ready — contact the supplier directly for a quote.":"Your cart is empty."));
