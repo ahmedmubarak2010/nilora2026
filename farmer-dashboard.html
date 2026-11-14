@@ -23,6 +23,30 @@
 @media(max-width:760px){#nasa-world-map{height:340px}.map-toolbar a{margin-inline-start:0}.resources-section{padding:15px}.resource-filter{flex-wrap:wrap}.resource-filter span{width:100%}}
 @media(max-width:480px){.resource-grid{grid-template-columns:1fr}.section-heading{align-items:flex-start;flex-direction:column}.map-toolbar{align-items:stretch;flex-direction:column}.map-toolbar input,.map-toolbar .btn,.map-toolbar a{width:100%;justify-content:center}}
 
+
+/* Navigation status labels */
+.nav a.soon{cursor:not-allowed;opacity:.72}
+.nav a.soon::after{content:"SOON";margin-left:auto;flex:none;padding:3px 6px;border-radius:5px;background:#ffffff18;color:#d8c9a9;font-size:8px;font-weight:800;letter-spacing:.06em}
+.resources-panel{display:grid;gap:16px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px}
+.resources-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.resources-head h2{font:800 20px Montserrat;color:var(--olive);margin:5px 0}
+.resources-head p{font-size:12px;color:var(--muted);line-height:1.7;margin:0;max-width:680px}
+.resources-search{display:flex;align-items:center;gap:10px;min-width:min(100%,300px);padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:#fafaf7}
+.resources-search input{width:100%;border:0;outline:0;background:transparent;font:inherit;font-size:12px}
+.resources-count{font-size:11px;color:var(--muted);white-space:nowrap}
+.resources-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.resources-grid .resource-card{min-width:0;background:#fbfbf8;border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;min-height:170px}
+.resources-grid .resource-card[hidden]{display:none}
+.resources-grid .resource-top{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--green);font-size:17px}
+.resources-grid .resource-type{font-size:9px;font-weight:800;padding:5px 7px;border-radius:20px;background:#edf3e8;color:#46623c}
+.resources-grid .resource-type.regional{background:#f5eee1;color:#80612c}
+.resources-grid .resource-card h3{font-size:13px;color:var(--olive);margin:12px 0 6px}
+.resources-grid .resource-card p{font-size:11px;color:var(--muted);line-height:1.65;margin:0 0 12px;flex:1}
+.resources-grid .resource-card a{font-size:11px;font-weight:800;color:var(--green)}
+.resources-note{padding:12px 14px;border-radius:10px;background:#f5f2e9;color:#75694e;font-size:11px;line-height:1.7}
+@media(max-width:1050px){.resources-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.resources-grid{grid-template-columns:1fr}.resources-panel{padding:16px}}
+
 </style>
 </head>
 <body style="visibility:hidden">
@@ -40,7 +64,7 @@
     <a href="#" class="soon"><iconify-icon icon="solar:chart-square-linear"></iconify-icon>Reports</a>
     <a href="#" class="soon"><iconify-icon icon="solar:users-group-rounded-linear"></iconify-icon>Community</a>
     <a href="#nasa-map"><iconify-icon icon="solar:earth-linear"></iconify-icon>NASA Satellite Map</a>
-    <a href="data-resources.html"><iconify-icon icon="solar:database-linear"></iconify-icon>Data Resources</a>
+    <a href="#data-resources"><iconify-icon icon="solar:database-linear"></iconify-icon>Data Resources</a>
     <a href="#" class="soon"><iconify-icon icon="solar:shop-linear"></iconify-icon>Agri Market</a>
   </nav>
   <div class="profile"><div class="profile-row"><img class="avatar account-photo" id="account-avatar" alt="Account photo" hidden><div class="avatar account-fallback" id="account-avatar-fallback"><iconify-icon icon="solar:user-linear"></iconify-icon></div><div class="profile-copy"><div class="profile-name" id="user-name">Farmer account</div><div class="profile-role">Farmer account</div></div></div><button class="logout" id="logout-btn"><iconify-icon icon="solar:logout-2-linear"></iconify-icon> Sign out</button></div>
@@ -76,6 +100,41 @@
     <div class="map-footnote"><span><b>Imagery:</b> NOAA-20 / VIIRS Corrected Reflectance (True Color), served by NASA Global Imagery Browse Services (GIBS).</span><span id="nasa-map-status">Loading NASA imagery…</span></div>
     <p class="map-caveat">This is regional satellite imagery, not a surveyed farm boundary or field-level diagnosis. Clouds, image resolution and acquisition date can affect what is visible. Use the full NASA Worldview viewer to add layers such as soil moisture or precipitation.</p>
   </section>
+
+
+<section class="resources-panel" id="data-resources">
+  <div class="resources-head">
+    <div><div class="eyebrow">Open data library</div><h2>Research &amp; Data Resources</h2><p>Search the official satellite, climate, soil and agriculture datasets that can support NILORA's analysis and AI features.</p></div>
+    <div><label class="resources-search"><iconify-icon icon="solar:magnifer-linear"></iconify-icon><input id="dashboard-resource-search" type="search" placeholder="Search soil, rainfall, satellite data…"></label><div class="resources-count" id="dashboard-resource-count">24 resources</div></div>
+  </div>
+  <div class="resources-grid" id="dashboard-resource-grid">
+<article class="resource-card" data-search="SMAP soil moisture drought NASA global"><div class="resource-top"><span class="resource-type global">Global · NASA</span><iconify-icon icon="solar:waterdrop-linear"></iconify-icon></div><h3>SMAP — Soil Moisture</h3><p>Surface and root-zone soil moisture indicators for water availability and drought monitoring.</p><a href="https://search.earthdata.nasa.gov/search?q=SMAP" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="GPM IMERG precipitation rainfall NASA global"><div class="resource-top"><span class="resource-type global">Global · NASA</span><iconify-icon icon="solar:cloud-rain-linear"></iconify-icon></div><h3>GPM / IMERG — Rainfall</h3><p>Precipitation estimates for rainfall patterns, storms and water input to soils.</p><a href="https://gpm.nasa.gov/data/imerg" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="Landsat MODIS VIIRS NDVI vegetation satellite NASA global"><div class="resource-top"><span class="resource-type regional">Global · NASA / USGS</span><iconify-icon icon="solar:leaf-linear"></iconify-icon></div><h3>Landsat, MODIS & VIIRS</h3><p>Surface reflectance and vegetation indices for crop vigor and seasonal change.</p><a href="https://search.earthdata.nasa.gov/search?q=MODIS%20vegetation%20indices" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="NASA POWER weather temperature humidity radiation agroclimatology global"><div class="resource-top"><span class="resource-type global">Global · NASA</span><iconify-icon icon="solar:sun-2-linear"></iconify-icon></div><h3>NASA POWER</h3><p>Daily meteorological and solar data, including temperature, humidity and radiation.</p><a href="https://power.larc.nasa.gov/" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="SRTM elevation terrain topography NASA global"><div class="resource-top"><span class="resource-type global">Global · NASA</span><iconify-icon icon="solar:mountains-linear"></iconify-icon></div><h3>SRTM — Elevation & Terrain</h3><p>Elevation models to understand terrain, runoff and slope-related erosion risk.</p><a href="https://www.earthdata.nasa.gov/data/instruments/srtm" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="ECOSTRESS land surface temperature evapotranspiration plant stress NASA global"><div class="resource-top"><span class="resource-type global">Global · NASA</span><iconify-icon icon="solar:temperature-linear"></iconify-icon></div><h3>ECOSTRESS</h3><p>Land-surface temperature and evapotranspiration products for heat and water-stress research.</p><a href="https://ecostress.jpl.nasa.gov/data" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="NLDAS GLDAS land data assimilation soil moisture NASA global"><div class="resource-top"><span class="resource-type global">Global · NASA</span><iconify-icon icon="solar:cloud-linear"></iconify-icon></div><h3>NLDAS / GLDAS</h3><p>Gridded land and climate variables, including soil moisture and evapotranspiration proxies.</p><a href="https://ldas.gsfc.nasa.gov/" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="FAO GAEZ agro ecological zones crop suitability soil global"><div class="resource-top"><span class="resource-type global">Global · FAO</span><iconify-icon icon="solar:globus-linear"></iconify-icon></div><h3>FAO Global Agro-Ecological Zones</h3><p>Global crop suitability, soil constraints, water availability and productivity layers.</p><a href="https://gaez.fao.org/" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="Sentinel 2 Copernicus ESA NDVI vegetation satellite global"><div class="resource-top"><span class="resource-type global">Global · ESA</span><iconify-icon icon="solar:satellite-linear"></iconify-icon></div><h3>Copernicus Sentinel-2</h3><p>10–20 m multispectral imagery useful for vegetation indices and crop-stress mapping.</p><a href="https://dataspace.copernicus.eu/" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="ERA5 ECMWF reanalysis climate weather hourly global"><div class="resource-top"><span class="resource-type global">Global · ECMWF</span><iconify-icon icon="solar:wind-linear"></iconify-icon></div><h3>ERA5 Climate Reanalysis</h3><p>Hourly climate variables for historical context and filling gaps in station observations.</p><a href="https://cds.climate.copernicus.eu/" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="USDA Ag Data Commons agriculture datasets soils crops climate"><div class="resource-top"><span class="resource-type regional">US-focused</span><iconify-icon icon="solar:database-linear"></iconify-icon></div><h3>USDA Ag Data Commons</h3><p>Open agricultural datasets for soils, crops, land management and research context.</p><a href="https://agdatacommons.nal.usda.gov/" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="Web Soil Survey WSS NRCS USDA soil maps"><div class="resource-top"><span class="resource-type regional">US only</span><iconify-icon icon="solar:layers-linear"></iconify-icon></div><h3>Web Soil Survey</h3><p>Detailed official soil survey information for locations in the United States.</p><a href="https://websoilsurvey.nrcs.usda.gov/" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="Cropland Data Layer CDL CropScape USDA crop classification"><div class="resource-top"><span class="resource-type regional">US only</span><iconify-icon icon="solar:leaf-linear"></iconify-icon></div><h3>USDA Cropland Data Layer</h3><p>Annual crop-type classification and cropping-pattern data for the United States.</p><a href="https://nassgeodata.gmu.edu/CropScape/" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="PRISM climate data Oregon State US precipitation temperature"><div class="resource-top"><span class="resource-type regional">US only</span><iconify-icon icon="solar:cloud-sun-linear"></iconify-icon></div><h3>PRISM Climate Data</h3><p>High-resolution climate datasets and long-term climate normals for the United States.</p><a href="https://prism.oregonstate.edu/" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="SSURGO STATSGO2 USDA NRCS soil database"><div class="resource-top"><span class="resource-type regional">US only</span><iconify-icon icon="solar:layers-minimalistic-linear"></iconify-icon></div><h3>SSURGO / STATSGO2</h3><p>Detailed soil attributes and soil mapping databases for U.S. locations.</p><a href="https://www.nrcs.usda.gov/resources/data-and-reports/soil-survey-geographic-database-ssurgo" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="NAIP aerial imagery agriculture USDA United States"><div class="resource-top"><span class="resource-type regional">US only</span><iconify-icon icon="solar:camera-linear"></iconify-icon></div><h3>NAIP Aerial Imagery</h3><p>High-resolution aerial imagery captured over U.S. agricultural areas.</p><a href="https://naip-usdaonline.hub.arcgis.com/" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="NLCD national land cover database USGS land cover United States"><div class="resource-top"><span class="resource-type regional">US only</span><iconify-icon icon="solar:map-linear"></iconify-icon></div><h3>USGS National Land Cover Database</h3><p>Multi-year land-cover and land-use classifications across the United States.</p><a href="https://www.mrlc.gov/" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="CoCoRaHS rainfall precipitation community observations North America"><div class="resource-top"><span class="resource-type regional">North America</span><iconify-icon icon="solar:cloud-rain-linear"></iconify-icon></div><h3>CoCoRaHS Rain Observations</h3><p>Community precipitation observations primarily across North America.</p><a href="https://www.cocorahs.org/" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="USGS NWIS groundwater streamflow water quality United States"><div class="resource-top"><span class="resource-type regional">US only</span><iconify-icon icon="solar:water-linear"></iconify-icon></div><h3>USGS National Water Information System</h3><p>Groundwater, streamflow and water-quality records for U.S. monitoring sites.</p><a href="https://waterdata.usgs.gov/nwis" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="USDA AMS Market News crop commodity prices United States"><div class="resource-top"><span class="resource-type regional">US-focused</span><iconify-icon icon="solar:chart-2-linear"></iconify-icon></div><h3>USDA AMS Market News</h3><p>Commodity price and market reporting, primarily for U.S. markets.</p><a href="https://www.ams.usda.gov/market-news" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="USDA NASS QuickStats yields acreage production statistics United States"><div class="resource-top"><span class="resource-type regional">US only</span><iconify-icon icon="solar:chart-square-linear"></iconify-icon></div><h3>USDA NASS QuickStats</h3><p>Historical crop acreage, yield and production statistics for U.S. regions.</p><a href="https://quickstats.nass.usda.gov/" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="OpenET evapotranspiration irrigation water management United States"><div class="resource-top"><span class="resource-type global">Limited U.S. coverage</span><iconify-icon icon="solar:waterdrops-linear"></iconify-icon></div><h3>OpenET</h3><p>Satellite-based evapotranspiration data with geographic coverage focused on the western United States.</p><a href="https://openetdata.org/" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="USFS LANDFIRE vegetation fuel land cover United States"><div class="resource-top"><span class="resource-type regional">US only</span><iconify-icon icon="solar:trees-linear"></iconify-icon></div><h3>USFS LANDFIRE</h3><p>Vegetation and landscape layers for U.S. ecosystems and land-management research.</p><a href="https://www.landfire.gov/" target="_blank" rel="noopener">Open resource ↗</a></article>
+<article class="resource-card" data-search="GEDI global ecosystem dynamics investigation biomass NASA global"><div class="resource-top"><span class="resource-type global">Global · NASA</span><iconify-icon icon="solar:tree-linear"></iconify-icon></div><h3>GEDI — Forest Structure</h3><p>Spaceborne lidar observations of canopy structure and above-ground biomass.</p><a href="https://gedi.umd.edu/" target="_blank" rel="noopener">Open resource ↗</a></article>
+  </div>
+  <div class="resources-note">Coverage note: datasets marked “US only”, “US-focused” or “North America” are not local measurements for Egyptian farms. Prioritize global datasets and check spatial coverage, resolution, update frequency and license before AI integration.</div>
+</section>
 
 </main>
 </div>
@@ -185,6 +244,18 @@
   });
   document.getElementById("sync-btn").addEventListener("click",()=>document.getElementById("nasa-map").scrollIntoView({behavior:"smooth",block:"start"}));
   document.getElementById("add-field").addEventListener("click",()=>notify("We'll build the My Fields feature next."));
+
+  document.querySelectorAll(".nav a.soon").forEach(link=>link.addEventListener("click",event=>{event.preventDefault();notify((link.textContent||"This feature").replace(/SOON/i,"").trim()+" — coming soon.");}));
+  const resourceSearch=document.getElementById("dashboard-resource-search");
+  if(resourceSearch){
+    const resourceCards=[...document.querySelectorAll("#dashboard-resource-grid .resource-card")];
+    const resourceCount=document.getElementById("dashboard-resource-count");
+    resourceSearch.addEventListener("input",()=>{
+      const query=resourceSearch.value.trim().toLowerCase();let visible=0;
+      resourceCards.forEach(card=>{const match=(card.dataset.search+" "+card.innerText).toLowerCase().includes(query);card.hidden=!match;if(match)visible++;});
+      resourceCount.textContent=visible+" resources";
+    });
+  }
   document.getElementById("logout-btn").addEventListener("click",async()=>{await db.auth.signOut();localStorage.removeItem("nilora-farm-profile-preview");location.replace("signup.html");});
 })();
 </script>
