@@ -67,10 +67,10 @@ main{max-width:1480px;margin:auto;padding:30px 38px 52px;display:grid;gap:25px}.
 <div class="workspace">
 <header class="topbar"><div><div class="greeting" id="greeting">Agri Marketplace</div><div class="date" id="farm-location">Explore supplies for your farm</div></div><div class="top-actions"><button class="icon-btn" id="open-cart" aria-label="Open shopping cart"><iconify-icon icon="solar:cart-large-2-linear"></iconify-icon><span class="cart-count" id="cart-count">0</span></button></div></header>
 <main>
-<section class="season"><div><div class="eyebrow">NILORA · AGRICULTURAL MARKETPLACE</div><h1>Everything your farm needs, in one place.</h1><p>Browse 15 agricultural products. Each card shows only the product name and price; product photos can be added later.</p><div class="season-actions"><button class="btn btn-gold" id="browse-products">Browse products <iconify-icon icon="solar:arrow-down-linear"></iconify-icon></button><button class="btn btn-light" id="hero-cart">View shopping cart <iconify-icon icon="solar:cart-large-2-linear"></iconify-icon></button></div></div></section>
-<section class="toolbar" aria-label="Product search and filters"><label class="searchbox"><iconify-icon icon="solar:magnifer-linear"></iconify-icon><input id="search-input" type="search" placeholder="Search seeds, fertilizers, tools..."></label><select id="category-select" aria-label="Filter by category"><option value="all">All categories</option><option value="seeds">Seeds & seedlings</option></select><select id="sort-select" aria-label="Sort products"><option value="recommended">Recommended</option><option value="name">Name A–Z</option></select></section>
-<section id="product-section"><div class="section-head"><div><h2>Featured farm supplies</h2><p>Product names and listed prices. Photos are intentionally left blank for you to add.</p></div><small id="result-count">15 products</small></div><div class="products" id="products-grid"></div></section>
-<div class="footer-note">Prices shown are listed retail prices and may change. Confirm before purchase.</div>
+<section class="season"><div><div class="eyebrow">NILORA · AGRICULTURAL MARKETPLACE</div><h1>Everything your farm needs, in one place.</h1><p>Browse 15 products with photos and clear prices in Egyptian pounds.</p><div class="season-actions"><button class="btn btn-gold" id="browse-products">Browse products <iconify-icon icon="solar:arrow-down-linear"></iconify-icon></button><button class="btn btn-light" id="hero-cart">View shopping cart <iconify-icon icon="solar:cart-large-2-linear"></iconify-icon></button></div></div></section>
+<section class="toolbar" aria-label="Product search and filters"><label class="searchbox"><iconify-icon icon="solar:magnifer-linear"></iconify-icon><input id="search-input" type="search" placeholder="Search seeds, fertilizers, tools..."></label><select id="category-select" aria-label="Filter by category"><option value="all">All categories</option><option value="fruits">Fresh fruits</option><option value="tools">Farm tools</option></select><select id="sort-select" aria-label="Sort products"><option value="recommended">Recommended</option><option value="name">Name A–Z</option></select></section>
+<section id="product-section"><div class="section-head"><div><h2>Featured farm supplies</h2><p>Fresh produce and farm tools · prices in EGP.</p></div><small id="result-count">15 products</small></div><div class="products" id="products-grid"></div></section>
+<div class="footer-note">Fruit prices are reference retail prices collected from Egyptian supermarkets. Tool prices are indicative estimates where a directly matching listing was unavailable. Prices may change; confirm with the seller before purchase.</div>
 </main></div>
 <div class="drawer-backdrop" id="drawer-backdrop"></div>
 <aside class="drawer" id="cart-drawer" aria-label="Shopping cart" aria-hidden="true"><div class="drawer-head"><div><h2>Your shopping cart</h2><div class="date" id="cart-subtitle">0 items</div></div><button class="remove-all" id="clear-cart" title="Empty cart" aria-label="Empty cart"><iconify-icon icon="solar:trash-bin-trash-linear"></iconify-icon></button><button class="close" id="close-cart" aria-label="Close cart">×</button></div><div class="cart-items" id="cart-items"></div><div class="cart-foot"><div class="total-row"><span>Product prices</span><strong id="cart-total">On request</strong></div><p>This is a request list only. Prices, availability and supplier contact are not confirmed or submitted from this prototype.</p><button class="btn btn-primary" id="checkout-btn">Review product list</button></div></aside>
@@ -79,21 +79,21 @@ main{max-width:1480px;margin:auto;padding:30px 38px 52px;display:grid;gap:25px}.
 <script>
 window.addEventListener("error",event=>{console.error("NILORA Marketplace error:",event.error||event.message);const grid=document.getElementById("products-grid");if(grid&&!grid.children.length){grid.innerHTML='<div class="empty">Something went wrong while loading products. Refresh the page or open the console for details.</div>';}});
 const products=[
-{id:1,name:"Berseem Sakha 4 — 5 kg",category:"seeds",price:715,unit:"bag",image:""},
-{id:2,name:"Berseem Sakha 4 — 25 kg",category:"seeds",price:3375,unit:"bag",image:""},
-{id:3,name:"Berseem Meskawy — 5 kg",category:"seeds",price:665,unit:"bag",image:""},
-{id:4,name:"Berseem Meskawy — 25 kg",category:"seeds",price:3150,unit:"bag",image:""},
-{id:5,name:"Onion Giza 6 Mohassan",category:"seeds",price:1400,unit:"seed pack",image:""},
-{id:6,name:"Watermelon Crimson Sweet",category:"seeds",price:900,unit:"seed pack",image:""},
-{id:7,name:"Tomato Castle Rock",category:"seeds",price:600,unit:"seed pack",image:""},
-{id:8,name:"Tomato Super Strain B",category:"seeds",price:650,unit:"seed pack",image:""},
-{id:9,name:"Cotton Giza 96 — 25 kg",category:"seeds",price:1125,unit:"bag",image:""},
-{id:10,name:"Cotton Giza 95 — 25 kg",category:"seeds",price:1015,unit:"bag",image:""},
-{id:11,name:"Cotton Giza 94 — 25 kg",category:"seeds",price:1015,unit:"bag",image:""},
-{id:12,name:"Maize TWC 321 — 10 kg",category:"seeds",price:1115,unit:"bag",image:""},
-{id:13,name:"Maize SC 168 — 10 kg",category:"seeds",price:1395,unit:"bag",image:""},
-{id:14,name:"Rice Giza 179 — 25 kg",category:"seeds",price:630,unit:"bag",image:""},
-{id:15,name:"Rice Sakha 108 — 25 kg",category:"seeds",price:630,unit:"bag",image:""}
+{id:1,name:"موز بلدي",category:"fruits",price:44.95,unit:"kg",image:"Assets/banana.jpeg"},
+{id:2,name:"فاكهة التنين",category:"fruits",price:386,unit:"kg",image:"Assets/dragone froute.jpeg"},
+{id:3,name:"عنب أحمر",category:"fruits",price:110,unit:"kg",image:"Assets/grap.jpeg"},
+{id:4,name:"كيوي مستورد",category:"fruits",price:161,unit:"kg",image:"Assets/kewe.jpeg"},
+{id:5,name:"ليمون",category:"fruits",price:32.95,unit:"kg",image:"Assets/lemone.jpeg"},
+{id:6,name:"مانجو كيت",category:"fruits",price:97.98,unit:"kg",image:"Assets/mango.jpeg"},
+{id:7,name:"برتقال",category:"fruits",price:28.95,unit:"kg",image:"Assets/orange.jpeg"},
+{id:8,name:"برقوق أحمر",category:"fruits",price:179,unit:"kg",image:"Assets/plubary.jpeg"},
+{id:9,name:"رمان",category:"fruits",price:34.95,unit:"kg",image:"Assets/pomegranate.jpeg"},
+{id:10,name:"فراولة",category:"fruits",price:395.96,unit:"kg",image:"Assets/strubary.jpeg"},
+{id:11,name:"بطيخ",category:"fruits",price:21.95,unit:"kg",image:"Assets/watermelon.jpeg"},
+{id:12,name:"طقم أدوات زراعية",category:"tools",price:499,unit:"set",image:"Assets/mo3dat zraia.jpeg"},
+{id:13,name:"رشاش ضغط يدوي",category:"tools",price:239,unit:"piece",image:"Assets/spray pressure.jpeg"},
+{id:14,name:"بخاخ مياه يدوي",category:"tools",price:199,unit:"piece",image:"Assets/water spray.jpeg"},
+{id:15,name:"جاروف زراعة يدوي",category:"tools",price:120,unit:"piece",image:"Assets/trowel.jpeg"}
 ];
 let activeCategory="all";let cart={};let toastTimer;
 const $=id=>document.getElementById(id);
