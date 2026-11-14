@@ -2,4 +2,6 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#2f3d28"><title>Signing in | NILORA</title><link rel="stylesheet" href="assets/css/app.css"></head>
 <body><main class="auth-wrap"><div class="auth-card"><h1>Completing sign in…</h1><p id="s">Please wait.</p></div></main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script><script src="assets/js/supabase.js"></script>
-<script>db.auth.getSession().then(({data,error})=>{if(error||!data.session){document.getElementById("s").textContent="Could not complete sign in. Return to login.";return}location.replace("farmer-dashboard.html")});</script></body></html>
+<script>
+(async()=>{const s=document.getElementById("s");const {data,error}=await db.auth.getSession();if(error||!data.session){s.textContent="Could not complete sign in. Return to login.";return}const {data:profile,error:profileError}=await db.from("profiles").select("onboarding_completed").eq("id",data.session.user.id).maybeSingle();if(profileError){location.replace("onboarding.html");return}location.replace(profile?.onboarding_completed?"farmer-dashboard.html":"onboarding.html")})();
+</script></body></html>
