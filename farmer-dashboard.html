@@ -196,9 +196,8 @@
     if(!v.name||!Number.isFinite(v.area)||v.area<=0){notify("Please enter a valid farm name and area.");return;}
     apply(v);localStorage.setItem("nilora-farm-profile-preview",JSON.stringify(v));close();notify("Preview updated in this browser only.");
   });
-  document.getElementById("sync-btn").addEventListener("click",()=>notify("Live satellite data is not connected yet."));
+  document.getElementById("sync-btn").addEventListener("click",()=>document.getElementById("nasa-map").scrollIntoView({behavior:"smooth",block:"start"}));
   document.getElementById("add-field").addEventListener("click",()=>notify("We'll build the My Fields feature next."));
-  document.getElementById("location-btn").addEventListener("click",()=>notify("Farm location editing will be added in a later feature."));
   document.getElementById("logout-btn").addEventListener("click",async()=>{await db.auth.signOut();localStorage.removeItem("nilora-farm-profile-preview");location.replace("signup.html");});
 })();
 </script>
