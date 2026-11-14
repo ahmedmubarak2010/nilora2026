@@ -128,6 +128,11 @@
     const {data,error}=await db.auth.getSession();
     if(error||!data.session){location.replace("signup.html");return;}
     const user=data.session.user;
+    const {data:profile,error:profileError}=await db.from("profiles").select("full_name,onboarding_completed").eq("id",user.id).maybeSingle();
+    if(profileError||!profile?.onboarding_completed){location.replace("onboarding.html");return;}
+    const {data:farm,error:farmError}=await db.from("farms").select("id,name,governorate,locality,latitude,longitude,area_feddan,water_source").eq("owner_id",user.id).limit(1).maybeSingle();
+    if(farmError||!farm){location.replace("onboarding.html");return;}
+    window.NILORA_FARM=farm;
     const name=user.user_metadata?.full_name||user.user_metadata?.name||user.email?.split("@")[0]||"Farmer";
     document.getElementById("user-name").textContent=name;
     const avatarUrl=user.user_metadata?.avatar_url||user.user_metadata?.picture||user.user_metadata?.photo_url||"";
@@ -136,6 +141,17 @@
     if(avatarUrl){avatar.src=avatarUrl;avatar.hidden=false;avatar.onerror=()=>{avatar.hidden=true;avatarFallback.hidden=false};avatarFallback.hidden=true;}else{avatar.hidden=true;avatarFallback.hidden=false;}
     document.getElementById("greeting").textContent="Welcome, "+name+" 🌱";
     document.getElementById("detail-owner").textContent=name;
+    document.getElementById("farm-title").textContent=farm.name;
+    document.getElementById("farm-area").textContent=farm.area_feddan;
+    document.getElementById("detail-farm-name").textContent=farm.name;
+    document.getElementById("detail-area").textContent=farm.area_feddan+" فدان";
+    document.querySelector(".hero .location").textContent=[farm.locality,farm.governorate,"مصر"].filter(Boolean).join("، ");
+    document.querySelector(".hero-tag").textContent="ملف مزرعتك المسجل";
+    document.querySelector(".top-actions .pill").textContent="بيانات مزرعتك";
+    document.querySelector(".demo").innerHTML='<iconify-icon icon="solar:info-circle-linear"></iconify-icon><div><b>تنبيه حول البيانات.</b> بيانات المزرعة الأساسية مأخوذة من حسابك. قراءات التربة وصور الحقول ما زالت أمثلة توضيحية وليست نتائج معملية أو قياسات مباشرة.</div>';
+    document.getElementById("farm-name-input").value=farm.name;
+    document.getElementById("farm-area-input").value=farm.area_feddan;
+    document.getElementById("detail-water").textContent=farm.water_source||"غير محدد";
     document.body.style.visibility="visible";
   }catch(e){location.replace("signup.html");return;}
 
@@ -146,7 +162,7 @@
       const today=new Date();const mapDate=new Date(today);mapDate.setUTCDate(mapDate.getUTCDate()-2);
       const isoDate=d=>d.toISOString().slice(0,10);
       const dateInput=document.getElementById("nasa-map-date");dateInput.value=isoDate(mapDate);dateInput.max=isoDate(today);
-      const map=L.map(mapEl,{scrollWheelZoom:false}).setView([30.59,30.99],7);
+      const savedFarm=window.NILORA_FARM;const map=L.map(mapEl,{scrollWheelZoom:false}).setView(savedFarm?.latitude!=null&&savedFarm?.longitude!=null?[savedFarm.latitude,savedFarm.longitude]:[30.59,30.99],savedFarm?.latitude!=null?12:7);
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'}).addTo(map);
       let nasaLayer;
       const status=document.getElementById("nasa-map-status");
@@ -159,6 +175,7 @@
         nasaLayer.once("load",()=>{status.textContent="NASA VIIRS imagery loaded · "+selected;});
         nasaLayer.once("tileerror",()=>{status.textContent="Some tiles are unavailable for this date or zoom. Try another date or open NASA Worldview.";});
       };
+      if(savedFarm?.latitude!=null&&savedFarm?.longitude!=null){L.marker([savedFarm.latitude,savedFarm.longitude]).addTo(map).bindPopup("موقع المزرعة المسجل");}
       addNasaLayer();
       document.getElementById("refresh-nasa-map").addEventListener("click",addNasaLayer);
       map.whenReady(()=>setTimeout(()=>map.invalidateSize(),150));
