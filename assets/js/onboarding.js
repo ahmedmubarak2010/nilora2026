@@ -55,12 +55,13 @@ form.addEventListener("submit",async e=>{
  if(!selected){say("حدد موقع المزرعة الأول.","error");return}
  const area=Number($("area").value),accountName=$("owner-name").value.trim();
  if(!accountName){say("مش قادرين نقرأ الاسم من حسابك. سجّل خروج وادخل تاني أو راجع بيانات الحساب.","error");return}
- if(!Number.isFinite(area)||area<=0){say("اكتب مساحة صحيحة للمزرعة.","error");return}
+ if(!$("farm-name").value.trim()){say("اكتب اسم المزرعة.","error");return}\n if(!Number.isFinite(area)||area<=0){say("اكتب مساحة صحيحة للمزرعة.","error");return}
  save.disabled=true;save.textContent="جاري حفظ البيانات…";say("جاري حفظ بيانات المزرعة والإحداثيات في حسابك.");
  try{
-  const profilePayload={id:user.id,full_name:accountName,phone:$("phone").value.trim()||null,governorate:$("governorate").value,locality:$("locality").value.trim()||null,onboarding_completed:false,role:profile?.role||"farmer",agronomist_status:"not_applicable",platform_role:"user",account_status:"active"};
-  const {error:profileSaveError}=await db.from("profiles").upsert(profilePayload,{onConflict:"id"});
+  const profilePayload={full_name:accountName,phone:$("phone").value.trim()||null,governorate:$("governorate").value,locality:$("locality").value.trim()||null,onboarding_completed:false};
+  const {data:profileSaved,error:profileSaveError}=await db.from("profiles").update(profilePayload).eq("id",user.id).select("id").single();
   if(profileSaveError)throw profileSaveError;
+  if(!profileSaved?.id)throw new Error("تعذر العثور على ملف حسابك. سجّل خروج وادخل مرة تانية.");
   const farmPayload={owner_id:user.id,name:$("farm-name").value.trim(),governorate:$("governorate").value,locality:$("locality").value.trim()||null,latitude:selected.lat,longitude:selected.lng,area_feddan:area,water_source:$("water-source").value||null};
   const {data:existingFarm,error:findFarmError}=await db.from("farms").select("id").eq("owner_id",user.id).limit(1).maybeSingle();if(findFarmError)throw findFarmError;
   let farmId=existingFarm?.id;
