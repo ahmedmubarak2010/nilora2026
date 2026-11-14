@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2f3d28">
+<title>Overview | NILORA</title>
+<meta name="description" content="NILORA smart agriculture overview dashboard.">
+<link rel="icon" href="Assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/iconify-icon/3.0.4/iconify-icon.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<style>
+:root{--olive:#2f3d28;--green:#556d4a;--sage:#a4ac86;--soft:#c8d5b5;--sand:#d8c9a9;--cream:#f8f6ef;--ink:#20251d;--muted:#687064;--line:#e4e3d9;--white:#fff;--good:#3e6334;--good-bg:#edf4e9;--warn:#805e1c;--warn-bg:#fff5df;--urgent:#a53b32;--urgent-bg:#fff0ee}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,Arial,sans-serif}button,a{font:inherit}a{text-decoration:none;color:inherit}button{cursor:pointer}
+.sidebar{position:fixed;inset:0 auto 0 0;width:264px;background:var(--olive);color:#fff;z-index:20;padding:17px 14px;display:flex;flex-direction:column;gap:16px}.brand{display:flex;align-items:center;gap:11px;padding:5px 9px 20px;border-bottom:1px solid #ffffff20}.brand img{width:46px;height:42px;object-fit:contain}.brand b{display:block;font:800 20px Montserrat;letter-spacing:.04em}.brand small{display:block;color:var(--sand);font-size:10px;margin-top:3px}.connection{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:9px;background:#ffffff12;color:#dce5d3;font-size:10px}.connection i{width:7px;height:7px;border-radius:50%;background:#a4ac86}.nav{display:grid;gap:5px;flex:1;align-content:start;overflow:auto}.nav a{display:flex;align-items:center;gap:12px;min-height:42px;padding:10px 12px;border-radius:9px;color:#dce5d3;font-size:12px;font-weight:600}.nav a iconify-icon{font-size:19px}.nav a:hover,.nav a.active{background:var(--green);color:#fff}.nav a.soon{opacity:.65;cursor:default}.nav a.soon:after{content:"SOON";margin-left:auto;padding:3px 6px;border-radius:5px;background:#ffffff18;color:var(--sand);font-size:8px;letter-spacing:.06em}.profile{margin-top:auto;padding:12px;border:1px solid #ffffff1c;border-radius:12px;background:#ffffff12}.profile-row{display:flex;align-items:center;gap:10px}.avatar{width:36px;height:36px;border-radius:50%;background:var(--sand);color:var(--olive);display:grid;place-items:center;font-weight:800;overflow:hidden}.avatar img{width:100%;height:100%;object-fit:cover}.profile-name{font-size:12px;font-weight:700}.profile-role{font-size:10px;color:var(--sand);margin-top:3px}.logout{margin-top:12px;width:100%;border:0;background:#ffffff12;color:#f0e8da;border-radius:8px;padding:9px;font-size:11px;font-weight:700}
+.workspace{margin-left:264px;min-height:100vh}.topbar{height:72px;position:sticky;top:0;z-index:10;background:#f8f6eff0;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px}.greeting{font:700 17px Montserrat;color:var(--olive)}.date{font-size:10px;color:var(--muted);margin-top:5px}.top-actions{display:flex;align-items:center;gap:11px}.farm-pill{padding:9px 12px;border-radius:9px;background:#edf4e9;color:var(--good);font-size:10px;font-weight:700;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.icon-btn{width:37px;height:37px;border:1px solid var(--line);background:#fff;border-radius:10px;color:var(--olive);display:grid;place-items:center}
+.content{max-width:1500px;margin:auto;padding:25px 32px 42px;display:grid;gap:18px}.welcome{position:relative;overflow:hidden;border-radius:17px;padding:25px 26px;background:linear-gradient(115deg,#2f3d28,#435a39 72%,#556d4a);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:22px;box-shadow:0 12px 30px #2f3d2815}.welcome:after{content:"";position:absolute;width:290px;height:290px;border:1px solid #ffffff20;border-radius:50%;right:14%;top:-195px}.welcome-copy,.welcome-actions{position:relative;z-index:1}.eyebrow{font-size:9px;letter-spacing:.15em;color:#94734e;font-weight:800;text-transform:uppercase}.welcome .eyebrow{color:var(--sand)}.welcome h1{font:800 27px Montserrat;margin:10px 0 8px}.welcome p{max-width:680px;margin:0;color:#dce5d3;font-size:12px;line-height:1.75}.welcome-actions{display:flex;gap:9px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:9px;padding:11px 14px;font-size:11px;font-weight:700}.btn-gold{background:var(--sand);color:var(--olive)}.btn-glass{background:#ffffff1c;color:#fff;border:1px solid #ffffff2a}.btn-primary{background:var(--olive);color:#fff}.btn-light{background:#f0f1e9;color:var(--olive)}
+.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.section-title h2{font:700 16px Montserrat;margin:0;color:var(--olive)}.section-title p{font-size:10px;color:var(--muted);margin:5px 0 0}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}.metric{background:#fff;border:1px solid var(--line);border-radius:13px;padding:15px;min-width:0}.metric-top{display:flex;justify-content:space-between;align-items:center}.metric-icon{width:38px;height:38px;border-radius:10px;background:var(--good-bg);color:var(--good);display:grid;place-items:center;font-size:20px}.metric-label{font-size:10px;color:var(--muted);margin-top:14px}.metric-value{font:800 25px Montserrat;color:var(--ink);margin-top:4px;overflow-wrap:anywhere}.metric-foot{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.5}.metric-tag{font-size:9px;padding:5px 7px;border-radius:20px;background:#f3f2ec;color:var(--muted)}
+.grid-main{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,.85fr);gap:14px}.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:17px;min-width:0}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}.panel-heading{display:flex;align-items:center;gap:10px}.panel-icon{width:36px;height:36px;border-radius:9px;background:#eff1e9;color:var(--green);display:grid;place-items:center;font-size:19px}.panel h3{font:700 14px Montserrat;margin:0;color:var(--ink)}.panel-sub{font-size:10px;color:var(--muted);margin-top:4px}.map-wrap{height:290px;position:relative;border-radius:10px;overflow:hidden;background:#e5eadc}#overview-map{height:100%;width:100%}.map-caption{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:10px;font-size:9px;color:var(--muted);line-height:1.6}.map-caption b{color:var(--olive)}.weather-empty{padding:18px;border-radius:10px;background:#f7f7f2;text-align:center}.weather-empty iconify-icon{font-size:28px;color:var(--sage)}.weather-empty h4{font:700 13px Montserrat;margin:8px 0 5px}.weather-empty p{font-size:10px;line-height:1.7;color:var(--muted);margin:0 0 12px}.weather-facts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.weather-facts div{padding:10px;border-radius:8px;background:#f7f7f2;font-size:10px;color:var(--muted)}.weather-facts b{display:block;color:var(--ink);font-size:11px;margin-top:4px}
+.lower-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.alert-empty{display:flex;gap:11px;align-items:flex-start;padding:13px;border-radius:10px;background:var(--good-bg);color:var(--good);font-size:11px;line-height:1.65}.alert-empty iconify-icon{font-size:19px;flex:none}.recommendations{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.recommendation{padding:12px;border-radius:10px;background:#f7f7f2}.recommendation strong{font-size:11px;color:var(--olive)}.recommendation p{font-size:10px;color:var(--muted);line-height:1.65;margin:6px 0 0}.activity-empty{font-size:11px;color:var(--muted);padding:16px;border:1px dashed var(--line);border-radius:10px;text-align:center}.transparency{padding:13px 15px;border-radius:11px;background:#f0eee5;color:#75694e;font-size:10px;line-height:1.7;display:flex;gap:9px;align-items:flex-start}.transparency iconify-icon{font-size:17px;flex:none}.footer{text-align:center;color:var(--muted);font-size:9px;padding:3px}
+.mobile-menu{display:none}
+@media(max-width:1100px){.sidebar{width:225px}.workspace{margin-left:225px}.metrics{grid-template-columns:repeat(2,1fr)}.grid-main{grid-template-columns:1fr}.map-wrap{height:270px}}
+@media(max-width:760px){.sidebar{width:100%;height:58px;inset:0 0 auto;padding:9px 14px;display:flex;flex-direction:row;align-items:center}.brand{border:0;padding:0}.brand img{width:36px;height:34px}.brand b{font-size:17px}.brand small,.connection,.nav,.profile{display:none}.mobile-menu{display:block;margin-left:auto;background:transparent;color:#fff;border:0;font-size:23px}.sidebar.open{height:auto;max-height:100dvh;align-items:stretch;flex-direction:column;overflow:auto}.sidebar.open .nav{display:grid;overflow:visible}.sidebar.open .profile{display:block}.sidebar.open .connection{display:flex}.workspace{margin:58px 0 0}.topbar{height:62px;padding:0 14px}.greeting{font-size:13px}.date{font-size:9px}.farm-pill{display:none}.content{padding:15px 13px 28px;gap:13px}.welcome{padding:19px;align-items:flex-start;flex-direction:column}.welcome h1{font-size:22px}.welcome-actions{width:100%}.welcome-actions .btn{flex:1}.metrics{gap:8px}.metric{padding:12px}.metric-value{font-size:21px}.lower-grid{grid-template-columns:1fr}.recommendations{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.metrics{grid-template-columns:1fr 1fr}.recommendations{grid-template-columns:1fr}.panel{padding:13px}}
+</style>
+</head>
+<body style="visibility:hidden">
+<aside class="sidebar" id="sidebar">
+<a class="brand" href="overview.html"><img src="Assets/NILORA Eco-Tech Landscape Logo.png" alt="NILORA"><span><b>NILORA</b><small>Smart Agro Intelligence</small></span></a>
+<div class="connection"><i></i><span>NASA Earthdata imagery available</span></div>
+<nav class="nav">
+<a href="overview.html" class="active"><iconify-icon icon="solar:widget-2-linear"></iconify-icon>Overview</a>
+<a href="farmer-dashboard.html"><iconify-icon icon="solar:map-point-linear"></iconify-icon>My Farm Profile</a>
+<a href="#" class="soon" aria-disabled="true"><iconify-icon icon="solar:leaf-linear"></iconify-icon>My Fields</a>
+<a href="#" class="soon" aria-disabled="true"><iconify-icon icon="solar:seedling-linear"></iconify-icon>Crops</a>
+<a href="overview.html#satellite"><iconify-icon icon="solar:satellite-linear"></iconify-icon>Satellite Map</a>
+<a href="#" class="soon" aria-disabled="true"><iconify-icon icon="solar:cloud-sun-linear"></iconify-icon>Climate &amp; Weather</a>
+<a href="#" class="soon" aria-disabled="true"><iconify-icon icon="solar:chart-2-linear"></iconify-icon>Reports</a>
+<a href="data-resources.html"><iconify-icon icon="solar:database-linear"></iconify-icon>Data Resources</a>
+<a href="#" class="soon" aria-disabled="true"><iconify-icon icon="solar:users-group-rounded-linear"></iconify-icon>Community</a>
+<a href="#" class="soon" aria-disabled="true"><iconify-icon icon="solar:settings-linear"></iconify-icon>Settings</a>
+</nav>
+<div class="profile"><div class="profile-row"><div class="avatar" id="account-avatar">A</div><div><div class="profile-name" id="user-name">Farmer</div><div class="profile-role">NILORA Farmer Account</div></div></div><button class="logout" id="logout-btn">Sign out</button></div>
+<button class="mobile-menu" id="mobile-menu" aria-label="Toggle navigation">☰</button>
+</aside>
+<div class="workspace">
+<header class="topbar"><div><div class="greeting" id="greeting">Welcome back 👋</div><div class="date" id="today-date">Your farm overview</div></div><div class="top-actions"><span class="farm-pill" id="farm-pill">Farm profile not added yet</span><button class="icon-btn" aria-label="Notifications"><iconify-icon icon="solar:bell-linear"></iconify-icon></button></div></header>
+<main class="content">
+<section class="welcome"><div class="welcome-copy"><div class="eyebrow">SMART AGRICULTURE OVERVIEW</div><h1>Your farm, at a glance.</h1><p>Monitor your agricultural information, explore NASA satellite imagery, and find the next useful step for your farm — all from one simple workspace.</p></div><div class="welcome-actions"><a class="btn btn-gold" href="farmer-dashboard.html"><iconify-icon icon="solar:map-linear"></iconify-icon>View farm profile</a><a class="btn btn-glass" href="#satellite"><iconify-icon icon="solar:satellite-linear"></iconify-icon>Explore satellite map</a></div></section>
+<section><div class="section-title"><div><h2>Farm overview</h2><p>Your account information and registered farm data</p></div></div><div class="metrics">
+<article class="metric"><div class="metric-top"><span class="metric-icon"><iconify-icon icon="solar:ruler-angular-linear"></iconify-icon></span><span class="metric-tag">Account data</span></div><div class="metric-label">Total farm area</div><div class="metric-value" id="farm-area">—</div><div class="metric-foot">Feddans · Add your farm profile to display area</div></article>
+<article class="metric"><div class="metric-top"><span class="metric-icon"><iconify-icon icon="solar:map-point-linear"></iconify-icon></span><span class="metric-tag">Registered</span></div><div class="metric-label">Farm location</div><div class="metric-value" id="farm-location" style="font-size:17px">Not set</div><div class="metric-foot">Governorate and locality from your profile</div></article>
+<article class="metric"><div class="metric-top"><span class="metric-icon"><iconify-icon icon="solar:leaf-linear"></iconify-icon></span><span class="metric-tag">Farm records</span></div><div class="metric-label">Registered fields</div><div class="metric-value" id="field-count">—</div><div class="metric-foot">Fields saved to your NILORA account</div></article>
+<article class="metric"><div class="metric-top"><span class="metric-icon"><iconify-icon icon="solar:cloud-sun-linear"></iconify-icon></span><span class="metric-tag">Not connected</span></div><div class="metric-label">Live weather</div><div class="metric-value" style="font-size:17px">Unavailable</div><div class="metric-foot">A weather data connection is not configured yet</div></article>
+</div></section>
+<section class="grid-main" id="satellite">
+<article class="panel"><div class="panel-head"><div class="panel-heading"><span class="panel-icon"><iconify-icon icon="solar:satellite-linear"></iconify-icon></span><div><h3>Satellite imagery</h3><div class="panel-sub">NASA GIBS · VIIRS Corrected Reflectance · Regional view</div></div></div><a class="btn btn-light" href="https://worldview.earthdata.nasa.gov/" target="_blank" rel="noopener">Open NASA Worldview ↗</a></div><div class="map-wrap"><div id="overview-map" aria-label="NASA satellite imagery map"></div></div><div class="map-caption"><span><b>Imagery source:</b> NASA Global Imagery Browse Services (GIBS)</span><span id="map-status">Preparing imagery…</span></div><p class="panel-sub">Regional satellite imagery is not a surveyed farm boundary or a field-level crop diagnosis. Image availability depends on date, cloud cover, and zoom level.</p></article>
+<article class="panel"><div class="panel-head"><div class="panel-heading"><span class="panel-icon"><iconify-icon icon="solar:cloud-sun-linear"></iconify-icon></span><div><h3>Weather &amp; climate</h3><div class="panel-sub">Local conditions for your farm</div></div></div></div><div class="weather-empty"><iconify-icon icon="solar:cloud-sun-2-linear"></iconify-icon><h4>Weather data is not connected yet</h4><p>NILORA will show current conditions and a forecast here once a trusted weather source is connected. No estimated readings are displayed as live data.</p><a class="btn btn-light" href="data-resources.html">Explore data resources</a></div><div class="weather-facts"><div>Temperature<b>Not available</b></div><div>Humidity<b>Not available</b></div><div>Wind speed<b>Not available</b></div><div>Rain probability<b>Not available</b></div></div></article>
+</section>
+<section class="lower-grid">
+<article class="panel"><div class="panel-head"><div class="panel-heading"><span class="panel-icon"><iconify-icon icon="solar:bell-bing-linear"></iconify-icon></span><div><h3>Farm alerts</h3><div class="panel-sub">Warnings based on connected data sources</div></div></div></div><div class="alert-empty"><iconify-icon icon="solar:shield-check-linear"></iconify-icon><div><b>No active alerts are available.</b><br>Alerts will appear here when NILORA has connected weather, crop, or field observations to evaluate.</div></div></article>
+<article class="panel"><div class="panel-head"><div class="panel-heading"><span class="panel-icon"><iconify-icon icon="solar:lightbulb-linear"></iconify-icon></span><div><h3>Smart farming tips</h3><div class="panel-sub">General guidance — not a farm-specific diagnosis</div></div></div></div><div class="recommendations"><div class="recommendation"><strong>Check soil moisture</strong><p>Before irrigation, inspect soil moisture at root depth and consider the crop's growth stage.</p></div><div class="recommendation"><strong>Monitor changing weather</strong><p>Review local forecasts before spraying or applying fertilizers.</p></div><div class="recommendation"><strong>Scout your crops</strong><p>Inspect leaves and field edges regularly for early signs of pests or stress.</p></div><div class="recommendation"><strong>Keep field records</strong><p>Record planting, irrigation, and treatment dates to support better planning.</p></div></div></article>
+</section>
+<section class="panel"><div class="panel-head"><div class="panel-heading"><span class="panel-icon"><iconify-icon icon="solar:history-linear"></iconify-icon></span><div><h3>Recent activity</h3><div class="panel-sub">Updates from your NILORA account</div></div></div></div><div class="activity-empty" id="activity-empty">No recent farm activity to display yet.</div></section>
+<div class="transparency"><iconify-icon icon="solar:info-circle-linear"></iconify-icon><div><b>Data transparency:</b> Farm details shown here are loaded from your NILORA account. NASA imagery is provided by NASA GIBS. Weather readings, crop-health scores, soil-moisture measurements, and AI alerts are not shown unless a real data source is connected.</div></div>
+<div class="footer">© 2026 NILORA · Smart Agriculture &amp; Climate Intelligence for Egyptian Farmers</div>
+</main></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script><script src="assets/js/supabase.js"></script>
+<script>
+(async()=>{
+ const byId=id=>document.getElementById(id);
+ try{
+  const {data,error}=await db.auth.getSession();
+  if(error||!data.session){location.replace("signup.html");return;}
+  const user=data.session.user;
+  const [{data:profile},{data:farm},{data:fields}]=await Promise.all([
+   db.from("profiles").select("full_name").eq("id",user.id).maybeSingle(),
+   db.from("farms").select("id,name,governorate,locality,latitude,longitude,area_feddan").eq("owner_id",user.id).limit(1).maybeSingle(),
+   db.from("farms").select("id").eq("owner_id",user.id).limit(1).maybeSingle()
+  ]);
+  const name=profile?.full_name||user.user_metadata?.full_name||user.user_metadata?.name||user.email?.split("@")[0]||"Farmer";
+  byId("user-name").textContent=name;
+  byId("greeting").textContent="Welcome back, "+name+" 👋";
+  byId("today-date").textContent=new Intl.DateTimeFormat("en",{weekday:"long",year:"numeric",month:"short",day:"numeric"}).format(new Date());
+  const avatarUrl=user.user_metadata?.avatar_url||user.user_metadata?.picture||"";
+  if(avatarUrl){const img=document.createElement("img");img.src=avatarUrl;img.alt="";img.onerror=()=>img.remove();byId("account-avatar").textContent="";byId("account-avatar").append(img);}
+  if(farm){
+   byId("farm-pill").textContent=farm.name||"My farm";
+   byId("farm-area").textContent=farm.area_feddan??"—";
+   byId("farm-location").textContent=[farm.locality,farm.governorate].filter(Boolean).join(", ")||"Not set";
+  }else{
+   byId("farm-pill").textContent="Farm profile not added yet";
+   byId("farm-area").textContent="—";
+   byId("farm-location").textContent="Not set";
+  }
+  const {count,error:countError}=await db.from("fields").select("id",{count:"exact",head:true}).eq("farm_id",farm?.id||"00000000-0000-0000-0000-000000000000");
+  byId("field-count").textContent=countError?"—":String(count??0);
+  document.body.style.visibility="visible";
+  try{
+   if(window.L){
+    const center=farm?.latitude!=null&&farm?.longitude!=null?[farm.latitude,farm.longitude]:[30.59,30.99];
+    const map=L.map("overview-map",{scrollWheelZoom:false}).setView(center,farm?.latitude!=null?11:7);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(map);
+    const date=new Date();date.setUTCDate(date.getUTCDate()-2);const iso=date.toISOString().slice(0,10);
+    const nasa=L.tileLayer("https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_NOAA20_CorrectedReflectance_TrueColor/default/"+iso+"/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg",{minZoom:1,maxZoom:9,opacity:.92,attribution:'Imagery: <a href="https://earthdata.nasa.gov/">NASA GIBS</a>'}).addTo(map);
+    if(farm?.latitude!=null&&farm?.longitude!=null)L.marker([farm.latitude,farm.longitude]).addTo(map).bindPopup("Registered farm location");
+    byId("map-status").textContent="NASA VIIRS imagery · "+iso;
+    nasa.once("tileerror",()=>byId("map-status").textContent="Some imagery tiles are unavailable at this date or zoom.");
+    map.whenReady(()=>setTimeout(()=>map.invalidateSize(),120));
+   }else byId("map-status").textContent="Map library unavailable. Open NASA Worldview instead.";
+  }catch(e){byId("map-status").textContent="Map could not be loaded. Open NASA Worldview instead.";}
+ }catch(e){location.replace("signup.html");return;}
+ byId("logout-btn").addEventListener("click",async()=>{await db.auth.signOut();location.replace("signup.html");});
+ byId("mobile-menu").addEventListener("click",()=>byId("sidebar").classList.toggle("open"));
+ document.querySelectorAll(".nav a.soon").forEach(a=>a.addEventListener("click",e=>e.preventDefault()));
+})();
+</script>
+</body></html>
