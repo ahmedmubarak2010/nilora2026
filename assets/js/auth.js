@@ -3,7 +3,7 @@
  const msg=$("authMessage"),btn=$("submitBtn"),show=(t,k="info")=>{msg.textContent=t;msg.className="message show "+k};
  async function go(user){
   if(!user){show("Sign-in could not be completed. Please try again.","error");return}
-  location.href="farmer-dashboard.html";
+  location.href="overview.html";
  }
  $("googleBtn").onclick=async()=>{
   $("googleBtn").disabled=true;show("Redirecting to Google…");
