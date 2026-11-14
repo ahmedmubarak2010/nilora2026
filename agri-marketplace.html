@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#2f3d28"><title>Agri Marketplace | NILORA</title>
-<meta name="description" content="Explore demo agricultural supplies in the NILORA marketplace.">
+<meta name="description" content="Browse agricultural products and listed prices in the NILORA marketplace.">
 <link rel="icon" href="Assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -23,12 +23,29 @@ main{max-width:1480px;margin:auto;padding:30px 38px 52px;display:grid;gap:25px}.
 .mobile-menu{display:none}
 @media(max-width:1200px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}}\n@media(max-width:1100px){.sidebar{width:225px}.workspace{margin-left:225px}.products{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.sidebar{width:100%;height:58px;inset:0 0 auto;padding:9px 14px;display:flex;flex-direction:row;align-items:center}.brand{border:0;padding:0}.brand img{width:36px;height:34px}.brand b{font-size:17px}.brand small,.connection,.nav,.profile{display:none}.mobile-menu{display:block;margin-left:auto;background:transparent;color:white;border:0;font-size:23px}.sidebar.open{height:auto;max-height:100dvh;align-items:stretch;flex-direction:column;overflow:auto}.sidebar.open .nav{display:grid;overflow:visible}.sidebar.open .profile,.sidebar.open .connection{display:flex}.workspace{margin:58px 0 0}.topbar{height:62px;padding:0 14px}.greeting{font-size:13px}.date{font-size:9px}.farm-pill{display:none}main{padding:18px 14px 34px;gap:18px}.season{grid-template-columns:1fr;padding:20px}.season h1{font-size:22px}.season-art{display:none}.toolbar{grid-template-columns:1fr 1fr}.searchbox{grid-column:1/-1}.categories{grid-template-columns:repeat(2,1fr)}.products{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.product-visual{height:205px}}
+
+/* Simplified catalogue: blank photo slots are intentional. */
+.season{grid-template-columns:1fr;padding:28px 32px}
+.products{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.product{border-radius:13px}
+.product-visual{height:165px;background:#f5f5ef;border-bottom:1px solid var(--line);padding:0}
+.product-visual img{width:100%;height:100%;object-fit:contain}
+.product-body{padding:14px;gap:12px}
+.product h3{font-size:12px;line-height:1.55;min-height:38px}
+.product .price{font:800 16px Montserrat;color:var(--olive);line-height:1.5}
+.product-bottom{display:none}
+.product-body .add{width:100%;justify-content:center;margin-top:2px}
+.remove-all{border:0;background:#fff0ee;color:#a53b32;border-radius:8px;width:36px;height:36px;display:grid;place-items:center;font-size:18px;margin-left:auto}
+.remove{border:0;background:#fff0ee;color:#a53b32;border-radius:8px;width:34px;height:34px;display:grid;place-items:center;font-size:17px;align-self:start}
+@media(max-width:1200px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:900px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.products{grid-template-columns:1fr}.product-visual{height:190px}.season{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <aside class="sidebar" id="sidebar">
 <a class="brand" href="overview.html"><img src="Assets/NILORA Eco-Tech Landscape Logo.png" alt="NILORA"><span><b>NILORA</b><small>Smart Agro Intelligence</small></span></a>
-<div class="connection"><i></i><span>Marketplace demo environment</span></div>
+<div class="connection"><i></i><span>Agricultural products</span></div>
 <nav class="nav">
 <a href="overview.html"><iconify-icon icon="solar:widget-2-linear"></iconify-icon>Overview</a>
 <a href="farmer-dashboard.html"><iconify-icon icon="solar:map-point-linear"></iconify-icon>My Farm Profile</a>
@@ -44,64 +61,83 @@ main{max-width:1480px;margin:auto;padding:30px 38px 52px;display:grid;gap:25px}.
 <div class="workspace">
 <header class="topbar"><div><div class="greeting" id="greeting">Agri Marketplace</div><div class="date" id="farm-location">Explore supplies for your farm</div></div><div class="top-actions"><button class="icon-btn" id="open-cart" aria-label="Open shopping cart"><iconify-icon icon="solar:cart-large-2-linear"></iconify-icon><span class="cart-count" id="cart-count">0</span></button></div></header>
 <main>
-<section class="season"><div><div class="eyebrow">NILORA · AGRICULTURAL MARKETPLACE</div><h1>Everything your farm needs, in one place.</h1><p>Browse sample seeds, fertilizers, irrigation supplies and field equipment. Add products to your demo cart and preview a simple order summary.</p><div class="season-actions"><button class="btn btn-gold" id="browse-products">Browse products <iconify-icon icon="solar:arrow-down-linear"></iconify-icon></button><button class="btn btn-light" id="hero-cart">View shopping cart <iconify-icon icon="solar:cart-large-2-linear"></iconify-icon></button></div></div><div class="season-art"><iconify-icon icon="solar:leaf-bold-duotone"></iconify-icon></div></section>
-<section class="toolbar" aria-label="Product search and filters"><label class="searchbox"><iconify-icon icon="solar:magnifer-linear"></iconify-icon><input id="search-input" type="search" placeholder="Search seeds, fertilizers, tools..."></label><select id="category-select" aria-label="Filter by category"><option value="all">All categories</option><option value="seeds">Seeds & seedlings</option><option value="fertilizers">Fertilizers</option></select><select id="sort-select" aria-label="Sort products"><option value="recommended">Recommended</option><option value="name">Name A–Z</option></select></section>
-<section><div class="section-head"><div><h2>Shop by category</h2><p>Real product names from Egyptian agricultural suppliers.</p></div></div><div class="categories" id="categories">
-<button class="category active" data-category="all"><iconify-icon icon="solar:widget-2-linear"></iconify-icon><span>All products</span></button>
-<button class="category" data-category="seeds"><iconify-icon icon="solar:leaf-linear"></iconify-icon><span>Seeds & seedlings</span></button>
-<button class="category" data-category="fertilizers"><iconify-icon icon="solar:test-tube-linear"></iconify-icon><span>Fertilizers</span></button>
-
-</div></section>
-<section id="product-section"><div class="section-head"><div><h2>Featured farm supplies</h2><p>Official product names and manufacturer images. Contact suppliers for current prices and stock.</p></div><small id="result-count">11 products</small></div><div class="products" id="products-grid"></div></section>
-<div class="footer-note">NILORA marketplace prototype · Product details link to supplier pages · Prices and availability must be confirmed with suppliers.</div>
+<section class="season"><div><div class="eyebrow">NILORA · AGRICULTURAL MARKETPLACE</div><h1>Everything your farm needs, in one place.</h1><p>Browse 15 agricultural products. Each card shows only the product name and price; product photos can be added later.</p><div class="season-actions"><button class="btn btn-gold" id="browse-products">Browse products <iconify-icon icon="solar:arrow-down-linear"></iconify-icon></button><button class="btn btn-light" id="hero-cart">View shopping cart <iconify-icon icon="solar:cart-large-2-linear"></iconify-icon></button></div></div></section>
+<section class="toolbar" aria-label="Product search and filters"><label class="searchbox"><iconify-icon icon="solar:magnifer-linear"></iconify-icon><input id="search-input" type="search" placeholder="Search seeds, fertilizers, tools..."></label><select id="category-select" aria-label="Filter by category"><option value="all">All categories</option><option value="seeds">Seeds & seedlings</option></select><select id="sort-select" aria-label="Sort products"><option value="recommended">Recommended</option><option value="name">Name A–Z</option></select></section>
+<section id="product-section"><div class="section-head"><div><h2>Featured farm supplies</h2><p>Product names and listed prices. Photos are intentionally left blank for you to add.</p></div><small id="result-count">15 products</small></div><div class="products" id="products-grid"></div></section>
+<div class="footer-note">Prices shown are listed retail prices and may change. Confirm before purchase.</div>
 </main></div>
 <div class="drawer-backdrop" id="drawer-backdrop"></div>
-<aside class="drawer" id="cart-drawer" aria-label="Shopping cart" aria-hidden="true"><div class="drawer-head"><div><h2>Your shopping cart</h2><div class="date" id="cart-subtitle">0 items</div></div><button class="close" id="close-cart" aria-label="Close cart">×</button></div><div class="cart-items" id="cart-items"></div><div class="cart-foot"><div class="total-row"><span>Product prices</span><strong id="cart-total">On request</strong></div><p>This is a request list only. Prices, availability and supplier contact are not confirmed or submitted from this prototype.</p><button class="btn btn-primary" id="checkout-btn">Review product list</button></div></aside>
+<aside class="drawer" id="cart-drawer" aria-label="Shopping cart" aria-hidden="true"><div class="drawer-head"><div><h2>Your shopping cart</h2><div class="date" id="cart-subtitle">0 items</div></div><button class="remove-all" id="clear-cart" title="Empty cart" aria-label="Empty cart"><iconify-icon icon="solar:trash-bin-trash-linear"></iconify-icon></button><button class="close" id="close-cart" aria-label="Close cart">×</button></div><div class="cart-items" id="cart-items"></div><div class="cart-foot"><div class="total-row"><span>Product prices</span><strong id="cart-total">On request</strong></div><p>This is a request list only. Prices, availability and supplier contact are not confirmed or submitted from this prototype.</p><button class="btn btn-primary" id="checkout-btn">Review product list</button></div></aside>
 <div class="toast" id="toast" role="status"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script><script src="assets/js/supabase.js"></script>
 <script>
 window.addEventListener("error",event=>{console.error("NILORA Marketplace error:",event.error||event.message);const grid=document.getElementById("products-grid");if(grid&&!grid.children.length){grid.innerHTML='<div class="empty">Something went wrong while loading products. Refresh the page or open the console for details.</div>';}});
 const products=[
-{id:1,name:"Giza 171 Wheat Seeds",category:"seeds",supplier:"ProHarvest Seeds",note:"Certified wheat variety · suited to Northern Egypt",image:"https://proharvest.biz/images/seeds/wheat-02.499b974e.jpg",tag:"Wheat",source:"https://proharvest.biz/products/seeds/wheat/giza-171"},
-{id:2,name:"Sakha 95 Wheat Seeds",category:"seeds",supplier:"ProHarvest Seeds",note:"Certified wheat variety · listed for all Egyptian regions",image:"https://proharvest.biz/images/seeds/wheat-02.499b974e.jpg",tag:"Wheat",source:"https://proharvest.biz/products/seeds/wheat/sakha-95"},
-{id:3,name:"PTC-21 Yellow Corn Hybrid",category:"seeds",supplier:"ProHarvest Seeds",note:"Single-cross yellow corn · stated maturity: 95 days",image:"https://proharvest.biz/images/seeds/corn-yellow.c7751910.jpg",tag:"Yellow corn",source:"https://proharvest.biz/products/seeds/corn/ptc-21"},
-{id:4,name:"PTC-71 White Corn Hybrid",category:"seeds",supplier:"ProHarvest Seeds",note:"Single-cross white corn · stated maturity: 110 days",image:"https://proharvest.biz/images/seeds/corn-white.c20d3a19.jpg",tag:"White corn",source:"https://proharvest.biz/products/seeds/corn/ptc-71"},
-{id:5,name:"PTC-16 White Corn Hybrid",category:"seeds",supplier:"ProHarvest Seeds",note:"Single-cross white corn · dual-purpose variety",image:"https://proharvest.biz/images/seeds/corn-white.c20d3a19.jpg",tag:"White corn",source:"https://proharvest.biz/products/seeds/corn/ptc-16"},
-{id:6,name:"PTC-07 White Corn Hybrid",category:"seeds",supplier:"ProHarvest Seeds",note:"Three-way cross white corn variety",image:"https://proharvest.biz/images/seeds/corn-white.c20d3a19.jpg",tag:"White corn",source:"https://proharvest.biz/products/seeds/corn/ptc-07"},
-{id:7,name:"Single Super Phosphate Powder 12.5%",category:"fertilizers",supplier:"Ferchem Misr",note:"PSSP 12.5% P₂O₅ · Sadaat factory product",image:"https://en.ferchem.com.eg/wp-content/uploads/2026/02/Ferchem-Products-6-210x300.png",tag:"SSP",source:"https://en.ferchem.com.eg/single-super-phosphate-ssp-powder-12-5-sadaat/"},
-{id:8,name:"Granular Single Super Phosphate 15%",category:"fertilizers",supplier:"Ferchem Misr",note:"GSSP 15% P₂O₅ · 50 kg bag shown by manufacturer",image:"https://en.ferchem.com.eg/wp-content/uploads/2026/02/Ferchem-Products-1.png",tag:"GSSP",source:"https://en.ferchem.com.eg/product-category/"},
-{id:9,name:"Granular Triple Super Phosphate 37%",category:"fertilizers",supplier:"Ferchem Misr",note:"GTSP 37% P₂O₅ · 50 kg bag shown by manufacturer",image:"https://en.ferchem.com.eg/wp-content/uploads/2026/02/Ferchem-Products-2.png",tag:"GTSP",source:"https://en.ferchem.com.eg/product-category/"},
-{id:10,name:"Power Gold NPK 19-19-19",category:"fertilizers",supplier:"Ferchem Misr",note:"Water-soluble balanced NPK compound fertilizer",image:"https://en.ferchem.com.eg/wp-content/uploads/2026/02/Power-Gold-NPK-19-19-19-274x300.png",tag:"NPK",source:"https://en.ferchem.com.eg/power-gold-npk-19/"},
-{id:11,name:"Power Gold NPK 6-6-43",category:"fertilizers",supplier:"Ferchem Misr",note:"Water-soluble high-potassium NPK formula",image:"https://en.ferchem.com.eg/wp-content/uploads/2026/03/27.png",tag:"NPK",source:"https://en.ferchem.com.eg/product-category/"}
-];;
+{id:1,name:"Berseem Sakha 4 — 5 kg",category:"seeds",price:715,unit:"bag",image:""},
+{id:2,name:"Berseem Sakha 4 — 25 kg",category:"seeds",price:3375,unit:"bag",image:""},
+{id:3,name:"Berseem Meskawy — 5 kg",category:"seeds",price:665,unit:"bag",image:""},
+{id:4,name:"Berseem Meskawy — 25 kg",category:"seeds",price:3150,unit:"bag",image:""},
+{id:5,name:"Onion Giza 6 Mohassan",category:"seeds",price:1400,unit:"seed pack",image:""},
+{id:6,name:"Watermelon Crimson Sweet",category:"seeds",price:900,unit:"seed pack",image:""},
+{id:7,name:"Tomato Castle Rock",category:"seeds",price:600,unit:"seed pack",image:""},
+{id:8,name:"Tomato Super Strain B",category:"seeds",price:650,unit:"seed pack",image:""},
+{id:9,name:"Cotton Giza 96 — 25 kg",category:"seeds",price:1125,unit:"bag",image:""},
+{id:10,name:"Cotton Giza 95 — 25 kg",category:"seeds",price:1015,unit:"bag",image:""},
+{id:11,name:"Cotton Giza 94 — 25 kg",category:"seeds",price:1015,unit:"bag",image:""},
+{id:12,name:"Maize TWC 321 — 10 kg",category:"seeds",price:1115,unit:"bag",image:""},
+{id:13,name:"Maize SC 168 — 10 kg",category:"seeds",price:1395,unit:"bag",image:""},
+{id:14,name:"Rice Giza 179 — 25 kg",category:"seeds",price:630,unit:"bag",image:""},
+{id:15,name:"Rice Sakha 108 — 25 kg",category:"seeds",price:630,unit:"bag",image:""}
+];
 let activeCategory="all";let cart={};let toastTimer;
 const $=id=>document.getElementById(id);
 function money(n){return new Intl.NumberFormat("en-EG").format(n)+" EGP"}
 function showToast(message){$("toast").textContent=message;$("toast").classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>$("toast").classList.remove("show"),2100)}
 function renderProducts(){
- const q=$("search-input").value.trim().toLowerCase();let list=products.filter(p=>(activeCategory==="all"||p.category===activeCategory)&&((p.name+" "+p.supplier+" "+p.note).toLowerCase().includes(q)));
+ const q=$("search-input").value.trim().toLowerCase();
+ let list=products.filter(p=>(activeCategory==="all"||p.category===activeCategory)&&p.name.toLowerCase().includes(q));
  const sort=$("sort-select").value;if(sort==="name")list.sort((a,b)=>a.name.localeCompare(b.name));
  $("result-count").textContent=list.length+" products";$("products-grid").innerHTML="";
- if(!list.length){$("products-grid").innerHTML='<div class="empty">No matching products. Try another search or category.</div>';return}
- list.forEach(p=>{const card=document.createElement("article");card.className="product";card.innerHTML='<div class="product-visual"><img src="'+p.image+'" alt="'+p.name+'" loading="lazy"><span class="tag">'+p.tag+'</span><button class="wish" aria-label="Save '+p.name+'" title="Save product"><iconify-icon icon="solar:heart-linear"></iconify-icon></button></div><div class="product-body"><div class="product-meta"><span>'+p.category.toUpperCase()+'</span><span>SUPPLIER LISTING</span></div><h3></h3><div class="supplier"></div><div class="product-note"></div><a class="supplier-link" href="'+p.source+'" target="_blank" rel="noopener">Official product details ↗</a></div><div class="product-bottom"><div class="price">Ask supplier<br><small>Price & stock</small></div><button class="add"><iconify-icon icon="solar:cart-plus-linear"></iconify-icon> Add to list</button></div>';
- const productImage=card.querySelector(".product-visual img");productImage.addEventListener("error",()=>{productImage.style.display="none";productImage.parentElement.classList.add("image-fallback");});
- card.querySelector("h3").textContent=p.name;card.querySelector(".supplier").textContent="Supplier: "+p.supplier;card.querySelector(".product-note").textContent=p.note;card.querySelector(".add").addEventListener("click",()=>addToCart(p.id));card.querySelector(".wish").addEventListener("click",e=>{e.currentTarget.classList.toggle("active");showToast("Saved in this demo session.");});$("products-grid").append(card);});
+ if(!list.length){$("products-grid").innerHTML='<div class="empty">No matching products. Try another search.</div>';return}
+ list.forEach(p=>{
+  const card=document.createElement("article");card.className="product";
+  card.innerHTML='<div class="product-visual"></div><div class="product-body"><h3></h3><div class="price"></div><button class="add"><iconify-icon icon="solar:cart-plus-linear"></iconify-icon> Add to cart</button></div>';
+  if(p.image){const img=document.createElement("img");img.src=p.image;img.alt=p.name;img.loading="lazy";card.querySelector(".product-visual").append(img);}
+  card.querySelector("h3").textContent=p.name;
+  card.querySelector(".price").textContent=money(p.price)+" / "+p.unit;
+  card.querySelector(".add").addEventListener("click",()=>addToCart(p.id));
+  $("products-grid").append(card);
+ });
 }
 function addToCart(id){cart[id]=(cart[id]||0)+1;renderCart();showToast("Added to your demo cart.");}
 function changeQty(id,delta){cart[id]=(cart[id]||0)+delta;if(cart[id]<=0)delete cart[id];renderCart();}
 function renderCart(){
- const entries=products.filter(p=>cart[p.id]);const count=entries.reduce((n,p)=>n+cart[p.id],0);const total=0;
- $("cart-count").textContent=count;$("cart-subtitle").textContent=count+" item"+(count===1?"":"s");$("cart-total").textContent=entries.length?"Ask suppliers":"—";
+ const entries=products.filter(p=>cart[p.id]);
+ const count=entries.reduce((n,p)=>n+cart[p.id],0);
+ const total=entries.reduce((sum,p)=>sum+p.price*cart[p.id],0);
+ $("cart-count").textContent=count;
+ $("cart-subtitle").textContent=count+" item"+(count===1?"":"s");
+ $("cart-total").textContent=entries.length?money(total):"—";
  const host=$("cart-items");host.innerHTML="";
- if(!entries.length){host.innerHTML='<div class="cart-empty">Your cart is empty.<br><br>Add a product to build your request list.</div>';return}
- entries.forEach(p=>{const row=document.createElement("div");row.className="cart-item";row.innerHTML='<div><h4></h4><small></small><div class="qty"><button class="minus" aria-label="Decrease quantity">−</button><b></b><button class="plus" aria-label="Increase quantity">+</button></div></div><div style="text-align:right"><button class="remove" aria-label="Remove item">×</button><br><strong></strong></div>';row.querySelector("h4").textContent=p.name;row.querySelector("small").textContent=p.supplier+" · price on request";row.querySelector(".qty b").textContent=cart[p.id];row.querySelector("strong").textContent="× "+cart[p.id];row.querySelector(".minus").addEventListener("click",()=>changeQty(p.id,-1));row.querySelector(".plus").addEventListener("click",()=>changeQty(p.id,1));row.querySelector(".remove").addEventListener("click",()=>{delete cart[p.id];renderCart();});host.append(row);});
+ if(!entries.length){host.innerHTML='<div class="cart-empty">Your cart is empty.<br><br>Add a product to get started.</div>';return}
+ entries.forEach(p=>{
+  const row=document.createElement("div");row.className="cart-item";
+  row.innerHTML='<div><h4></h4><small></small><div class="qty"><button class="minus" aria-label="Decrease quantity">−</button><b></b><button class="plus" aria-label="Increase quantity">+</button></div></div><button class="remove" aria-label="Remove item" title="Remove item"><iconify-icon icon="solar:trash-bin-trash-linear"></iconify-icon></button>';
+  row.querySelector("h4").textContent=p.name;
+  row.querySelector("small").textContent=money(p.price)+" / "+p.unit;
+  row.querySelector(".qty b").textContent=cart[p.id];
+  row.querySelector(".minus").addEventListener("click",()=>changeQty(p.id,-1));
+  row.querySelector(".plus").addEventListener("click",()=>changeQty(p.id,1));
+  row.querySelector(".remove").addEventListener("click",()=>{delete cart[p.id];renderCart();});
+  host.append(row);
+ });
 }
 function openCart(){ $("cart-drawer").classList.add("open");$("drawer-backdrop").classList.add("open");$("cart-drawer").setAttribute("aria-hidden","false");}
 function closeCart(){ $("cart-drawer").classList.remove("open");$("drawer-backdrop").classList.remove("open");$("cart-drawer").setAttribute("aria-hidden","true");}
 $("search-input").addEventListener("input",renderProducts);$("category-select").addEventListener("change",e=>{activeCategory=e.target.value;syncCategories();renderProducts()});$("sort-select").addEventListener("change",renderProducts);
 function syncCategories(){$("category-select").value=activeCategory;document.querySelectorAll(".category").forEach(b=>b.classList.toggle("active",b.dataset.category===activeCategory));}
 document.querySelectorAll(".category").forEach(b=>b.addEventListener("click",()=>{activeCategory=b.dataset.category;syncCategories();renderProducts()}));
-$("open-cart").addEventListener("click",openCart);$("hero-cart").addEventListener("click",openCart);$("close-cart").addEventListener("click",closeCart);$("drawer-backdrop").addEventListener("click",closeCart);
+$("clear-cart").addEventListener("click",()=>{cart={};renderCart();showToast("Cart emptied.");});$("open-cart").addEventListener("click",openCart);$("hero-cart").addEventListener("click",openCart);$("close-cart").addEventListener("click",closeCart);$("drawer-backdrop").addEventListener("click",closeCart);
 $("browse-products").addEventListener("click",()=>$("product-section").scrollIntoView({behavior:"smooth"}));
 $("checkout-btn").addEventListener("click",()=>showToast(Object.keys(cart).length?"Product list ready — contact the supplier directly for a quote.":"Your cart is empty."));
 $("mobile-menu").addEventListener("click",()=>$("sidebar").classList.toggle("open"));
