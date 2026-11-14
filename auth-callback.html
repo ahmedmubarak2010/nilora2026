@@ -3,5 +3,5 @@
 <body><main class="auth-wrap"><div class="auth-card"><h1>Completing sign in…</h1><p id="s">Please wait.</p></div></main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script><script src="assets/js/supabase.js"></script>
 <script>
-(async()=>{const s=document.getElementById("s");const {data,error}=await db.auth.getSession();if(error||!data.session){s.textContent="Could not complete sign in. Return to login.";return}location.replace("farmer-dashboard.html")})();
+(async()=>{const s=document.getElementById("s");const {data,error}=await db.auth.getSession();if(error||!data.session){s.textContent="Could not complete sign in. Return to login.";return}location.replace("overview.html")})();
 </script></body></html>
