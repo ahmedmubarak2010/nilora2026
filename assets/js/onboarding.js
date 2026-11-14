@@ -6,8 +6,7 @@ const fmt=n=>Number(n).toFixed(6);
 function setPoint(lat,lng,zoom=true){
  selected={lat:Number(lat),lng:Number(lng)};
  if(marker)marker.setLatLng([selected.lat,selected.lng]);
- else marker=L.marker([selected.lat,selected.lng],{draggable:true}).addTo(map);
- marker.on("dragend",()=>{const p=marker.getLatLng();setPoint(p.lat,p.lng,false)});
+ else {marker=L.marker([selected.lat,selected.lng],{draggable:true}).addTo(map);marker.on("dragend",()=>{const p=marker.getLatLng();selected={lat:p.lat,lng:p.lng};$("lat-value").textContent=fmt(p.lat);$("lng-value").textContent=fmt(p.lng);});}
  $("lat-value").textContent=fmt(selected.lat);$("lng-value").textContent=fmt(selected.lng);
  if(zoom)map.setView([selected.lat,selected.lng],15);
 }
@@ -24,7 +23,7 @@ function clearPoint(){selected=null;if(marker){map.removeLayer(marker);marker=nu
   const {data:farm}=await db.from("farms").select("id,name,governorate,locality,latitude,longitude,area_feddan,water_source").eq("owner_id",user.id).limit(1).maybeSingle();
   if(farm){
    $("farm-name").value=farm.name||"";$("governorate").value=farm.governorate||$("governorate").value;$("locality").value=farm.locality||$("locality").value;$("area").value=farm.area_feddan||"";
-   if(farm.latitude!=null&&farm.longitude!=null)setPoint(farm.latitude,farm.longitude,false);
+   if(farm.latitude!=null&&farm.longitude!=null)selected={lat:Number(farm.latitude),lng:Number(farm.longitude)};
   }
   if(window.L){
    map=L.map("farm-map").setView(selected?[selected.lat,selected.lng]:[30.59,30.99],selected?14:8);
