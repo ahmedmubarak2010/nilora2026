@@ -13,12 +13,12 @@
 <body>
 <main class="shell">
 <a class="brand" href="index.html"><img src="Assets/NILORA Eco-Tech Landscape Logo.png" alt="NILORA"><span>NILORA</span></a>
-<header class="intro"><div class="eyebrow">خطوة واحدة قبل لوحة التحكم</div><h1>خلّينا نتعرّف على مزرعتك 🌱</h1><p>اكتب بيانات المزرعة وحدد مكانها على الخريطة. الإحداثيات دي هتساعدنا نجيب بيانات الطقس والأقمار الصناعية المناسبة لموقعك.</p><div class="progress"><span></span><span></span><span></span></div></header>
+<header class="intro"><div class="eyebrow">خطوة واحدة قبل لوحة التحكم</div><h1>خلّينا نتعرّف على مزرعتك 🌱</h1><p>اسمك هيتسحب من حسابك تلقائيًا. كمّل بيانات المزرعة، وهنطلب إذن تحديد الموقع عشان نجيب الإحداثيات ونستخدمها لاحقًا في بيانات الطقس والأقمار الصناعية.</p><div class="progress"><span></span><span></span><span></span></div></header>
 <form id="onboarding-form">
 <div class="layout">
 <section class="panel"><h2>بياناتك والمزرعة</h2><p class="hint">الحقول اللي عليها علامة <span class="required">*</span> مطلوبة.</p>
 <div class="fields">
-<div class="field full"><label for="owner-name">اسم صاحب المزرعة <span class="required">*</span></label><input id="owner-name" autocomplete="name" required maxlength="100" placeholder="الاسم بالكامل"></div>
+<div class="field full"><label for="owner-name">اسم صاحب المزرعة <span class="required">*</span></label><input id="owner-name" autocomplete="name" required maxlength="100" placeholder="اسم الحساب" readonly aria-readonly="true"></div>
 <div class="field"><label for="phone">رقم الموبايل</label><input id="phone" type="tel" autocomplete="tel" maxlength="30" placeholder="01xxxxxxxxx"></div>
 <div class="field"><label for="farm-name">اسم المزرعة <span class="required">*</span></label><input id="farm-name" required maxlength="120" placeholder="مثال: مزرعة الأمل"></div>
 <div class="field"><label for="governorate">المحافظة <span class="required">*</span></label><select id="governorate" required><option value="">اختر المحافظة</option><option>المنوفية</option><option>القاهرة</option><option>الجيزة</option><option>القليوبية</option><option>الغربية</option><option>البحيرة</option><option>كفر الشيخ</option><option>الدقهلية</option><option>الشرقية</option><option>الإسكندرية</option><option>دمياط</option><option>بني سويف</option><option>الفيوم</option><option>المنيا</option><option>أسيوط</option><option>سوهاج</option><option>قنا</option><option>الأقصر</option><option>أسوان</option><option>مطروح</option><option>الوادي الجديد</option><option>شمال سيناء</option><option>جنوب سيناء</option><option>بورسعيد</option><option>الإسماعيلية</option><option>السويس</option></select></div>
@@ -28,11 +28,11 @@
 <div class="field"><label for="irrigation">نظام الري</label><select id="irrigation"><option value="">غير محدد</option><option value="flood">ري بالغمر</option><option value="drip">ري بالتنقيط</option><option value="sprinkler">ري بالرش</option><option value="other">آخر</option></select></div>
 <div class="field full"><label for="water-source">مصدر المياه</label><select id="water-source"><option value="">غير محدد</option><option value="canal">ترعة / مياه نهر</option><option value="well">بئر جوفي</option><option value="mixed">أكثر من مصدر</option><option value="other">آخر</option></select></div>
 </div></section>
-<section class="panel"><h2>موقع المزرعة على الخريطة</h2><p class="hint">اضغط على الزر لتحديد موقعك الحالي، أو اضغط على مكان المزرعة على الخريطة واسحب العلامة لتعديل الموقع.</p>
+<section class="panel"><h2>موقع المزرعة على الخريطة</h2><p class="hint">هنحاول نحدد موقعك تلقائيًا بعد فتح الصفحة. لو الإذن مرفوض أو الموقع مش دقيق، اضغط على مكان المزرعة على الخريطة واسحب العلامة لتعديلها.</p>
 <div class="map-tools"><button class="btn primary" id="locate-btn" type="button"><iconify-icon icon="solar:map-point-wave-linear"></iconify-icon> حدد موقعي الحالي</button><button class="btn secondary" id="clear-location" type="button">مسح التحديد</button></div>
 <div id="farm-map" role="application" aria-label="خريطة تحديد موقع المزرعة"></div>
 <div class="coords"><div class="coord"><small>خط العرض Latitude</small><b id="lat-value">لم يتم التحديد</b></div><div class="coord"><small>خط الطول Longitude</small><b id="lng-value">لم يتم التحديد</b></div></div>
-<p class="notice">لن يتم الوصول لموقعك إلا بعد ضغطك على «حدد موقعي الحالي» وموافقة المتصفح. تقدر كمان تختار موقع المزرعة يدويًا. لازم تحدد الموقع بنفسك قبل الحفظ.</p>
+<p class="notice">المتصفح هيطلب إذنك للوصول للموقع. راجع العلامة وتأكد إنها على أرض المزرعة، أو اختار المكان يدويًا. لازم يتحدد الموقع قبل الحفظ.</p>
 </section></div>
 <div class="actions"><div class="status" id="status" role="status" aria-live="polite">بياناتك هتتحفظ في حسابك على NILORA بشكل آمن.</div><button class="btn primary submit" id="save-btn" type="submit">حفظ وفتح لوحة التحكم <iconify-icon icon="solar:arrow-left-linear"></iconify-icon></button></div>
 </form></main>
