@@ -69,6 +69,7 @@ form.addEventListener("submit",async e=>{
   else{const {error}=await db.from("fields").insert(fieldPayload);if(error)throw error}
   const {error:completeError}=await db.from("profiles").update({onboarding_completed:true}).eq("id",user.id);
   if(completeError)throw completeError;
+  localStorage.removeItem("nilora-farm-profile-preview");
   say("اتحفظت بياناتك وموقع المزرعة بنجاح. بنفتح لوحة التحكم…","success");
   setTimeout(()=>location.replace("farmer-dashboard.html"),700);
  }catch(err){console.error(err);say("مقدرناش نحفظ البيانات: "+(err.message||"خطأ غير معروف"),"error");save.disabled=false;save.innerHTML='حفظ وفتح لوحة التحكم <iconify-icon icon="solar:arrow-left-linear"></iconify-icon>'}
