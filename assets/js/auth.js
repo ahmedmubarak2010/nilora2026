@@ -3,11 +3,7 @@
  const msg=$("authMessage"),btn=$("submitBtn"),show=(t,k="info")=>{msg.textContent=t;msg.className="message show "+k};
  async function go(user){
   if(!user){show("Sign-in could not be completed. Please try again.","error");return}
-  try{
-   const {data,error}=await db.from("profiles").select("onboarding_completed").eq("id",user.id).maybeSingle();
-   if(error)throw error;
-   location.href=data?.onboarding_completed?"farmer-dashboard.html":"onboarding.html";
-  }catch(e){location.href="onboarding.html"}
+  location.href="farmer-dashboard.html";
  }
  $("googleBtn").onclick=async()=>{
   $("googleBtn").disabled=true;show("Redirecting to Google…");
