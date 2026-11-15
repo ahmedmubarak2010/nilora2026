@@ -103,7 +103,7 @@
 <div class="modal-backdrop" id="edit-modal"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><h2 id="modal-title">Edit farm details</h2><button class="icon-btn" id="close-modal" aria-label="Close"><iconify-icon icon="solar:close-circle-linear"></iconify-icon></button></div><form id="farm-form"><div class="modal-body">
   <div class="form-field"><label for="farm-name-input">Farm name</label><input id="farm-name-input" value="Al-Amal Green Farm" required></div>
   <div class="form-field"><label for="farm-area-input">Total area (feddans)</label><input id="farm-area-input" type="number" min="0" step="0.25" value="5" required></div>
-  <div class="form-field"><label for="irrigation-input">Irrigation system</label><select id="irrigation-input"><option>Drip irrigation</option><option>Sprinkler irrigation</option><option>Flood irrigation</option><option>Other / not sure</option></select></div>
+  <div class="form-field"><label for="crop-input">Main crop</label><select id="crop-input"><option value="">Choose crop</option><option value="wheat">Wheat</option><option value="maize">Maize</option><option value="rice">Rice</option><option value="cotton">Cotton</option><option value="clover">Clover</option><option value="vegetables">Vegetables</option><option value="other">Other</option></select></div><div class="form-field"><label for="irrigation-input">Irrigation system</label><select id="irrigation-input"><option value="drip">Drip irrigation</option><option value="sprinkler">Sprinkler irrigation</option><option value="flood">Flood irrigation</option><option value="other">Other / not sure</option></select></div>
   <div class="form-field"><label for="water-input">Water source</label><select id="water-input"><option value="canal">Canal / river</option><option value="well">Groundwater well</option><option value="mixed">Mixed source</option><option value="other">Other / not sure</option></select></div><div class="form-field"><label for="governorate-input">Governorate</label><input id="governorate-input" placeholder="e.g. Menoufia"></div><div class="form-field"><label for="locality-input">District / village</label><input id="locality-input" placeholder="e.g. Ashmoun"></div><div class="form-field full"><label>Farm location on map</label><div class="location-map-tools"><button type="button" class="btn btn-light" id="profile-locate-btn">Use my current location</button><button type="button" class="btn btn-light" id="profile-clear-location">Clear pin</button></div><div id="profile-location-map" class="location-map" aria-label="Select farm location on map"></div><div class="coordinate-grid"><div class="coordinate"><small>Latitude</small><b id="profile-latitude">Not selected</b></div><div class="coordinate"><small>Longitude</small><b id="profile-longitude">Not selected</b></div></div><small class="muted-note">Click the map or drag the marker to set the farm location. Coordinates will be saved to your farm profile.</small></div>
   <div class="form-field full"><label for="notes-input">Additional notes</label><textarea id="notes-input" rows="3" placeholder="Add any notes about your farm"></textarea></div>
   
@@ -169,7 +169,7 @@
     $("water-input").value=farm?.water_source||"canal";
     $("governorate-input").value=farm?.governorate||"";
     $("locality-input").value=farm?.locality||"";
-    $("irrigation-input").value=field?.irrigation_type||"drip";
+    $("crop-input").value=field?.current_crop||"";\n    $("irrigation-input").value=field?.irrigation_type||"drip";
     selectedPoint=farm?.latitude!=null&&farm?.longitude!=null?{lat:Number(farm.latitude),lng:Number(farm.longitude)}:null;
     setText("detail-owner",user?.user_metadata?.full_name||user?.user_metadata?.name||user?.email?.split("@")[0]||"Farmer");
     $("hero-tag").textContent="Your saved farm profile";
@@ -273,8 +273,12 @@
         if(error)throw error;saved=data;
       }
       farm=saved;
+      const fieldPayload={name:"Main field",area_feddan:area,current_crop:$("crop-input").value||null,irrigation_type:$("irrigation-input").value||null,notes:$("notes-input").value.trim()||null,measurement_method:"manual"};
       if(field?.id){
-        const {data,error}=await db.from("fields").update({irrigation_type:$("irrigation-input").value||null}).eq("id",field.id).select("id,current_crop,irrigation_type").single();
+        const {data,error}=await db.from("fields").update(fieldPayload).eq("id",field.id).select("id,current_crop,irrigation_type").single();
+        if(error)throw error;field=data;
+      }else{
+        const {data,error}=await db.from("fields").insert({farm_id:farm.id,...fieldPayload}).select("id,current_crop,irrigation_type").single();
         if(error)throw error;field=data;
       }
       window.NILORA_FARM=farm;window.NILORA_FIELD=field;
