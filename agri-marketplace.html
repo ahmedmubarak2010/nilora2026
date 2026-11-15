@@ -146,7 +146,7 @@ main{width:100%;min-width:0;max-width:1500px;margin:0 auto;padding-left:clamp(16
   </div>
   <div class="category-tabs" aria-label="Quick category filters"><button class="category-tab active" data-category="all"><iconify-icon icon="solar:widget-4-linear"></iconify-icon> All products <span>15</span></button><button class="category-tab" data-category="fruits"><iconify-icon icon="solar:apple-linear"></iconify-icon> Fresh fruits <span>11</span></button><button class="category-tab" data-category="tools"><iconify-icon icon="solar:tools-linear"></iconify-icon> Farm tools</button><button class="category-tab" data-category="seeds">Seeds</button><button class="category-tab" data-category="fertilizers">Fertilizers</button><button class="category-tab" data-category="equipment">Equipment</button><button class="category-tab" data-category="crops">Crops</button><button class="category-tab" data-category="other">Other</button></div>
   <div class="products" id="products-grid"></div>
-  <div class="price-disclaimer"><iconify-icon icon="solar:info-circle-linear"></iconify-icon><span><b>About listed prices</b> Fruit prices are retail references collected from Egyptian supermarkets. Some tool prices are indicative estimates where an exact matching listing was unavailable. Prices may change; confirm the final price and availability with the seller before purchase.</span></div>
+  <div class="price-disclaimer"><iconify-icon icon="solar:info-circle-linear"></iconify-icon><span><b>About listed prices</b> Catalogue prices are references only. Seller listings are supplied by NILORA members; confirm the final price, quantity and availability directly with the seller before purchase.</span></div>
 </section>
 </main></div>
 <div class="product-modal-backdrop" id="product-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-product-name"><div class="product-modal"><button class="modal-close" id="modal-close" aria-label="Close product details">×</button><div class="modal-photo"><img id="modal-product-image" src="" alt=""></div><div class="modal-info"><div class="modal-kicker" id="modal-product-category">PRODUCT DETAILS</div><h2 id="modal-product-name"></h2><p id="modal-product-description"></p><div class="modal-price" id="modal-product-price"></div><div class="modal-disclaimer">Listed price reference only. Confirm current price and availability with the seller.</div><button class="btn btn-primary" id="modal-add"><iconify-icon icon="solar:cart-plus-linear"></iconify-icon> Add to cart</button></div></div></div>
@@ -193,7 +193,7 @@ function renderProducts(){
  list.forEach(p=>{
   const card=document.createElement("article");card.className="product";
   const visual=document.createElement("div");visual.className="product-visual";
-  const img=document.createElement("img");img.src=p.image;img.alt=p.name;img.loading="lazy";img.onerror=()=>{img.style.display="none";visual.classList.add("image-fallback");};
+  const img=document.createElement("img");img.alt=p.name;img.loading="lazy";if(p.image){img.src=p.image;img.onerror=()=>{img.style.display="none";visual.classList.add("image-fallback");};}else{img.style.display="none";visual.classList.add("image-fallback");const fallback=document.createElement("iconify-icon");fallback.setAttribute("icon","solar:box-linear");visual.append(fallback)}
   visual.append(img);
   const body=document.createElement("div");body.className="product-body";
   const meta=document.createElement("div");meta.className="product-meta";meta.innerHTML='<span class="product-type-inline"></span><span>'+(p.seller_id?"Seller listing":"Price reference")+'</span>';
@@ -215,7 +215,7 @@ function openProductDetails(id){
  const p=products.find(item=>String(item.id)===String(id));if(!p)return;
  $("modal-product-image").src=p.image||"Assets/NILORA Eco-Tech Landscape Logo.png";$("modal-product-image").alt=p.name;
  $("modal-product-category").textContent=categoryLabel(p.category).toUpperCase();
- $("modal-product-name").textContent=p.name;$("modal-product-description").textContent=p.description;
+ $("modal-product-name").textContent=p.name;$("modal-product-description").textContent=p.description+(p.seller_id?" · Seller: "+(p.seller_name||"NILORA seller")+" · Available: "+p.quantity+" "+p.unit+(p.location?" · "+p.location:"")+(p.contact_phone?" · Contact: "+p.contact_phone:""):"");
  $("modal-product-price").innerHTML="";
  const amount=document.createElement("span");amount.textContent=money(p.price);
  const unit=document.createElement("small");unit.textContent=" / "+p.unit;
