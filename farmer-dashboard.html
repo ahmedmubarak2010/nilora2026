@@ -93,13 +93,7 @@
       <article class="card field-card"><div class="field-photo"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=900&q=80" alt="Illustrative green crop field"><span>Sample field</span></div><div class="field-body"><div class="field-top"><h3>Green crop field</h3><div class="field-area">1.0 <small>fed.</small></div></div><p>Crop: To be confirmed · Planting date not provided</p><div class="field-meta"><span>Harvest date</span><b>Not set</b></div><a class="btn btn-light" style="margin:12px 15px 15px;width:calc(100% - 30px)" href="satellite-map.html?field=Green%20crop%20field"><iconify-icon icon="solar:satellite-linear"></iconify-icon> Open field satellite map</a></div></article>
     </div>
   </section>
-  <section class="card nasa-map-card" id="nasa-map">
-    <div class="section-heading"><div><div class="eyebrow">NASA Earth observation</div><h2>NASA Satellite Map</h2><p>Browse satellite imagery around Menoufia and change the observation date.</p></div><span class="source-pill">NASA GIBS · VIIRS</span></div>
-    <div class="map-toolbar"><label for="nasa-map-date">Imagery date</label><input id="nasa-map-date" type="date"><button class="btn btn-light" id="refresh-nasa-map" type="button"><iconify-icon icon="solar:refresh-linear"></iconify-icon> Update map</button><a class="btn btn-primary" href="https://worldview.earthdata.nasa.gov/" target="_blank" rel="noopener">Open NASA Worldview <iconify-icon icon="solar:arrow-up-right-linear"></iconify-icon></a></div>
-    <div id="nasa-world-map" role="region" aria-label="Interactive NASA satellite map focused on Menoufia, Egypt"></div>
-    <div class="map-footnote"><span><b>Imagery:</b> NOAA-20 / VIIRS Corrected Reflectance (True Color), served by NASA Global Imagery Browse Services (GIBS).</span><span id="nasa-map-status">Loading NASA imagery…</span></div>
-    <p class="map-caveat">This is regional satellite imagery, not a surveyed farm boundary or field-level diagnosis. Clouds, image resolution and acquisition date can affect what is visible. Use the full NASA Worldview viewer to add layers such as soil moisture or precipitation.</p>
-  </section>
+  <section class="card" style="display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap"><div><div class="eyebrow">NASA Earth observation</div><h2 style="font:700 18px Montserrat;color:var(--olive);margin:7px 0">Explore your fields from space</h2><p style="font-size:11px;color:var(--muted);margin:0;line-height:1.7">Open the dedicated Satellite Map workspace to switch imagery layers and inspect NASA climate data for each field.</p></div><a class="btn btn-primary" href="satellite-map.html"><iconify-icon icon="solar:satellite-linear"></iconify-icon> Open Satellite Map</a></section>
 
 
 
@@ -209,7 +203,7 @@
     if(!v.name||!Number.isFinite(v.area)||v.area<=0){notify("Please enter a valid farm name and area.");return;}
     apply(v);localStorage.setItem("nilora-farm-profile-preview",JSON.stringify(v));close();notify("Preview updated in this browser only.");
   });
-  document.getElementById("sync-btn").addEventListener("click",()=>document.getElementById("nasa-map").scrollIntoView({behavior:"smooth",block:"start"}));
+  document.getElementById("sync-btn").addEventListener("click",()=>location.href="satellite-map.html");
   document.getElementById("add-field").addEventListener("click",()=>notify("We'll build the My Fields feature next."));
 
   document.querySelectorAll(".nav a.soon").forEach(link=>link.addEventListener("click",event=>{event.preventDefault();notify((link.textContent||"This feature").replace(/SOON/i,"").trim()+" — coming soon.");}));
