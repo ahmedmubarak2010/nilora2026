@@ -175,7 +175,7 @@
     $("hero-tag").textContent="Your saved farm profile";
     $("top-pill").textContent="Your farm data";
     $("hero-location").textContent=[farm?.locality,farm?.governorate,"Egypt"].filter(Boolean).join(", ")||"Farm location not set";
-    $("detail-crop").textContent=cropLabels[field?.current_crop]||"Not specified";
+    $("stat-crop").textContent=cropLabels[field?.current_crop]||"Not specified";
     $("detail-irrigation").textContent=irrigationLabels[field?.irrigation_type]||"Not specified";
   };
   try{
@@ -199,7 +199,7 @@
     $("demo-banner").innerHTML='<iconify-icon icon="solar:info-circle-linear"></iconify-icon><div><b>Data transparency.</b> Farm details and coordinates are loaded from your account. Soil readings and sample field cards are illustrative only, not laboratory results or direct measurements.</div>';
     renderFarm();
     $("detail-owner").textContent=$("user-name").textContent;
-    $("detail-crop").textContent=cropLabels[field?.current_crop]||"Not specified";
+    $("stat-crop").textContent=cropLabels[field?.current_crop]||"Not specified";
     $("detail-irrigation").textContent=irrigationLabels[field?.irrigation_type]||"Not specified";
     $("stat-fields").textContent=farm?"1":"0";
     $("stat-crop").textContent=cropLabels[field?.current_crop]||"Not set";
