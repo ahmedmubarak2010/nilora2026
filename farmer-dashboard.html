@@ -169,7 +169,8 @@
     $("water-input").value=farm?.water_source||"canal";
     $("governorate-input").value=farm?.governorate||"";
     $("locality-input").value=farm?.locality||"";
-    $("crop-input").value=field?.current_crop||"";\n    $("irrigation-input").value=field?.irrigation_type||"drip";
+    $("crop-input").value=field?.current_crop||"";
+    $("irrigation-input").value=field?.irrigation_type||"drip";
     selectedPoint=farm?.latitude!=null&&farm?.longitude!=null?{lat:Number(farm.latitude),lng:Number(farm.longitude)}:null;
     setText("detail-owner",user?.user_metadata?.full_name||user?.user_metadata?.name||user?.email?.split("@")[0]||"Farmer");
     $("hero-tag").textContent="Your saved farm profile";
