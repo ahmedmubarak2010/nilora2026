@@ -1,7 +1,7 @@
 (()=> {
 const $=id=>document.getElementById(id);
 const tbody=$("reports-body"),empty=$("empty-state"),table=$("table-wrap"),preview=$("report-preview");
-let allReports=[],filtered=[],page=1,selected=null,charts=[];
+let allReports=[],filtered=[],page=1,selected=null,charts=[],activeSeries=[];
 const pageSize=10;
 const guidance={
  heat_monitoring:{title:"Monitor heat stress conditions",reason:"The saved climate record showed a high daily maximum temperature. This is a screening signal, not proof of crop stress.",action:"Inspect the field early in the day. Check leaf condition, soil moisture, and irrigation equipment before changing irrigation timing or volume.",benefit:"Consistent scouting can help identify visible heat stress earlier and prompt timely field checks."},
@@ -48,12 +48,12 @@ function renderTable(){
 function addSummary(label,value){const el=document.createElement("div");el.className="summary-card";const s=document.createElement("span"),b=document.createElement("b");s.textContent=label;b.textContent=value||"Not provided";el.append(s,b);$("summary-grid").append(el)}
 function addEvidence(item){const el=document.createElement("div");el.className="evidence";const s=document.createElement("span"),b=document.createElement("b");s.textContent=item.label||item.metric||"Climate metric";b.textContent=(item.value??"—")+" "+(item.unit||"");el.append(s,b);$("evidence-grid").append(el)}
 function chartCard(title,parameter,color,type="line"){
- const rows=(selected.result?.climate_series||[]).filter(x=>x.parameter===parameter).sort((a,b)=>a.observed_on.localeCompare(b.observed_on));
+ const rows=activeSeries.filter(x=>x.parameter===parameter).sort((a,b)=>a.observed_on.localeCompare(b.observed_on));
  if(!rows.length)return;
  const card=document.createElement("div");card.className="chart-card";const h=document.createElement("h4");h.textContent=title;const area=document.createElement("div");area.className="chart-area";const canvas=document.createElement("canvas");area.append(canvas);card.append(h,area);$("report-charts").append(card);
  charts.push(new Chart(canvas,{type,data:{labels:rows.map(x=>dayText(x.observed_on)),datasets:[{label:title,data:rows.map(x=>Number(x.value)),borderColor:color,backgroundColor:color+"22",fill:type==="line",tension:.3,borderRadius:4,pointRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:9},maxTicksLimit:7}},y:{grid:{color:"#edf0e8"},ticks:{font:{size:9}}}}}}));
 }
-function openReport(r){
+async function openReport(r){
  selected=r;destroyCharts();$("summary-grid").replaceChildren();$("evidence-grid").replaceChildren();$("recommendation-grid").replaceChildren();$("limitations-list").replaceChildren();$("report-charts").replaceChildren();
  const result=r.result||{},field=result.field||{};
  $("preview-title").textContent=(field.name||fieldName(r))+" Analysis Report";
@@ -61,8 +61,8 @@ function openReport(r){
  addSummary("Field",field.name||fieldName(r));addSummary("Crop",field.crop||r.crop_code);addSummary("Analysis date",dateText(r.created_at));addSummary("Result",reportStatus(r));
  (result.evidence||[]).forEach(addEvidence);
  if(!(result.evidence||[]).length){const e=document.createElement("div");e.className="muted-note";e.textContent="No climate evidence was saved in this historical record."; $("evidence-grid").append(e)}
- const series=result.climate_series||[];chartCard("Daily maximum temperature","T2M_MAX","#556d4a");chartCard("Daily rainfall","PRECTOTCORR","#a4ac86","bar");if(!series.some(x=>x.parameter==="PRECTOTCORR"))chartCard("Daily rainfall","IMERG_PRECTOT","#a4ac86","bar");chartCard("Relative humidity","RH2M","#a67c52");
- $("chart-note").textContent=series.length?"Charts use the climate observations saved with this analysis. They are a historical snapshot and are not refreshed from current weather data.":"This report predates historical climate-series snapshots. Its saved evidence and recommendations are available above, but daily chart data was not stored for this older analysis.";
+ activeSeries=Array.isArray(result.climate_series)?result.climate_series:[];let legacySeries=false;if(!activeSeries.length&&r.field_id){try{const end=new Date(r.created_at).toISOString().slice(0,10);const start=new Date(new Date(r.created_at).getTime()-14*86400000).toISOString().slice(0,10);const {data,error}=await db.from("climate_observations").select("parameter,observed_on,value,unit,source").eq("field_id",r.field_id).gte("observed_on",start).lte("observed_on",end).order("observed_on",{ascending:true});if(!error&&data?.length){activeSeries=data.map(x=>({...x,value:Number(x.value)}));legacySeries=true}}catch(e){console.warn("Legacy climate history unavailable",e)}}chartCard("Daily maximum temperature","T2M_MAX","#556d4a");chartCard("Daily rainfall","PRECTOTCORR","#a4ac86","bar");if(!activeSeries.some(x=>x.parameter==="PRECTOTCORR"))chartCard("Daily rainfall","IMERG_PRECTOT","#a4ac86","bar");chartCard("Relative humidity","RH2M","#a67c52");
+ $("chart-note").textContent=activeSeries.length?(legacySeries?"Charts are reconstructed from saved climate observations dated on or before this analysis. They may not be an exact snapshot of what was displayed at generation time.":"Charts use the climate observations saved with this analysis. They are a historical snapshot and are not refreshed from current weather data."):"No daily climate observations are available for this report. Only the saved evidence values can be shown.";
  (result.recommendations||[]).forEach(item=>{
   const g=guidance[item.code]||{title:item.title||"Field guidance",reason:item.reason||"Saved recommendation",action:item.action||"Review the field and confirm conditions before acting.",benefit:"Supports informed field monitoring."};
   const el=document.createElement("article");el.className="recommendation";
@@ -77,21 +77,26 @@ function openReport(r){
  (result.limitations||r.limitations||[]).forEach(line=>{const li=document.createElement("li");li.textContent=line;$("limitations-list").append(li)});
  preview.classList.add("open");preview.scrollIntoView({behavior:"smooth",block:"start"});
 }
-function downloadPdf(){
+async function downloadPdf(){
  if(!selected)return;
- if(!window.jspdf?.jsPDF){window.print();return}
- const {jsPDF}=window.jspdf,doc=new jsPDF({unit:"mm",format:"a4"}),result=selected.result||{},field=result.field||{};
- const margin=16,width=178;let y=20;
- const line=(txt,size=10,bold=false,color=[45,58,39])=>{doc.setFont("helvetica",bold?"bold":"normal");doc.setFontSize(size);doc.setTextColor(...color);const lines=doc.splitTextToSize(String(txt??"—"),width);if(y+lines.length*5>278){doc.addPage();y=18}doc.text(lines,margin,y);y+=lines.length*5+2};
- doc.setFillColor(47,61,40);doc.rect(0,0,210,34,"F");doc.setTextColor(255,255,255);doc.setFont("helvetica","bold");doc.setFontSize(20);doc.text("NILORA",margin,16);doc.setFontSize(10);doc.text("FIELD ANALYSIS REPORT",margin,25);y=44;
- line(field.name||fieldName(selected),16,true);line("Analysis date: "+dateText(selected.created_at));line("Crop: "+(field.crop||selected.crop_code||"Not specified"));line("Status: "+reportStatus(selected));y+=3;
- line("CLIMATE EVIDENCE",12,true);(result.evidence||[]).forEach(e=>line((e.label||e.metric)+": "+e.value+" "+(e.unit||"")+" · "+(e.observations??"")+" observations"));
- y+=3;line("RECOMMENDATIONS & ACTIONS",12,true);
- (result.recommendations||[]).forEach(item=>{const g=guidance[item.code]||{title:item.title||"Field guidance",reason:item.reason||"",action:item.action||"",benefit:""};line(g.title,10,true);line(g.reason);line("Action: "+g.action);line("Potential benefit: "+g.benefit);y+=2});
- const chartCanvases=$("report-charts").querySelectorAll("canvas");if(chartCanvases.length){y+=3;line("SAVED CLIMATE CHARTS",12,true);for(const canvas of chartCanvases){if(y+72>278){doc.addPage();y=18}const label=canvas.closest(".chart-card")?.querySelector("h4")?.textContent||"Climate chart";line(label,9,true);try{doc.addImage(canvas.toDataURL("image/png"),"PNG",margin,y,width,58);y+=63}catch(e){line("Chart image unavailable in this export.",8)}}} y+=2;line("DATA SOURCE & LIMITATIONS",12,true);line("Climate data source: NASA POWER. Values are gridded estimates and may differ from conditions measured inside the field.");
- (result.limitations||selected.limitations||[]).forEach(x=>line("• "+x,9));
- line("Generated by NILORA · Smart Agro Intelligence",8,false,[100,108,96]);
- const safe=(field.name||"field").replace(/[^a-z0-9-_]+/gi,"-").toLowerCase();doc.save("NILORA-"+safe+"-"+new Date(selected.created_at).toISOString().slice(0,10)+".pdf");
+ const button=$("download-pdf");button.disabled=true;button.textContent="Preparing PDF…";
+ try{
+  if(!window.jspdf?.jsPDF||!window.html2canvas)throw new Error("PDF rendering libraries are unavailable");
+  await Promise.all(charts.map(c=>new Promise(resolve=>{if(c.$rendered)resolve();else{c.options.animation=false;c.update("none");requestAnimationFrame(()=>requestAnimationFrame(resolve))}})));
+  const node=preview;const canvas=await window.html2canvas(node,{scale:2,useCORS:true,backgroundColor:"#ffffff",logging:false,scrollX:0,scrollY:-window.scrollY,windowWidth:Math.max(node.scrollWidth,900),onclone:doc=>{const p=doc.getElementById("report-preview");if(p){p.style.display="grid";p.style.width="1000px";p.style.maxWidth="none";p.style.boxShadow="none";p.style.border="0"}doc.querySelectorAll(".preview-actions").forEach(x=>x.style.display="none")}});
+  const {jsPDF}=window.jspdf,doc=new jsPDF({orientation:"portrait",unit:"mm",format:"a4",compress:true});
+  const margin=8,pageWidth=210-margin*2,pageHeight=297-margin*2,imgHeight=canvas.height*pageWidth/canvas.width;
+  const sliceHeight=Math.floor(pageHeight*canvas.width/pageWidth);
+  let offset=0,page=0;
+  while(offset<canvas.height){
+   const partHeight=Math.min(sliceHeight,canvas.height-offset),part=document.createElement("canvas");part.width=canvas.width;part.height=partHeight;
+   part.getContext("2d").drawImage(canvas,0,offset,canvas.width,partHeight,0,0,canvas.width,partHeight);
+   const image=part.toDataURL("image/jpeg",0.94);if(page>0)doc.addPage();const renderedHeight=partHeight*pageWidth/canvas.width;
+   doc.addImage(image,"JPEG",margin,margin,pageWidth,renderedHeight,undefined,"FAST");offset+=partHeight;page++;
+  }
+  const field=selected.result?.field||{},safe=(field.name||"field").replace(/[^a-z0-9-_]+/gi,"-").toLowerCase();doc.save("NILORA-"+safe+"-"+new Date(selected.created_at).toISOString().slice(0,10)+".pdf");
+ }catch(e){console.error("Visual PDF export failed:",e);showToast("Could not render the report PDF. Please try again or use your browser's Print option.");}
+ finally{button.disabled=false;button.innerHTML='<iconify-icon icon="solar:download-linear"></iconify-icon> Download PDF'}
 }
 async function init(){
  try{
