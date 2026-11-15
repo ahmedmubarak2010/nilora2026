@@ -262,7 +262,8 @@
     const name=$("farm-name-input").value.trim(),area=Number($("farm-area-input").value);
     if(!name||!Number.isFinite(area)||area<=0){notify("Enter a valid farm name and area.");return;}
     if(!selectedPoint){notify("Select your farm location on the map or use GPS.");return;}
-    const save=$("save-farm-btn");save.disabled=true;save.textContent="Saving…";\n    if(!window.db){notify("Supabase is not initialized. Refresh the page and sign in again.");save.disabled=false;save.textContent="Save farm profile";return;}\n    if(!user?.id){notify("Your login session expired. Sign in again.");save.disabled=false;save.textContent="Save farm profile";return;}
+    const save=$("save-farm-btn");save.disabled=true;save.textContent="Saving…";
+    if(!window.db){notify("Supabase is not initialized. Refresh the page and sign in again.");save.disabled=false;save.textContent="Save farm profile";return;}\n    if(!user?.id){notify("Your login session expired. Sign in again.");save.disabled=false;save.textContent="Save farm profile";return;}
     try{
       const payload={owner_id:user.id,name,governorate:$("governorate-input").value.trim()||null,locality:$("locality-input").value.trim()||null,latitude:selectedPoint.lat,longitude:selectedPoint.lng,area_feddan:area,water_source:$("water-input").value||null};
       let saved;
