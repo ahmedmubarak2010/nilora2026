@@ -78,7 +78,7 @@ async function loadFeed(){
   (cd||[]).forEach(x=>comments[x.post_id]=(comments[x.post_id]||0)+1);
  }
  posts=posts.map(p=>({...p,author:profiles[p.author_id]||{user_id:p.author_id,display_name:"NILORA member"},likes:likes[p.id]||0,commentCount:comments[p.id]||0,liked:liked.has(p.id)}));
- renderFeed();$("stat-members").textContent=String(Object.keys(profiles).length||"—");
+ renderFeed();const {count:memberCount}=await db.from("community_profiles").select("user_id",{count:"exact",head:true});$("stat-members").textContent=String(memberCount??0);
 }
 function renderFeed(){
  const filtered=posts.filter(p=>(activeFilter==="all"||p.category===activeFilter)&&(!searchTerm||[p.title,p.content,p.crop,p.cultivar,p.location,p.author.display_name].join(" ").toLowerCase().includes(searchTerm)));
