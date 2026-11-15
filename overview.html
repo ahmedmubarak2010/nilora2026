@@ -172,12 +172,6 @@
   byId("refresh-weather")?.addEventListener("click",loadWeather);
   await loadWeather();
   document.body.style.visibility="visible";
-  if(window.Chart){
-   const climateCanvas=byId("climate-chart");
-   if(climateCanvas)new Chart(climateCanvas,{type:"bar",data:{labels:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],datasets:[{type:"line",label:"Temperature (°C)",data:[24,25,27,26,28,30,29],borderColor:"#556d4a",backgroundColor:"#556d4a",borderWidth:2.5,tension:.35,yAxisID:"y",pointRadius:3,pointHoverRadius:5},{type:"bar",label:"Rainfall (mm)",data:[0.8,0,1.4,0.2,0,2.1,0.6],backgroundColor:"#c8d5b5",borderRadius:5,yAxisID:"y1"}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:"index",intersect:false},plugins:{legend:{position:"bottom",labels:{usePointStyle:true,boxWidth:7,font:{family:"Inter",size:10}}},tooltip:{backgroundColor:"#2f3d28",padding:10}},scales:{x:{grid:{display:false},ticks:{font:{family:"Inter",size:10},color:"#687064"}},y:{position:"left",beginAtZero:false,min:15,max:35,title:{display:true,text:"Temperature (°C)",font:{size:9}},grid:{color:"#edf0e8"},ticks:{font:{size:9},color:"#687064"}},y1:{position:"right",beginAtZero:true,title:{display:true,text:"Rainfall (mm)",font:{size:9}},grid:{drawOnChartArea:false},ticks:{font:{size:9},color:"#687064"}}}}});
-   const cropCanvas=byId("crop-chart");
-   if(cropCanvas)new Chart(cropCanvas,{type:"doughnut",data:{labels:["Wheat","Maize","Rice"],datasets:[{data:[45,30,25],backgroundColor:["#a67c52","#556d4a","#c8d5b5"],borderColor:"#fff",borderWidth:4,hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,cutout:"68%",plugins:{legend:{display:false},tooltip:{backgroundColor:"#2f3d28",padding:10,callbacks:{label:ctx=>ctx.label+": "+ctx.parsed+"%"}}}}});
-  }
   try{
    if(window.L){
     const center=farm?.latitude!=null&&farm?.longitude!=null?[farm.latitude,farm.longitude]:[30.59,30.99];
