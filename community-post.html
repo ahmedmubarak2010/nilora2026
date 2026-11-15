@@ -39,4 +39,5 @@ async function loadReplies(){
 $("reply-form").addEventListener("submit",async e=>{e.preventDefault();const content=$("reply-content").value.trim();if(!content)return;const btn=$("reply-button");btn.disabled=true;btn.textContent="Sending…";const {error}=await db.from("community_comments").insert({post_id:post.id,author_id:user.id,content});if(error)toast(error.message);else{$("reply-content").value="";toast("Your response was added.");await loadReplies()}btn.disabled=false;btn.textContent="Submit response"});
 (async()=>{try{await init()}catch(e){console.error(e);$("post-card").innerHTML='<div class="empty">'+esc(e.message)+'</div>'}})();
 })();
-</script></body></html>
+</script><script src="assets/js/shared-sidebar.js"></script>
+</body></html>
