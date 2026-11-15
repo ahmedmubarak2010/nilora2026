@@ -73,8 +73,8 @@
 <div class="workspace">
 <header class="topbar"><div><div class="greeting" id="greeting">Welcome to your farm 🌱</div><div class="date">Your farm information in one place</div></div><div class="top-actions"><span class="pill" id="top-pill">Your farm data</span><button class="icon-btn" aria-label="Notifications"><iconify-icon icon="solar:bell-linear"></iconify-icon></button></div></header>
 <main class="content">
-  <div class="demo" id="demo-banner"><iconify-icon icon="solar:info-circle-linear"></iconify-icon><div><b>Demo preview — sample farm data.</b> Farm details, soil readings, crop information, map location and imagery below are illustrative only. No live satellite feed, official farm registry or laboratory results are connected.</div></div>
-  <section class="page-head"><div><div class="eyebrow">Your farm workspace</div><h1>My Farm Profile</h1><p>View and manage your farm information, fields, soil and irrigation details.</p></div><div class="actions"><button class="btn btn-light" id="sync-btn"><iconify-icon icon="solar:satellite-linear"></iconify-icon> Satellite data</button><button class="btn btn-primary" id="edit-btn"><iconify-icon icon="solar:pen-linear"></iconify-icon> Edit farm details</button></div></section>
+  <div class="demo" id="demo-banner"><iconify-icon icon="solar:info-circle-linear"></iconify-icon><div><b>Your account data.</b> Farm and field details are saved to your signed-in NILORA account. NASA satellite and climate data are separate from your saved farm records.</div></div>
+  <section class="page-head" id="farm-settings"><div><div class="eyebrow">Your farm workspace</div><h1>My Farm Profile</h1><p>View and manage your farm information, fields, soil and irrigation details.</p></div><div class="actions"><button class="btn btn-light" id="sync-btn"><iconify-icon icon="solar:satellite-linear"></iconify-icon> Satellite data</button><button class="btn btn-primary" id="edit-btn"><iconify-icon icon="solar:pen-linear"></iconify-icon> Edit farm details</button></div></section>
   <section class="hero">
     <div class="hero-main"><span class="hero-tag" id="hero-tag">Your saved farm profile</span><h2 id="farm-title">Al-Amal Green Farm</h2><div class="location" id="hero-location"><iconify-icon icon="solar:map-point-linear"></iconify-icon> Farm location not set</div>
       <div class="stats"><div class="stat"><small>Total area</small><strong id="farm-area">5</strong><em>Feddans · sample</em></div><div class="stat"><small>Fields</small><strong id="stat-fields">0</strong><em>Saved fields</em></div><div class="stat"><small>Main crop</small><strong id="stat-crop" style="font-size:16px">Not set</strong><em>Current crop</em></div><div class="stat"><small>Irrigation</small><strong id="stat-irrigation" style="font-size:16px">Not set</strong><em>Irrigation</em></div></div>
@@ -83,16 +83,10 @@
   </section>
   <section class="info-grid">
     <article class="card"><div class="card-head"><div class="card-icon"><iconify-icon icon="solar:home-2-linear"></iconify-icon></div><div><h3>Basic information</h3><small>Farm identity and location</small></div></div><div class="detail-list"><div class="detail"><span>Farm name</span><b id="detail-farm-name">Not set</b></div><div class="detail"><span>Owner</span><b id="detail-owner">Farmer account</b></div><div class="detail"><span>Governorate</span><b id="detail-governorate">Not set</b></div><div class="detail"><span>District / village</span><b id="detail-locality">Not set</b></div><div class="detail"><span>Latitude</span><b id="detail-latitude">Not set</b></div><div class="detail"><span>Longitude</span><b id="detail-longitude">Not set</b></div><div class="detail"><span>Total area</span><b id="detail-area">Not set</b></div></div></article>
-    <article class="card"><div class="card-head"><div class="card-icon"><iconify-icon icon="solar:layers-minimalistic-linear"></iconify-icon></div><div><h3>Soil information</h3><small>Sample values — not lab results</small></div></div><div class="detail-list"><div class="detail"><span>Soil type</span><b>Alluvial clay</b></div><div class="detail"><span>Soil condition</span><b>Not assessed</b></div><div class="detail"><span>pH reading</span><b>Sample: 7.4</b></div><div class="detail"><span>Organic matter</span><b>Sample: 2.8%</b></div></div></article>
+    <article class="card"><div class="card-head"><div class="card-icon"><iconify-icon icon="solar:layers-minimalistic-linear"></iconify-icon></div><div><h3>Soil information</h3><small>Sample values — not lab results</small></div></div><div class="detail-list"><div class="detail"><span>Soil type</span><b id="detail-soil-type">Not recorded</b></div><div class="detail"><span>Previous crop</span><b id="detail-previous-crop">Not recorded</b></div><div class="detail"><span>Soil pH</span><b>Not recorded</b></div><div class="detail"><span>Organic matter</span><b>Not recorded</b></div></div></article>
     <article class="card"><div class="card-head"><div class="card-icon"><iconify-icon icon="solar:waterdrop-linear"></iconify-icon></div><div><h3>Irrigation information</h3><small>Example farm setup</small></div></div><div class="detail-list"><div class="detail"><span>Irrigation system</span><b id="detail-irrigation">Not specified</b></div><div class="detail"><span>Water source</span><b id="detail-water">Not specified</b></div><div class="detail"><span>Water schedule</span><b>Not provided</b></div><div class="detail"><span>Efficiency</span><b>Not calculated</b></div></div></article>
   </section>
-  <section><div class="section-title"><div><h2>Fields on this farm</h2><p>Illustrative examples only. Your saved field records will appear here as field management is completed.</p></div><button class="btn btn-primary" id="add-field"><iconify-icon icon="solar:add-circle-linear"></iconify-icon> Add a field</button></div>
-    <div class="fields" style="margin-top:13px">
-      <article class="card field-card"><div class="field-photo"><img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=900&q=80" alt="Illustrative wheat field"><span>Sample field</span></div><div class="field-body"><div class="field-top"><h3>Wheat field</h3><div class="field-area">2.5 <small>fed.</small></div></div><p>Crop: Wheat · Planting date not provided</p><div class="field-meta"><span>Harvest date</span><b>Not set</b></div><a class="btn btn-light" style="margin:12px 15px 15px;width:calc(100% - 30px)" href="satellite-map.html?field=Wheat%20field"><iconify-icon icon="solar:satellite-linear"></iconify-icon> Open field satellite map</a></div></article>
-      <article class="card field-card"><div class="field-photo"><img src="https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=900&q=80" alt="Illustrative maize field"><span>Sample field</span></div><div class="field-body"><div class="field-top"><h3>Maize field</h3><div class="field-area">1.5 <small>fed.</small></div></div><p>Crop: Maize · Planting date not provided</p><div class="field-meta"><span>Harvest date</span><b>Not set</b></div><a class="btn btn-light" style="margin:12px 15px 15px;width:calc(100% - 30px)" href="satellite-map.html?field=Maize%20field"><iconify-icon icon="solar:satellite-linear"></iconify-icon> Open field satellite map</a></div></article>
-      <article class="card field-card"><div class="field-photo"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=900&q=80" alt="Illustrative green crop field"><span>Sample field</span></div><div class="field-body"><div class="field-top"><h3>Green crop field</h3><div class="field-area">1.0 <small>fed.</small></div></div><p>Crop: To be confirmed · Planting date not provided</p><div class="field-meta"><span>Harvest date</span><b>Not set</b></div><a class="btn btn-light" style="margin:12px 15px 15px;width:calc(100% - 30px)" href="satellite-map.html?field=Green%20crop%20field"><iconify-icon icon="solar:satellite-linear"></iconify-icon> Open field satellite map</a></div></article>
-    </div>
-  </section>
+  <section id="fields"><div class="section-title"><div><h2>Fields on this farm</h2><p>Your saved field records from this NILORA account.</p></div><button class="btn btn-primary" id="add-field"><iconify-icon icon="solar:pen-linear"></iconify-icon> Edit main field</button></div><div class="fields" id="saved-fields-grid" style="margin-top:13px"><div class="card muted-note">Loading your saved fields…</div></div></section>
   <section class="card" style="display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap"><div><div class="eyebrow">NASA Earth observation</div><h2 style="font:700 18px Montserrat;color:var(--olive);margin:7px 0">Explore your fields from space</h2><p style="font-size:11px;color:var(--muted);margin:0;line-height:1.7">Open the dedicated Satellite Map workspace to switch imagery layers and inspect NASA climate data for each field.</p></div><a class="btn btn-primary" href="satellite-map.html"><iconify-icon icon="solar:satellite-linear"></iconify-icon> Open Satellite Map</a></section>
 
 
@@ -104,7 +98,7 @@
   <div class="form-field"><label for="farm-name-input">Farm name</label><input id="farm-name-input" value="Al-Amal Green Farm" required></div>
   <div class="form-field"><label for="farm-area-input">Total area (feddans)</label><input id="farm-area-input" type="number" min="0" step="0.25" value="5" required></div>
   <div class="form-field"><label for="crop-input">Main crop</label><select id="crop-input"><option value="">Choose crop</option><option value="wheat">Wheat</option><option value="maize">Maize</option><option value="rice">Rice</option><option value="cotton">Cotton</option><option value="clover">Clover</option><option value="vegetables">Vegetables</option><option value="other">Other</option></select></div><div class="form-field"><label for="irrigation-input">Irrigation system</label><select id="irrigation-input"><option value="drip">Drip irrigation</option><option value="sprinkler">Sprinkler irrigation</option><option value="flood">Flood irrigation</option><option value="other">Other / not sure</option></select></div>
-  <div class="form-field"><label for="water-input">Water source</label><select id="water-input"><option value="canal">Canal / river</option><option value="well">Groundwater well</option><option value="mixed">Mixed source</option><option value="other">Other / not sure</option></select></div><div class="form-field"><label for="governorate-input">Governorate</label><input id="governorate-input" placeholder="e.g. Menoufia"></div><div class="form-field"><label for="locality-input">District / village</label><input id="locality-input" placeholder="e.g. Ashmoun"></div><div class="form-field full"><label>Farm location on map</label><div class="location-map-tools"><button type="button" class="btn btn-light" id="profile-locate-btn">Use my current location</button><button type="button" class="btn btn-light" id="profile-clear-location">Clear pin</button></div><div id="profile-location-map" class="location-map" aria-label="Select farm location on map"></div><div class="coordinate-grid"><div class="coordinate"><small>Latitude</small><b id="profile-latitude">Not selected</b></div><div class="coordinate"><small>Longitude</small><b id="profile-longitude">Not selected</b></div></div><small class="muted-note">Click the map or drag the marker to set the farm location. Coordinates will be saved to your farm profile.</small></div>
+  <div class="form-field"><label for="water-input">Water source</label><select id="water-input"><option value="canal">Canal / river</option><option value="well">Groundwater well</option><option value="mixed">Mixed source</option><option value="other">Other / not sure</option></select></div><div class="form-field"><label for="soil-type-input">Soil type</label><select id="soil-type-input"><option value="">Not recorded</option><option value="alluvial_clay">Alluvial clay</option><option value="sandy">Sandy</option><option value="silty">Silty</option><option value="loamy">Loamy</option><option value="saline">Saline</option><option value="other">Other / unknown</option></select></div><div class="form-field"><label for="previous-crop-input">Previous crop</label><select id="previous-crop-input"><option value="">Not recorded</option><option value="wheat">Wheat</option><option value="maize">Maize</option><option value="rice">Rice</option><option value="cotton">Cotton</option><option value="clover">Clover</option><option value="vegetables">Vegetables</option><option value="other">Other</option></select></div><div class="form-field"><label for="governorate-input">Governorate</label><input id="governorate-input" placeholder="e.g. Menoufia"></div><div class="form-field"><label for="locality-input">District / village</label><input id="locality-input" placeholder="e.g. Ashmoun"></div><div class="form-field full"><label>Farm location on map</label><div class="location-map-tools"><button type="button" class="btn btn-light" id="profile-locate-btn">Use my current location</button><button type="button" class="btn btn-light" id="profile-clear-location">Clear pin</button></div><div id="profile-location-map" class="location-map" aria-label="Select farm location on map"></div><div class="coordinate-grid"><div class="coordinate"><small>Latitude</small><b id="profile-latitude">Not selected</b></div><div class="coordinate"><small>Longitude</small><b id="profile-longitude">Not selected</b></div></div><small class="muted-note">Click the map or drag the marker to set the farm location. Coordinates will be saved to your farm profile.</small></div>
   <div class="form-field full"><label for="notes-input">Additional notes</label><textarea id="notes-input" rows="3" placeholder="Add any notes about your farm"></textarea></div>
   
 </div><div class="modal-foot"><button type="button" class="btn btn-light" id="cancel-modal">Cancel</button><button type="submit" class="btn btn-primary" id="save-farm-btn">Save farm profile</button></div></form></section></div>
@@ -117,10 +111,12 @@
   const toast=$("toast");
   const notify=message=>{toast.textContent=message;toast.classList.add("show");window.clearTimeout(notify.timer);notify.timer=window.setTimeout(()=>toast.classList.remove("show"),9000)};
   const fmt=value=>Number(value).toFixed(6);
-  let user=null,farm=null,field=null,editMap=null,editMarker=null,selectedPoint=null;
+  let user=null,farm=null,field=null,fieldsList=[],editMap=null,editMarker=null,selectedPoint=null;
   const irrigationLabels={flood:"Flood irrigation",drip:"Drip irrigation",sprinkler:"Sprinkler irrigation",other:"Other"};
   const waterLabels={canal:"Canal / river",well:"Groundwater well",mixed:"Mixed sources",other:"Other"};
   const cropLabels={wheat:"Wheat",maize:"Maize",rice:"Rice",cotton:"Cotton",clover:"Clover",vegetables:"Vegetables",other:"Other"};
+  const soilLabels={alluvial_clay:"Alluvial clay",sandy:"Sandy",silty:"Silty",loamy:"Loamy",saline:"Saline",other:"Other"};
+  const renderFields=()=>{const host=$("saved-fields-grid");if(!host)return;host.replaceChildren();if(!fieldsList.length){const empty=document.createElement("div");empty.className="card muted-note";empty.textContent="No saved fields yet. Add your main field details using Edit farm details.";host.append(empty);return;}fieldsList.forEach(f=>{const card=document.createElement("article");card.className="card field-card";const body=document.createElement("div");body.className="field-body";const top=document.createElement("div");top.className="field-top";const title=document.createElement("h3");title.textContent=f.name||"Field";const area=document.createElement("div");area.className="field-area";area.textContent=(f.area_feddan??"—")+" fed.";top.append(title,area);const crop=document.createElement("p");crop.textContent="Crop: "+(cropLabels[f.current_crop]||"Not recorded")+" · Soil: "+(soilLabels[f.soil_type]||"Not recorded");const meta=document.createElement("div");meta.className="field-meta";const label=document.createElement("span");label.textContent="Irrigation";const irrigation=document.createElement("b");irrigation.textContent=irrigationLabels[f.irrigation_type]||"Not recorded";meta.append(label,irrigation);const notes=document.createElement("p");notes.className="muted-note";notes.textContent=f.notes||"No additional notes saved.";const link=document.createElement("a");link.className="btn btn-light";link.href="satellite-map.html?field="+encodeURIComponent(f.name||"");link.textContent="Open NASA field map";body.append(top,crop,meta,notes,link);card.append(body);host.append(card);});};
   const setCoordinates=point=>{
     selectedPoint=point?{lat:Number(point.lat),lng:Number(point.lng)}:null;
     $("profile-latitude").textContent=selectedPoint?fmt(selectedPoint.lat):"Not selected";
@@ -163,6 +159,8 @@
     $("detail-latitude").textContent=farm?.latitude!=null?fmt(farm.latitude):"Not set";
     $("detail-longitude").textContent=farm?.longitude!=null?fmt(farm.longitude):"Not set";
     $("detail-water").textContent=waterLabels[farm?.water_source]||"Not specified";
+    $("detail-soil-type").textContent=soilLabels[field?.soil_type]||"Not recorded";
+    $("detail-previous-crop").textContent=cropLabels[field?.previous_crop]||"Not recorded";
     $("detail-irrigation").textContent=irrigationLabels[field?.irrigation_type]||"Not specified";
     $("farm-name-input").value=farm?.name||"";
     $("farm-area-input").value=farm?.area_feddan??"";
@@ -170,6 +168,9 @@
     $("governorate-input").value=farm?.governorate||"";
     $("locality-input").value=farm?.locality||"";
     $("crop-input").value=field?.current_crop||"";
+    $("soil-type-input").value=field?.soil_type||"";
+    $("previous-crop-input").value=field?.previous_crop||"";
+    $("notes-input").value=field?.notes||"";
     $("irrigation-input").value=field?.irrigation_type||"drip";
     selectedPoint=farm?.latitude!=null&&farm?.longitude!=null?{lat:Number(farm.latitude),lng:Number(farm.longitude)}:null;
     setText("detail-owner",user?.user_metadata?.full_name||user?.user_metadata?.name||user?.email?.split("@")[0]||"Farmer");
@@ -189,9 +190,9 @@
     const {data:savedFarm,error:farmError}=await db.from("farms").select("id,name,governorate,locality,latitude,longitude,area_feddan,water_source").eq("owner_id",user.id).limit(1).maybeSingle();
     if(farmError)throw farmError;
     farm=savedFarm||null;
-    const {data:fields,error:fieldsError}=farm?await db.from("fields").select("id,current_crop,irrigation_type").eq("farm_id",farm.id).limit(1).maybeSingle():{data:null,error:null};
+    const {data:savedFields,error:fieldsError}=farm?await db.from("fields").select("id,name,area_feddan,current_crop,previous_crop,irrigation_type,soil_type,notes,created_at").eq("farm_id",farm.id).order("created_at",{ascending:true}):{data:[],error:null};
     if(fieldsError)throw fieldsError;
-    field=fields||null;
+    fieldsList=savedFields||[];field=fieldsList[0]||null;
     $("user-name").textContent=profile?.full_name||user.user_metadata?.full_name||user.user_metadata?.name||user.email?.split("@")[0]||"Farmer";
     const avatarUrl=user.user_metadata?.avatar_url||user.user_metadata?.picture||user.user_metadata?.photo_url||"";
     const avatar=$("account-avatar"),fallback=$("account-avatar-fallback");
@@ -202,7 +203,8 @@
     $("detail-owner").textContent=$("user-name").textContent;
     $("stat-crop").textContent=cropLabels[field?.current_crop]||"Not specified";
     $("detail-irrigation").textContent=irrigationLabels[field?.irrigation_type]||"Not specified";
-    $("stat-fields").textContent=farm?"1":"0";
+    $("stat-fields").textContent=String(fieldsList.length);
+    renderFields();
     $("stat-crop").textContent=cropLabels[field?.current_crop]||"Not set";
     $("stat-irrigation").textContent=irrigationLabels[field?.irrigation_type]||"Not set";
     if(!farm)notify("Add your farm details and map location to get started.");
@@ -276,21 +278,21 @@
         if(error)throw error;saved=data;
       }
       farm=saved;
-      const fieldPayload={name:"Main field",area_feddan:area,current_crop:$("crop-input").value||null,irrigation_type:$("irrigation-input").value||null,notes:$("notes-input").value.trim()||null};
+      const fieldPayload={name:field?.name||"Main field",area_feddan:area,current_crop:$("crop-input").value||null,previous_crop:$("previous-crop-input").value||null,soil_type:$("soil-type-input").value||null,irrigation_type:$("irrigation-input").value||null,notes:$("notes-input").value.trim()||null};
       if(field?.id){
         const {data,error}=await db.from("fields").update(fieldPayload).eq("id",field.id).select("id,current_crop,irrigation_type").single();
-        if(error)throw error;field=data;
+        if(error)throw error;field=data;fieldsList=fieldsList.map(x=>x.id===data.id?data:x);
       }else{
         const {data,error}=await db.from("fields").insert({farm_id:farm.id,...fieldPayload}).select("id,current_crop,irrigation_type").single();
-        if(error)throw error;field=data;
+        if(error)throw error;field=data;fieldsList.push(data);
       }
       window.NILORA_FARM=farm;window.NILORA_FIELD=field;
-      renderFarm();close();notify("Farm profile and GPS coordinates saved to your NILORA account.");
+      renderFarm();renderFields();$("stat-fields").textContent=String(fieldsList.length);close();notify("Farm profile, field details and GPS coordinates saved to your NILORA account.");
     }catch(error){console.error("Farm save failed:",error);notify("Save failed ["+(error.code||"no-code")+"]: "+(error.message||"Unknown error")+(error.hint?" · "+error.hint:""));}
     finally{save.disabled=false;save.textContent="Save farm profile";}
   });
   $("sync-btn").addEventListener("click",()=>location.href="satellite-map.html");
-  $("add-field").addEventListener("click",()=>notify("Field management will be added next."));
+  $("add-field").addEventListener("click",()=>{open();notify("You are editing the saved main field. Changes are stored in your NILORA account.");});
   document.querySelectorAll(".nav a.soon").forEach(link=>link.addEventListener("click",event=>{event.preventDefault();notify((link.textContent||"This feature").replace(/SOON/i,"").trim()+" — coming soon.");}));
   $("logout-btn").addEventListener("click",async()=>{await db.auth.signOut();location.replace("signup.html");});
 })();
