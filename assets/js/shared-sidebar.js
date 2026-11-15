@@ -7,6 +7,7 @@ const links=[
 ['farmer-dashboard.html#fields','solar:leaf-linear','My Fields','soon'],
 ['farmer-dashboard.html#crops','solar:seedling-linear','Crops','soon'],
 ['satellite-map.html','solar:satellite-linear','Satellite Map'],
+['ai-assistant.html','solar:chat-round-dots-linear','NILORA AI'],
 ['overview.html#weather','solar:cloud-sun-linear','Climate & Weather','soon'],
 ['overview.html#reports','solar:chart-square-linear','Reports','soon'],
 ['data-resources.html','solar:database-linear','Data Resources'],
