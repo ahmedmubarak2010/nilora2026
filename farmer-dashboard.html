@@ -293,7 +293,6 @@
   });
   $("sync-btn").addEventListener("click",()=>location.href="satellite-map.html");
   $("add-field").addEventListener("click",()=>{open();notify("You are editing the saved main field. Changes are stored in your NILORA account.");});
-  notify((link.textContent||"This feature").replace(/SOON/i,"").trim()+" — coming soon.");}));
   $("logout-btn").addEventListener("click",async()=>{await db.auth.signOut();location.replace("signup.html");});
 })();
 </script>
