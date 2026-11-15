@@ -196,7 +196,11 @@
     $("user-name").textContent=profile?.full_name||user.user_metadata?.full_name||user.user_metadata?.name||user.email?.split("@")[0]||"Farmer";
     const avatarUrl=user.user_metadata?.avatar_url||user.user_metadata?.picture||user.user_metadata?.photo_url||"";
     const avatar=$("account-avatar"),fallback=$("account-avatar-fallback");
-    if(avatarUrl){avatar.src=avatarUrl;avatar.hidden=false;avatar.onerror=()=>{avatar.hidden=true;fallback.hidden=false};fallback.hidden=true;}else{avatar.hidden=true;fallback.hidden=false;}
+    // Keep profile loading resilient if a cached/older page omits either optional avatar node.
+    if(avatar&&fallback){
+      if(avatarUrl){avatar.src=avatarUrl;avatar.hidden=false;avatar.onerror=()=>{avatar.hidden=true;fallback.hidden=false};fallback.hidden=true;}
+      else{avatar.hidden=true;fallback.hidden=false;}
+    }
     $("greeting").textContent="Welcome, "+$("user-name").textContent+" 🌱";
     $("demo-banner").innerHTML='<iconify-icon icon="solar:info-circle-linear"></iconify-icon><div><b>Data transparency.</b> Farm details and coordinates are loaded from your account. Soil readings and sample field cards are illustrative only, not laboratory results or direct measurements.</div>';
     renderFarm();
