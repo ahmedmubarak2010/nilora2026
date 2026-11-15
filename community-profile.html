@@ -46,4 +46,5 @@ $("profile-form").addEventListener("submit",async e=>{e.preventDefault();const p
 $("follow-button").onclick=async()=>{const id=profile.user_id,was=$("follow-button").dataset.following==="yes";const r=was?await db.from("community_follows").delete().eq("follower_id",user.id).eq("following_id",id):await db.from("community_follows").insert({follower_id:user.id,following_id:id});if(r.error){toast(r.error.message);return}await syncFollow(id);$("follower-count").textContent=Math.max(0,Number($("follower-count").textContent)+(was?-1:1))};
 (async()=>{try{await init()}catch(e){console.error(e);$("profile-name").textContent="Profile unavailable";$("user-posts").innerHTML='<div class="empty">'+esc(e.message)+'</div>'}})();
 })();
-</script></body></html>
+</script><script src="assets/js/shared-sidebar.js"></script>
+</body></html>
