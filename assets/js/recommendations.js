@@ -15,13 +15,15 @@
   function setState(message){if(stateText)stateText.textContent=message;}
   function formatDate(value){return new Date(value+"T00:00:00").toLocaleDateString("en",{month:"short",day:"numeric"});}
   function clearCharts(){Object.values(charts).forEach(chart=>chart.destroy());charts={};}
-  function showChartEmpty(wrapId,message){const wrap=$(wrapId);if(!wrap)return;wrap.replaceChildren(node("div","chart-empty",message));}
+  function showChartEmpty(wrapId,message){const wrap=$(wrapId);if(!wrap)return;const canvas=wrap.querySelector("canvas");if(canvas)canvas.style.display="none";let placeholder=wrap.querySelector(".chart-empty");if(!placeholder){placeholder=node("div","chart-empty");wrap.append(placeholder);}placeholder.textContent=message;}
   function makeLine(canvasId,labels,values,label,color,yTitle){
     const canvas=$(canvasId);if(!canvas||!window.Chart||!labels.length)return;
+    canvas.style.display="";canvas.parentElement.querySelector(".chart-empty")?.remove();
     charts[canvasId]=new Chart(canvas,{type:"line",data:{labels,datasets:[{label,data:values,borderColor:color,backgroundColor:color+"22",fill:true,tension:.3,spanGaps:false,pointRadius:3,pointHoverRadius:5,borderWidth:2.5}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:"index",intersect:false},plugins:{legend:{display:false},tooltip:{backgroundColor:"#2f3d28",padding:10}},scales:{x:{grid:{display:false},ticks:{font:{size:9},color:"#687064",maxTicksLimit:7}},y:{beginAtZero:false,title:{display:true,text:yTitle,font:{size:9}},grid:{color:"#edf0e8"},ticks:{font:{size:9},color:"#687064"}}}}});
   }
   function makeRain(canvasId,labels,values){
     const canvas=$(canvasId);if(!canvas||!window.Chart||!labels.length)return;
+    canvas.style.display="";canvas.parentElement.querySelector(".chart-empty")?.remove();
     charts[canvasId]=new Chart(canvas,{type:"bar",data:{labels,datasets:[{label:"Rainfall (mm/day)",data:values,backgroundColor:"#a4ac86",borderRadius:5,maxBarThickness:24}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:"#2f3d28",padding:10}},scales:{x:{grid:{display:false},ticks:{font:{size:9},color:"#687064",maxTicksLimit:7}},y:{beginAtZero:true,title:{display:true,text:"mm/day",font:{size:9}},grid:{color:"#edf0e8"},ticks:{font:{size:9},color:"#687064"}}}}});
   }
   async function loadClimateCharts(fieldId){
@@ -41,6 +43,7 @@
     const coverage=$("coverage-chart");
     const counts=[temp.length,rain.length,humidity.length];
     if(window.Chart&&coverage&&counts.some(Boolean)){
+      coverage.style.display="";coverage.parentElement.querySelector(".chart-empty")?.remove();
       charts.coverage=new Chart(coverage,{type:"doughnut",data:{labels:["Temperature","Rainfall","Humidity"],datasets:[{data:counts,backgroundColor:["#556d4a","#c8d5b5","#a67c52"],borderColor:"#fff",borderWidth:4}]},options:{responsive:true,maintainAspectRatio:false,cutout:"62%",plugins:{legend:{position:"bottom",labels:{usePointStyle:true,boxWidth:8,font:{size:10}}},tooltip:{backgroundColor:"#2f3d28",padding:10}}}});
     }else showChartEmpty("coverage-chart-wrap","No climate parameters are available to summarize yet.");
   }
@@ -104,6 +107,6 @@
     }catch(error){console.error("NILORA analysis failed:",error);empty.textContent=error.message||"Analysis failed. Please try again.";setState("Analysis failed");}
     finally{run.disabled=false;run.innerHTML='<iconify-icon icon="solar:refresh-linear"></iconify-icon> Analyze my field';}
   });
-  select.addEventListener("change",()=>{clearCharts();["temperature-chart-wrap","rainfall-chart-wrap","humidity-chart-wrap","coverage-chart-wrap"].forEach(id=>showChartEmpty(id,"Run an analysis to load saved observations for this field."));$("chart-period").textContent="Waiting for analysis";});
+  select.addEventListener("change",()=>{clearCharts();$("chart-period").textContent="Run analysis to refresh charts";});
   initialize();
 })();
