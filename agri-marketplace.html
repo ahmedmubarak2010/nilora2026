@@ -21,7 +21,8 @@ main{max-width:1480px;margin:auto;padding:30px 38px 52px;display:grid;gap:25px}.
 .footer-note{font-size:10px;color:var(--muted);text-align:center;padding:12px}
 .drawer-backdrop{position:fixed;inset:0;background:#17231880;z-index:40;opacity:0;visibility:hidden;transition:.2s}.drawer-backdrop.open{opacity:1;visibility:visible}.drawer{position:fixed;right:0;top:0;bottom:0;width:min(420px,100%);background:white;z-index:41;transform:translateX(102%);transition:.25s;display:flex;flex-direction:column;box-shadow:-15px 0 45px #0002}.drawer.open{transform:translateX(0)}.drawer-head{padding:18px 20px;background:var(--cream);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.drawer-head h2{font:700 17px Montserrat;margin:0;color:var(--olive)}.close{border:0;background:transparent;color:var(--muted);font-size:23px}.cart-items{padding:15px;overflow:auto;flex:1;display:grid;align-content:start;gap:10px}.cart-item{display:grid;grid-template-columns:1fr auto;gap:10px;background:#f7f7f2;border-radius:10px;padding:12px}.cart-item h4{font-size:11px;margin:0 0 5px}.cart-item small{font-size:9px;color:var(--muted)}.cart-item strong{font-size:11px;color:var(--olive)}.qty{display:flex;align-items:center;gap:8px;margin-top:10px}.qty button{width:25px;height:25px;border:1px solid var(--line);background:white;border-radius:6px;color:var(--olive);font-weight:800}.remove{border:0;background:transparent;color:#a53b32;font-size:17px;align-self:start}.cart-empty{text-align:center;color:var(--muted);font-size:12px;padding:45px 10px}.cart-foot{padding:17px 20px;background:var(--cream);border-top:1px solid var(--line)}.total-row{display:flex;justify-content:space-between;align-items:center;font-weight:800;color:var(--olive);margin-bottom:13px}.total-row strong{font:800 21px Montserrat}.cart-foot p{font-size:9px;line-height:1.6;color:var(--muted)}.cart-foot .btn{width:100%;padding:13px}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:var(--olive);color:white;padding:11px 16px;border-radius:9px;font-size:11px;z-index:60;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
 .mobile-menu{display:none}
-@media(max-width:1200px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}}\n@media(max-width:1100px){.sidebar{width:225px}.workspace{margin-left:225px}.products{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:1200px){.products{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:1100px){.sidebar{width:225px}.workspace{margin-left:225px}.products{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.sidebar{width:100%;height:58px;inset:0 0 auto;padding:9px 14px;display:flex;flex-direction:row;align-items:center}.brand{border:0;padding:0}.brand img{width:36px;height:34px}.brand b{font-size:17px}.brand small,.connection,.nav,.profile{display:none}.mobile-menu{display:block;margin-left:auto;background:transparent;color:white;border:0;font-size:23px}.sidebar.open{height:auto;max-height:100dvh;align-items:stretch;flex-direction:column;overflow:auto}.sidebar.open .nav{display:grid;overflow:visible}.sidebar.open .profile,.sidebar.open .connection{display:flex}.workspace{margin:58px 0 0}.topbar{height:62px;padding:0 14px}.greeting{font-size:13px}.date{font-size:9px}.farm-pill{display:none}main{padding:18px 14px 34px;gap:18px}.season{grid-template-columns:1fr;padding:20px}.season h1{font-size:22px}.season-art{display:none}.toolbar{grid-template-columns:1fr 1fr}.searchbox{grid-column:1/-1}.categories{grid-template-columns:repeat(2,1fr)}.products{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.product-visual{height:205px}}
 
 /* Simplified catalogue: blank photo slots are intentional. */
@@ -174,7 +175,9 @@ let products=[
 {id:15,name:"Hand Trowel",category:"tools",price:120,unit:"piece",image:"Assets/trowel.jpeg",description:"A hand trowel for planting and small gardening tasks. Sold per piece."}
 ];
 let activeCategory="all";let cart={};let toastTimer;
-const $=id=>document.getElementById(id);\nlet marketUser=null;\nfunction categoryLabel(c){return ({fruits:"Fresh fruit",tools:"Farm tools",seeds:"Seeds",fertilizers:"Fertilizers",equipment:"Equipment",crops:"Crops & produce",other:"Other"})[c]||"Product";}
+const $=id=>document.getElementById(id);
+let marketUser=null;
+function categoryLabel(c){return ({fruits:"Fresh fruit",tools:"Farm tools",seeds:"Seeds",fertilizers:"Fertilizers",equipment:"Equipment",crops:"Crops & produce",other:"Other"})[c]||"Product";}
 function money(n){return new Intl.NumberFormat("en-EG").format(n)+" EGP"}
 function showToast(message){$("toast").textContent=message;$("toast").classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>$("toast").classList.remove("show"),2100)}
 function renderProducts(){
@@ -249,7 +252,8 @@ function closeCart(){ $("cart-drawer").classList.remove("open");$("drawer-backdr
 $("search-input").addEventListener("input",renderProducts);$("category-select").addEventListener("change",e=>{activeCategory=e.target.value;syncCategories();renderProducts()});$("sort-select").addEventListener("change",renderProducts);
 function syncCategories(){$("category-select").value=activeCategory;document.querySelectorAll(".category-tab").forEach(b=>b.classList.toggle("active",b.dataset.category===activeCategory));}
 document.querySelectorAll(".category-tab").forEach(b=>b.addEventListener("click",()=>{activeCategory=b.dataset.category;syncCategories();renderProducts()}));
-$("modal-close").addEventListener("click",closeProductDetails);\n$("open-sell-modal").addEventListener("click",openSellModal);$("sell-modal-close").addEventListener("click",closeSellModal);$("sell-modal-backdrop").addEventListener("click",e=>{if(e.target===$("sell-modal-backdrop"))closeSellModal()});$("sell-product-form").addEventListener("submit",publishProduct);
+$("modal-close").addEventListener("click",closeProductDetails);
+$("open-sell-modal").addEventListener("click",openSellModal);$("sell-modal-close").addEventListener("click",closeSellModal);$("sell-modal-backdrop").addEventListener("click",e=>{if(e.target===$("sell-modal-backdrop"))closeSellModal()});$("sell-product-form").addEventListener("submit",publishProduct);
 $("product-modal-backdrop").addEventListener("click",e=>{if(e.target===$("product-modal-backdrop"))closeProductDetails();});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeProductDetails();closeCart();}});
 $("clear-cart").addEventListener("click",()=>{cart={};renderCart();showToast("Cart emptied.");});$("open-cart").addEventListener("click",openCart);$("hero-cart").addEventListener("click",openCart);$("close-cart").addEventListener("click",closeCart);$("drawer-backdrop").addEventListener("click",closeCart);
@@ -270,7 +274,8 @@ renderProducts();renderCart();
   if(avatarUrl){const img=document.createElement("img");img.src=avatarUrl;img.alt="";img.onerror=()=>img.remove();$("account-avatar").textContent="";$("account-avatar").append(img);}
   const {data:farm}=await db.from("farms").select("name,governorate,locality").eq("owner_id",user.id).limit(1).maybeSingle();
   if(farm)$("farm-location").textContent=[farm.name,farm.locality,farm.governorate].filter(Boolean).join(" · ");else $("farm-location").textContent="Explore sample supplies for your farm";
-  $("logout-btn").addEventListener("click",async()=>{await db.auth.signOut();location.replace("signup.html");});\n  await loadMarketplaceListings();
+  $("logout-btn").addEventListener("click",async()=>{await db.auth.signOut();location.replace("signup.html");});
+  await loadMarketplaceListings();
  }catch(e){console.error("Marketplace account initialization:",e);$("logout-btn").addEventListener("click",()=>location.replace("signup.html"));}
  finally{document.body.style.visibility="visible";}
 })();
