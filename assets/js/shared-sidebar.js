@@ -8,7 +8,7 @@ const links=[
  ['farmer-dashboard.html','solar:map-point-linear','My Farm Profile'],
  ['recommendations.html','solar:lightbulb-bolt-linear','Smart Recommendations'],
  ['satellite-map.html','solar:satellite-linear','Satellite Map'],
- ['ai-assistant.html','solar:chat-round-dots-linear','NILORA AI'],
+ ['ai-assistant.html','solar:bot-linear','Baraka AI'],
  ['reports.html','solar:chart-square-linear','Reports'],
  ['data-resources.html','solar:database-linear','Data Resources'],
  ['agri-marketplace.html','solar:shop-2-linear','Agri Marketplace'],
