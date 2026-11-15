@@ -39,7 +39,7 @@ function renderTable(){
   cells.forEach(([html])=>{const td=document.createElement("td");td.innerHTML=html;tr.append(td)});
   const actions=document.createElement("td"),wrap=document.createElement("div");wrap.className="row-actions";
   const view=document.createElement("button");view.className="small-btn";view.textContent="View";view.addEventListener("click",()=>openReport(r));
-  const download=document.createElement("button");download.className="small-btn";download.textContent="PDF";download.addEventListener("click",()=>{openReport(r);setTimeout(downloadPdf,80)});
+  const download=document.createElement("button");download.className="small-btn";download.textContent="PDF";download.addEventListener("click",async()=>{await openReport(r);await downloadPdf()});
   wrap.append(view,download);actions.append(wrap);tr.append(actions);tbody.append(tr);
  });
  $("page-label").textContent=filtered.length?("Showing "+(start+1)+"–"+Math.min(start+pageSize,filtered.length)+" of "+filtered.length+" reports"):"Showing 0 reports";
