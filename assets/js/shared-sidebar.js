@@ -9,7 +9,6 @@ const links=[
  ['recommendations.html','solar:lightbulb-bolt-linear','Smart Recommendations'],
  ['satellite-map.html','solar:satellite-linear','Satellite Map'],
  ['ai-assistant.html','solar:chat-round-dots-linear','NILORA AI'],
- ['overview.html#weather','solar:cloud-sun-linear','Climate & Weather'],
  ['reports.html','solar:chart-square-linear','Reports'],
  ['data-resources.html','solar:database-linear','Data Resources'],
  ['agri-marketplace.html','solar:shop-2-linear','Agri Marketplace'],
