@@ -117,7 +117,7 @@
   const notify=(message)=>{toast.textContent=message;toast.classList.add("show");window.setTimeout(()=>toast.classList.remove("show"),2800)};
   try{
     const {data,error}=await db.auth.getSession();
-    if(error||!data.session){location.replace("signup.html");return;}
+    if(!data.session){location.replace("signup.html");return;}\n    if(error)throw error;
     const user=data.session.user;
     const {data:profile}=await db.from("profiles").select("full_name").eq("id",user.id).maybeSingle();
     const {data:savedFarm}=await db.from("farms").select("id,name,governorate,locality,latitude,longitude,area_feddan,water_source").eq("owner_id",user.id).limit(1).maybeSingle();
@@ -150,7 +150,7 @@
     document.querySelector(".stats .stat:nth-child(4) strong").textContent=irrigationLabels[fields?.irrigation_type]||"Not specified";
     document.getElementById("detail-irrigation").textContent=irrigationLabels[fields?.irrigation_type]||"Not specified";
     document.body.style.visibility="visible";
-  }catch(e){location.replace("signup.html");return;}
+  }catch(e){console.error("Farm profile loading error:",e);document.body.style.visibility="visible";const banner=document.querySelector(".demo");if(banner)banner.innerHTML='<iconify-icon icon="solar:danger-triangle-linear"></iconify-icon><div><b>Could not load all farm data.</b> Your sign-in session is being kept. Refresh the page or try again shortly. <span style="display:block;margin-top:4px;font-size:10px">Details: '+String(e.message||e).replace(/[<>&]/g,"")+'</span></div>';}
 
   // NASA GIBS satellite imagery map (regional view; no farm boundary is assumed).
   try{
