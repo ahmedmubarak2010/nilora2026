@@ -2,7 +2,7 @@
 const path=location.pathname.split('/').pop()||'overview.html';
 const active=['community-profile.html','community-post.html'].includes(path)?'community.html':path;
 const hash=location.hash;
-const isActive=href=>{const parts=href.split('#'),page=parts[0],anchor=parts[1]||'';if(page!==active)return false;if(anchor)return hash==='#'+anchor;if(page==='farmer-dashboard.html')return hash!=='#fields'&&hash!=='#farm-settings';if(page==='overview.html')return hash!=='#weather';return true;};
+const isActive=href=>{const parts=href.split('#'),page=parts[0],anchor=parts[1]||'';if(page!==active)return false;if(anchor)return hash==='#'+anchor;if(page==='farmer-dashboard.html')return hash!=='#fields';if(page==='overview.html')return hash!=='#weather';return true;};
 const links=[
  ['overview.html','solar:widget-2-linear','Overview'],
  ['farmer-dashboard.html','solar:map-point-linear','My Farm Profile'],
@@ -14,7 +14,6 @@ const links=[
  ['data-resources.html','solar:database-linear','Data Resources'],
  ['agri-marketplace.html','solar:shop-2-linear','Agri Marketplace'],
  ['community.html','solar:users-group-rounded-linear','Community'],
- ['farmer-dashboard.html#farm-settings','solar:settings-linear','Farm Settings']
 ];
 let sidebar=document.querySelector('aside.sidebar');
 if(!sidebar){sidebar=document.createElement('aside');document.body.prepend(sidebar)}
@@ -25,5 +24,5 @@ const style=document.createElement('style');style.textContent=`.nilora-shared-si
 document.head.appendChild(style);
 document.getElementById('mobile-menu').addEventListener('click',()=>sidebar.classList.toggle('open'));
 document.getElementById('logout-btn').addEventListener('click',async()=>{try{if(window.db?.auth)await db.auth.signOut()}finally{location.replace('signup.html')}});
-(async()=>{try{if(!window.db?.auth)return;const {data:{user}}=await db.auth.getUser();if(!user)return;const {data:p}=await db.from('profiles').select('full_name,avatar_url,role').eq('id',user.id).maybeSingle();const name=p?.full_name||user.user_metadata?.full_name||user.user_metadata?.name||user.email?.split('@')[0]||'NILORA Member';document.getElementById('user-name').textContent=name;document.getElementById('user-email').textContent=user.email||'Signed-in account';const pic=p?.avatar_url||user.user_metadata?.avatar_url||user.user_metadata?.picture;if(pic){const img=document.createElement('img');img.src=pic;img.alt='';img.onerror=()=>img.remove();document.getElementById('account-avatar').textContent='';document.getElementById('account-avatar').append(img)}}catch(e){console.warn('Sidebar profile unavailable',e)}})();
+(async()=>{try{if(!window.db?.auth)return;const {data:{user}}=await db.auth.getUser();if(!user)return;const {data:p}=await db.from('profiles').select('full_name,avatar_url,role').eq('id',user.id).maybeSingle();const name=p?.full_name||user.user_metadata?.full_name||user.user_metadata?.name||user.email?.split('@')[0]||'NILORA Member';document.getElementById('user-name').textContent=name;document.getElementById('user-email').textContent=p?.role?(String(p.role).replace(/[_-]/g,' ')): (user.email||'Signed-in account');const pic=p?.avatar_url||user.user_metadata?.avatar_url||user.user_metadata?.picture;if(pic){const img=document.createElement('img');img.src=pic;img.alt='';img.onerror=()=>img.remove();document.getElementById('account-avatar').textContent='';document.getElementById('account-avatar').append(img)}}catch(e){console.warn('Sidebar profile unavailable',e)}})();
 })();
