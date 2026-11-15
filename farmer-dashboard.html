@@ -233,8 +233,15 @@
       if(farm?.latitude!=null&&farm?.longitude!=null)L.marker([farm.latitude,farm.longitude]).addTo(map).bindPopup("Saved farm location");
       addNasaLayer();$("refresh-nasa-map").addEventListener("click",addNasaLayer);
       map.whenReady(()=>setTimeout(()=>map.invalidateSize(),150));window.addEventListener("resize",()=>map.invalidateSize());
-    }else $("nasa-map-status").textContent="Map library did not load.";
-  }catch(error){$("nasa-map-status").textContent="Map could not be initialized.";console.error(error);}
+    }else {
+      const status=$("nasa-map-status");
+      if(status)status.textContent=mapEl?"Map library did not load.":"Satellite map section is not present on this page.";
+    }
+  }catch(error){
+    const status=$("nasa-map-status");
+    if(status)status.textContent="Map could not be initialized.";
+    console.error("NASA map initialization error:",error);
+  }
 
   const modal=$("edit-modal"),form=$("farm-form");
   const open=()=>{
