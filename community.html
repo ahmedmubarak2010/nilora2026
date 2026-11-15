@@ -55,7 +55,8 @@ async function init(){
  const {data:{user:u},error}=await db.auth.getUser();if(error||!u){location.replace("signup.html");return}user=u;
  const {data:base,error:profileError}=await db.from("profiles").select("full_name,role,governorate,locality,avatar_url,experience_years").eq("id",user.id).maybeSingle();if(profileError)console.warn("Profile lookup:",profileError.message);
  const display=nameFrom(user,base),pic=pictureFrom(user,base);
- myProfile={user_id:user.id,display_name:display,avatar_url:pic,role:base?.role||"Community member",governorate:base?.governorate||"",locality:base?.locality||"",bio:"",specialties:[]};
+ const {data:savedCommunityProfile}=await db.from("community_profiles").select("*").eq("user_id",user.id).maybeSingle();
+ myProfile={...(savedCommunityProfile||{}),user_id:user.id,display_name:savedCommunityProfile?.display_name||display,avatar_url:savedCommunityProfile?.avatar_url||pic,role:savedCommunityProfile?.role||base?.role||"Community member",governorate:savedCommunityProfile?.governorate||base?.governorate||"",locality:savedCommunityProfile?.locality||base?.locality||"",bio:savedCommunityProfile?.bio||"",specialties:savedCommunityProfile?.specialties||[]};
  const {error:upsertError}=await db.from("community_profiles").upsert(myProfile,{onConflict:"user_id"});if(upsertError)throw upsertError;
  $("account-name").textContent=display;$("account-location").textContent=[myProfile.locality,myProfile.governorate].filter(Boolean).join(", ")||"NILORA member";
  $("account-link").innerHTML=avatar(myProfile);$("account-link").href="community-profile.html?id="+encodeURIComponent(user.id);
