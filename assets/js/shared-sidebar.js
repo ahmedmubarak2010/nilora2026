@@ -6,7 +6,6 @@ const isActive=href=>{const parts=href.split('#'),page=parts[0],anchor=parts[1]|
 const links=[
  ['overview.html','solar:widget-2-linear','Overview'],
  ['farmer-dashboard.html','solar:map-point-linear','My Farm Profile'],
- ['farmer-dashboard.html#fields','solar:leaf-linear','My Fields'],
  ['recommendations.html','solar:lightbulb-bolt-linear','Smart Recommendations'],
  ['satellite-map.html','solar:satellite-linear','Satellite Map'],
  ['ai-assistant.html','solar:chat-round-dots-linear','NILORA AI'],
