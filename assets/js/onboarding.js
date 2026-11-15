@@ -55,7 +55,8 @@ form.addEventListener("submit",async e=>{
  if(!selected){say("حدد موقع المزرعة الأول.","error");return}
  const area=Number($("area").value),accountName=$("owner-name").value.trim();
  if(!accountName){say("مش قادرين نقرأ الاسم من حسابك. سجّل خروج وادخل تاني أو راجع بيانات الحساب.","error");return}
- if(!$("farm-name").value.trim()){say("اكتب اسم المزرعة.","error");return}\n if(!Number.isFinite(area)||area<=0){say("اكتب مساحة صحيحة للمزرعة.","error");return}
+ if(!$("farm-name").value.trim()){say("اكتب اسم المزرعة.","error");return}
+ if(!Number.isFinite(area)||area<=0){say("اكتب مساحة صحيحة للمزرعة.","error");return}
  save.disabled=true;save.textContent="جاري حفظ البيانات…";say("جاري حفظ بيانات المزرعة والإحداثيات في حسابك.");
  try{
   const profilePayload={full_name:accountName,phone:$("phone").value.trim()||null,governorate:$("governorate").value,locality:$("locality").value.trim()||null,onboarding_completed:false};
