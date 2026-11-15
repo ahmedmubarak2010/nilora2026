@@ -4,6 +4,7 @@ const active=path==='community-profile.html'?'community.html':path;
 const links=[
 ['overview.html','solar:widget-2-linear','Overview'],
 ['farmer-dashboard.html','solar:map-point-linear','My Farm Profile'],
+['recommendations.html','solar:lightbulb-bolt-linear','Smart Recommendations'],
 ['farmer-dashboard.html#fields','solar:leaf-linear','My Fields','soon'],
 ['farmer-dashboard.html#crops','solar:seedling-linear','Crops','soon'],
 ['satellite-map.html','solar:satellite-linear','Satellite Map'],
