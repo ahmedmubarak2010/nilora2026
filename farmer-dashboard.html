@@ -117,7 +117,8 @@
   const notify=(message)=>{toast.textContent=message;toast.classList.add("show");window.setTimeout(()=>toast.classList.remove("show"),2800)};
   try{
     const {data,error}=await db.auth.getSession();
-    if(!data.session){location.replace("signup.html");return;}\n    if(error)throw error;
+    if(!data.session){location.replace("signup.html");return;}
+    if(error)throw error;
     const user=data.session.user;
     const {data:profile}=await db.from("profiles").select("full_name").eq("id",user.id).maybeSingle();
     const {data:savedFarm}=await db.from("farms").select("id,name,governorate,locality,latitude,longitude,area_feddan,water_source").eq("owner_id",user.id).limit(1).maybeSingle();
