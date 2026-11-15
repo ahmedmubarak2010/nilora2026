@@ -11,6 +11,28 @@
 @media(max-width:1050px){.layout{grid-template-columns:minmax(0,1fr) 250px}.content{padding:22px 20px}.topbar{padding:0 20px}}
 @media(max-width:800px){.sidebar{position:static;width:auto;height:auto;padding:9px 14px;display:block}.brand{border:0;padding:0}.brand img{width:35px;height:34px}.brand b{font-size:17px}.nav-label,.nav,.side-foot{display:none}.workspace{margin:0}.topbar{height:58px;padding:0 15px}.content{padding:15px 13px 35px}.hero{padding:20px;align-items:flex-start;flex-direction:column}.hero-actions{width:100%}.layout{grid-template-columns:1fr}.right-col{grid-template-columns:1fr 1fr}.composer{padding:12px}.composer .btn{padding:10px}.search{min-width:100%;order:2}.toolbar{align-items:stretch}.filters{overflow:auto;flex-wrap:nowrap;padding-bottom:3px}.filter{white-space:nowrap}}
 @media(max-width:520px){.right-col{grid-template-columns:1fr}.post{padding:14px}.post-title{font-size:15px}.account-copy{display:none}.hero-actions .btn{flex:1}.composer-placeholder{font-size:10px}.form-row{grid-template-columns:1fr}.post-head{align-items:flex-start}.category{font-size:8px}}
+
+/* Community spacing refinement */
+.workspace{min-width:0;width:calc(100% - 264px)}
+.content{max-width:1560px;padding:30px clamp(22px,3vw,46px) 58px}
+.hero{padding:32px 36px;min-height:168px}
+.layout{grid-template-columns:minmax(0,1fr) 310px;gap:24px;margin-top:24px}
+.feed-col,.right-col{gap:18px}
+.post,.composer,.side-card{border-radius:16px}
+.post{padding:22px}
+.composer{padding:18px}
+.toolbar{gap:12px;margin:2px 0}
+.filters{gap:8px}
+.filter{padding:9px 14px}
+.search{min-width:250px}
+.post-title{margin-top:17px;font-size:18px}
+.post-content{font-size:13px;line-height:1.9}
+.post-image{max-height:430px;object-fit:cover}
+.right-col{position:sticky;top:88px;align-self:start}
+@media(max-width:1100px){.layout{grid-template-columns:minmax(0,1fr) 270px;gap:18px}.content{padding:24px 20px 45px}}
+@media(max-width:800px){.workspace{width:100%;margin:0}.content{padding:17px 14px 38px}.layout{grid-template-columns:1fr;gap:16px}.right-col{position:static;grid-template-columns:1fr 1fr}.hero{padding:23px;min-height:0}.post{padding:16px}.search{min-width:100%}}
+@media(max-width:520px){.right-col{grid-template-columns:1fr}.hero{border-radius:14px}.post{padding:14px}.content{padding-left:12px;padding-right:12px}}
+
 </style>
 </head>
 <body>
