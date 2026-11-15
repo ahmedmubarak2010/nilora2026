@@ -54,7 +54,7 @@
  const today=new Date(),dateMax=new Date(today);dateMax.setUTCDate(dateMax.getUTCDate()-1);const dateIso=d=>d.toISOString().slice(0,10);
  const dateInput=$('image-date');dateInput.max=dateIso(today);dateInput.value=dateIso(dateMax);
  const setStatus=(id,msg)=>$(id).textContent=msg;
- function fieldName(f,i){return f.name||f.field_name||f.title||f.current_crop||f.crop||('Field '+(i+1))}
+ function fieldName(f,i){const crop=f.current_crop||f.crop;return f.name||f.field_name||f.title||(crop?(String(crop).charAt(0).toUpperCase()+String(crop).slice(1)+' field'):('Field '+(i+1)))}
  function fieldCoords(f){const lat=f.latitude??f.lat??f.center_lat??farm?.latitude;const lon=f.longitude??f.lng??f.lon??f.center_lon??farm?.longitude;return {lat:Number(lat),lon:Number(lon),valid:lat!==null&&lat!==undefined&&lon!==null&&lon!==undefined&&Number.isFinite(Number(lat))&&Number.isFinite(Number(lon))&&Math.abs(Number(lat))<=90&&Math.abs(Number(lon))<=180}}
  function fieldArea(f){return f.area_feddan??f.area??f.area_feddans??f.size_feddan}
  function populateDetails(f){const c=fieldCoords(f);const entries=[['Field',fieldName(f,fields.indexOf(f))],['Crop',f.current_crop||f.crop||'Not recorded'],['Area',fieldArea(f)!=null?fieldArea(f)+' feddans':'Not recorded'],['Coordinates',c.valid?c.lat.toFixed(5)+', '+c.lon.toFixed(5):'Not saved'],['Irrigation',f.irrigation_type||'Not recorded'],['Planting date',f.planting_date||'Not recorded']];$('field-details').innerHTML=entries.map(([k,v])=>'<div class="data-row"><span>'+String(k)+'</span><b>'+String(v)+'</b></div>').join('')}
