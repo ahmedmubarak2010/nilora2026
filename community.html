@@ -140,4 +140,5 @@ $("feed").addEventListener("submit",async e=>{const form=e.target.closest("[data
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
 (async()=>{try{await init();const draft=localStorage.getItem("nilora-community-draft");if(draft){const d=JSON.parse(draft);$("post-category").value=d.category||"question";$("post-title").value=d.title||"";$("post-content").value=d.content||"";$("post-crop").value=d.crop||"";$("post-cultivar").value=d.cultivar||"";$("post-stage").value=d.stage||"";$("post-location").value=d.location||""}}catch(e){console.error(e);$("feed").innerHTML='<div class="empty">Could not initialize your community account: '+esc(e.message)+'</div>'}})();
 })();
-</script></body></html>
+</script><script src="assets/js/shared-sidebar.js"></script>
+</body></html>
