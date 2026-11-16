@@ -133,9 +133,8 @@ AI tools, including ChatGPT, were used as development assistants during the proj
 - **Live website:** https://nilora2026.vercel.app/
 - **Project demonstration:** https://nilora2026.vercel.app/demo.html
 - **GitHub repository:** https://github.com/ahmedmubarak2010/nilora2026
-- **Team lead — Ahmed Mubarak:** https://www.linkedin.com/in/a7med-mubarak/
-- **Portfolio:** https://ahmedmubarak.vercel.app/
-- **Linktree:** https://linktr.ee/ahmed.mubarak1
+- **Linkedin :** https://www.linkedin.com/company/nilora2026
+- **Linktree:** https://linktr.ee/nilora
 
 ---
 
